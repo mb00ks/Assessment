@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Step 2";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="area-judul-halaman">Form Persetujuan</div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="area-persetujuan">
+            <input type="hidden" name="reqJumlahInfo" id="reqJumlahInfo" value="0" />
+            <ul>
+                <li>Soal ujian dalam bentuk pilihan ganda.</li>
+                <li>Waktu tes tidak dapat dihentikan</li>
+                <li>Jika waktu tes masih tersisa, Saudara dapat merubah jawaban jika diperlukan.</li>
+                <li>Jika waktu tes telah habis, Saudara tidak dapat melanjutkan pengerjaan soal tes.</li>
+                <li>Pastikan seluruh soal telah dijawab </li>
+                <li>Tes hanya dapat dilakukan satu kali.</li>
+                <li>Kerjakan setiap soal dengan tenang.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="area-prev-next">
+        <div class="prev">
+            <form class="form-inline" asp-area="" asp-controller="Home" asp-action="Wizard" asp-route-step="1" method="post">
+                <button type="submit"><i class="fa fa-chevron-left"></i></button>
+            </form>
+        </div>
+        <div class="next">
+            <form class="form-inline" asp-area="" asp-controller="Home" asp-action="Wizard" asp-route-step="3" method="post">
+                <button type="submit"><i class="fa fa-chevron-right"></i></button>
+            </form>
+        </div>
+    </div>
+
+</div>

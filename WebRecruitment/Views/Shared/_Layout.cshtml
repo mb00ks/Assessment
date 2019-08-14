@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebRecruitment</title>
+
+    <link href="~/lib/ujian/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/ujian/gaya.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/ujian/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet" />
+    <style>
+        .col-md-12 {
+            *padding-left: 0px;
+            *padding-right: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 padding-kiri-0 padding-kanan-0">
+                <div class="area-header">
+                    <div class="area-header-inner">
+                        <div class="logo"><img src="~/images/logo.png"></div>
+                        <div class="judul">
+                            <div>ASSESSMENT CENTER</div>
+                            <div>PT Pelabuhan Indonesia III (Persero)</div>
+                        </div>
+                        <div class="tombol-kanan-atas">
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button type="submit" class="logout">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="area-main">
+                    <div class="container utama">
+                        @RenderBody()
+                    </div>
+                </div>
+                <div class="area-footer">
+                    Copyright © 2019 PT Pelabuhan Indonesia III (Persero)
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/ujian/bootstrap/jquery.js"></script>
+    <script src="~/lib/ujian/bootstrap/bootstrap.js"></script>
+    <script src="~/lib/ujian/emodal/eModal.js"></script>
+    <script>
+        function openPopup() {
+            eModal.ajax('ubah_password.php', 'UBAH PASSWORD')
+        }
+
+        function disableBackButton() {
+            setTimeout("preventPageLoad()", 1);
+        }
+
+        function preventPageLoad() {
+            try {
+                history.forward();
+            }
+            catch (e) {
+            }
+            setTimeout("preventPageLoad()", 100);
+        }
+
+        $(document).ready(function () {
+            var idleState = false;
+            var idleTimer = null;
+            $('*').bind('mousemove click mouseup mousedown keydown keypress keyup submit change mouseenter scroll resize dblclick', function () {
+                clearTimeout(idleTimer);
+                if (idleState == true) {
+                }
+                idleState = false;
+                idleTimer = setTimeout(function () {
+                    idleState = true;
+                }, 1000000);
+            });
+            $("body").trigger("mousemove");
+        });
+    </script>
+
+    <script type='text/javascript' src="~/lib/ujian/bootstrap/angular.js"></script>
+</body>
+</html>

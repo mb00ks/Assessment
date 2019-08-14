@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Step 3";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="area-judul-halaman">PERSIAPAN</div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="area-persetujuan">
+            <ul>
+                <li>Pastikan anda menggunakan browser Firefox (Mozilla) / Chrome, dengan update terbaru.</li>
+                <li>Pastikan anda memiliki koneksi jaringan internet yang bagus, sehingga tidak ada kendala koneksi waktu Tes Online.</li>
+                <li>Jika anda sudah siap, tekan Tombol "SIAP IKUT UJIAN" untuk memulai tes online.</li>
+                <li>Jawablah pertanyaan dengan seksama dengan tenang, dikarenakan waktu yang diberikan tidak dapat dihentikan.</li>
+                <li>Anda dapat mereview kembali pertanyaan anda ketika waktu yang diberikan masih ada.</li>
+                <li>Jangan lupa berdoa agar semua tes berjalan lancar.</li>
+                <li>Jadwal Ujian Anda <b>29 Juli 2019, 00:00:01 s/d 29 Juli 2019, 23:59:59</b>.</li>
+            </ul>
+
+            <div class="alert alert-warning atas-10">
+                Peringatan : Apabila anda telah siap melaksanakan ujian klik tombol "Mulai Ujian".<br> Anda diberikan waktu <strong>00:00</strong> untuk mengerjakan ujian.
+            </div>
+
+            <div class="ikut"><a href="#" onclick="nextModul()">Siap Ikut Ujian &raquo;</a></div>
+        </div>
+
+    </div>
+
+    <div class="area-prev-next">
+        <div class="prev">
+            <form class="form-inline" asp-area="" asp-controller="Home" asp-action="Wizard" asp-route-step="2" method="post">
+                <button type="submit"><i class="fa fa-chevron-left"></i></button>
+            </form>
+        </div>
+        <div class="next">
+            <form class="form-inline" asp-area="" asp-controller="Home" asp-action="Wizard" asp-route-step="4" method="post">
+                <button type="submit"><i class="fa fa-chevron-right"></i></button>
+            </form>
+        </div>
+    </div>
+
+</div>
