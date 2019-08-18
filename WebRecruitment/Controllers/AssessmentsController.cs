@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebRecruitment.Controllers
 {
     [Authorize(Roles = "Peserta")]
-    public class AssessmentController : Controller
+    public class AssessmentsController : Controller
     {
         [HttpGet("[controller]/{page?}", Name = "LandingPage")]
         //[HttpPost("[controller]/{page?}", Name = "LandingPage")]
@@ -23,7 +23,7 @@ namespace WebRecruitment.Controllers
                     if (status == "start")
                     {
                         TempData["status"] = "start";
-                        return LocalRedirect("~/Assessment/TahapanTes#start");
+                        return LocalRedirect("~/Assessments/TahapanTes#start");
                     }
                     else
                     {
@@ -64,24 +64,25 @@ namespace WebRecruitment.Controllers
             }
         }
 
-        public ActionResult TahapanTes()
-        {
-            if (!TempData.ContainsKey("status"))
-            {
-                return LocalRedirect("~/Assessment");
-            }
-            else
-            {
-                var status = TempData["status"].ToString();
-                if(status != "Persiapan" && status != "start")
-                {
-                    return LocalRedirect("~/Assessment");
-                }
-            }
+        //[HttpGet("[controller]/[action]", Name = "TahapanTes")]
+        //public ActionResult TahapanTes()
+        //{
+        //    if (!TempData.ContainsKey("status"))
+        //    {
+        //        return LocalRedirect("~/Assessments");
+        //    }
+        //    else
+        //    {
+        //        var status = TempData["status"].ToString();
+        //        if(status != "Persiapan" && status != "start")
+        //        {
+        //            return LocalRedirect("~/Assessments");
+        //        }
+        //    }
 
-            TempData["status"] = "start";
-            return View();
-        }
+        //    TempData["status"] = "start";
+        //    return View();
+        //}
 
         // GET: Assessment/Details/5
         public ActionResult Details(int id)

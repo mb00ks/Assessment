@@ -21,12 +21,32 @@
 
 
   <ItemGroup>
+    <Folder Include="Areas\Assessments\Data\" />
+    <Folder Include="Areas\Assessments\Models\" />
     <Folder Include="Areas\Employees\Controllers\" />
     <Folder Include="Areas\Employees\Data\" />
     <Folder Include="Areas\Employees\Models\" />
     <Folder Include="Areas\Employees\Views\" />
     <Folder Include="Areas\Manages\Data\" />
     <Folder Include="Areas\Manages\Models\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="Views\Assessments\DataPribadi.cshtml" />
+    <None Include="Views\Assessments\FormPesetujuan.cshtml" />
+    <None Include="Views\Assessments\Persiapan.cshtml" />
+    <None Include="Views\Assessments\TahapanTes.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_CookieConsentPartial.cshtml" />
+    <None Include="Views\Shared\_Layout - Backup.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
 
 </Project>

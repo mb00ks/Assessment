@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="area-judul-halaman">PERSIAPAN</div>
+        <div class="area-judul-halaman">Persiapan</div>
     </div>
 
     <div class="col-md-12">
@@ -23,7 +23,7 @@
                 Peringatan : Apabila anda telah siap melaksanakan ujian klik tombol "Mulai Ujian".<br> Anda diberikan waktu <strong>00:00</strong> untuk mengerjakan ujian.
             </div>
 
-            <div class="ikut"><a href="#" onclick="nextModul()">Siap Ikut Ujian &raquo;</a></div>
+            <div class="ikut"><a asp-area="Assessments" asp-controller="TahapanTes" asp-action="Index">Siap Ikut Ujian &raquo;</a></div>
         </div>
 
     </div>
@@ -39,7 +39,7 @@
             @*<form class="form-inline" asp-area="" asp-controller="Assessment" asp-action="TahapanTes" method="get">
                 <button type="submit"><i class="fa fa-chevron-right"></i></button>
             </form>*@
-            <a asp-area="" asp-controller="Assessment" asp-action="TahapanTes"><i class="fa fa-chevron-right"></i></a>
+            <a asp-area="Assessments" asp-controller="TahapanTes" asp-action="Index"><i class="fa fa-chevron-right"></i></a>
         </div>
     </div>
 
