@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Step 3";
+    ViewData["Title"] = "Persiapan";
 }
 
 <div class="row">
@@ -30,12 +30,12 @@
 
     <div class="area-prev-next">
         <div class="prev">
-            <form class="form-inline" asp-area="" asp-controller="Home" asp-action="Wizard" asp-route-step="2" method="post">
+            <form class="form-inline" asp-route="LandingPage" asp-route-pages="FormPesetujuan" method="post">
                 <button type="submit"><i class="fa fa-chevron-left"></i></button>
             </form>
         </div>
         <div class="next">
-            <form class="form-inline" asp-area="" asp-controller="Home" asp-action="Wizard" asp-route-step="4" method="post">
+            <form class="form-inline" asp-route="Ujian" method="post">
                 <button type="submit"><i class="fa fa-chevron-right"></i></button>
             </form>
         </div>

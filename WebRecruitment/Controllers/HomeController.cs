@@ -17,20 +17,6 @@ namespace WebRecruitment.Controllers
             return View();
         }
 
-        [HttpPost("[controller]")]
-        public IActionResult Wizard(int step)
-        {
-            if(step == 1)
-            {
-                return View("Index");
-            }
-            else
-            {
-                var viewName = $"Step{step}";
-                return View(viewName);
-            }
-        }
-
         public IActionResult Privacy()
         {
             return View();

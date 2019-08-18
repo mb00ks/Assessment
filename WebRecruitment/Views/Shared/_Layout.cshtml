@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebRecruitment</title>
+    <title>@ViewData["Title"] - Assessment</title>
 
     <link href="~/lib/ujian/bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="~/css/ujian/gaya.css" rel="stylesheet" type="text/css" />
@@ -27,9 +27,12 @@
                             <div>PT Pelabuhan Indonesia III (Persero)</div>
                         </div>
                         <div class="tombol-kanan-atas">
-                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                <button type="submit" class="logout">Logout</button>
-                            </form>
+                            @if ((string)ViewData["Title"] == "Data Pribadi")
+                            {
+                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Assessment", new { area = "" })">
+                                    <button type="submit" class="logout">Logout</button>
+                                </form>
+                            }
                         </div>
                     </div>
                 </div>

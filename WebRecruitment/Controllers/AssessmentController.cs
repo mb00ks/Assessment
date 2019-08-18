@@ -8,29 +8,34 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebRecruitment.Controllers
 {
-    //[Authorize(Roles = "Peserta")]
-    //[Route("[controller]/[action]")]
+    [Authorize(Roles = "Peserta")]
     public class AssessmentController : Controller
     {
-        [HttpGet("[controller]/{page?}")]
-        [HttpPost("[controller]/{page?}")]
-        public ActionResult Index(string page)
+        [HttpGet("[controller]/{page?}", Name = "LandingPage")]
+        [HttpPost("[controller]/{page?}", Name = "LandingPage")]
+        public ActionResult Index(string pages)
         {
             if (Request.Method == "GET")
             {
-                return View();
+                return View("DataPribadi");
             }
             else
             {
-                if (page == null)
+                if (pages == null)
                 {
-                    return Content("this is empty");
+                    return View("DataPribadi");
                 }
                 else
                 {
-                    return Content(page);
+                    return View(pages);
                 }
             }
+        }
+
+        [HttpPost("", Name = "Ujian")]
+        public ActionResult Ujian()
+        {
+            return Content("this is ujian");
         }
 
         // GET: Assessment/Details/5
