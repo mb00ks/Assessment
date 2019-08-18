@@ -12,16 +12,48 @@ namespace WebRecruitment.Controllers
     public class AssessmentController : Controller
     {
         [HttpGet("[controller]/{page?}", Name = "LandingPage")]
-        [HttpPost("[controller]/{page?}", Name = "LandingPage")]
-        public ActionResult Index(string pages)
+        //[HttpPost("[controller]/{page?}", Name = "LandingPage")]
+        public ActionResult Index(string pages = "")
         {
             if (Request.Method == "GET")
             {
-                return View("DataPribadi");
+                if (TempData.ContainsKey("status"))
+                {
+                    var status = TempData["status"].ToString();
+                    if (status == "start")
+                    {
+                        TempData["status"] = "start";
+                        return LocalRedirect("~/Assessment/TahapanTes#start");
+                    }
+                    else
+                    {
+                        TempData["status"] = pages;
+                        if (pages == string.Empty)
+                        {
+                            return View("DataPribadi");
+                        }
+                        else
+                        {
+                            return View(pages);
+                        }
+                    }
+                }
+                else
+                {
+                    TempData["status"] = pages;
+                    if (pages == string.Empty)
+                    {
+                        return View("DataPribadi");
+                    }
+                    else
+                    {
+                        return View(pages);
+                    }
+                }
             }
             else
             {
-                if (pages == null)
+                if (pages == string.Empty)
                 {
                     return View("DataPribadi");
                 }
@@ -32,10 +64,23 @@ namespace WebRecruitment.Controllers
             }
         }
 
-        [HttpPost("", Name = "Ujian")]
-        public ActionResult Ujian()
+        public ActionResult TahapanTes()
         {
-            return Content("this is ujian");
+            if (!TempData.ContainsKey("status"))
+            {
+                return LocalRedirect("~/Assessment");
+            }
+            else
+            {
+                var status = TempData["status"].ToString();
+                if(status != "Persiapan" && status != "start")
+                {
+                    return LocalRedirect("~/Assessment");
+                }
+            }
+
+            TempData["status"] = "start";
+            return View();
         }
 
         // GET: Assessment/Details/5
