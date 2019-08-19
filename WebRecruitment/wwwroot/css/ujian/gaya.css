@@ -555,7 +555,6 @@ body {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    
     background: none;
     border: none;
 }
@@ -691,11 +690,19 @@ body {
 .area-tatacara {
     padding: 15px 40px 0;
     clear: both;
+    background: #FFF;
+    padding: 20px 30px 0;
+    float: left;
+    width: 100%;
+    max-height: calc(100vh - 240px);
+    overflow: auto;
 }
 
 @media screen and (max-width:767px) {
     .area-tatacara {
         padding: 0 0px;
+        padding: 20px 0px 30px;
+        max-height: none;
     }
 }
 
@@ -710,8 +717,11 @@ body {
 
     .area-tatacara ul li {
         border-bottom: 1px solid #e6e6e6;
+        border-bottom: none;
         padding-top: 5px;
         padding-bottom: 5px;
+        /*list-style-type: decimal;
+        padding: 5px 0;*/
     }
 
 /****/
@@ -1057,7 +1067,7 @@ body {
 /****/
 .area-soal-item {
     *border: 2px solid red;
-    height: calc(100vh - 350px);
+    /*height: calc(100vh - 350px);*/
     overflow-y: auto;
 }
 
@@ -1090,7 +1100,7 @@ body {
 /****/
 .area-sudah {
     overflow-x: auto;
-    max-height: calc(100vh - 350px);
+    max-height: calc(100vh - 260px);
 }
 
 @media screen and (max-width:767px) {
@@ -1667,7 +1677,50 @@ button.logout {
 
 /****/
 .area-instruksi {
+    *overflow: auto;
+    *height: calc(100% - 10px);
+    *float: left;
+    *clear: both;
 }
+
+    .area-instruksi .nama {
+        color: #cc001a;
+    }
+
+    .area-instruksi .judul {
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #333;
+        font-size: 16px;
+        line-height: 30px;
+    }
+
+    .area-instruksi .keterangan img {
+        max-width: 100%;
+    }
+
+    .area-instruksi #fvpp-close {
+        display: block;
+        float: right;
+        width: auto;
+        padding: 0 20px;
+        height: 40px;
+        line-height: 40px;
+        text-transform: uppercase;
+        background: #006acc;
+        color: #FFF;
+        text-align: center;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        border: none;
+        *margin-right: 10px;
+        *bottom: 100px;
+        *right: 200px;
+        position: relative;
+    }
 
     .area-instruksi .keterangan span {
         display: inline-block;

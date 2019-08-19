@@ -30,6 +30,18 @@ namespace WebRecruitment.Areas.Assessments.Controllers
             return View();
         }
 
+        public ActionResult Tahap1(int? soal)
+        {
+            if (soal == null)
+            {
+                return View();
+            }
+            else
+            {
+                return View($"Soal{soal}");
+            }
+        }
+
         // GET: TahapanTes/Details/5
         public ActionResult Details(int id)
         {
