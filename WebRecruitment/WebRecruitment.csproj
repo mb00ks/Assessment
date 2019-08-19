@@ -34,7 +34,7 @@
 
   <ItemGroup>
     <None Include="Views\Assessments\DataPribadi.cshtml" />
-    <None Include="Views\Assessments\FormPesetujuan.cshtml" />
+    <None Include="Views\Assessments\FormPersetujuan.cshtml" />
     <None Include="Views\Assessments\Persiapan.cshtml" />
     <None Include="Views\Assessments\TahapanTes.cshtml" />
     <None Include="Views\Home\Index.cshtml" />

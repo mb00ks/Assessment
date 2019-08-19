@@ -30,16 +30,16 @@
 
     <div class="area-prev-next">
         <div class="prev">
-            @*<form class="form-inline" asp-route="LandingPage" asp-route-pages="FormPesetujuan" method="post">
+            @*<form class="form-inline" asp-route="LandingPage" asp-route-pages="FormPersetujuan" method="post">
                 <button type="submit"><i class="fa fa-chevron-left"></i></button>
             </form>*@
-            <a asp-route="LandingPage" asp-route-pages="FormPesetujuan"><i class="fa fa-chevron-left"></i></a>
+            <a asp-route="FormPersetujuan"><i class="fa fa-chevron-left"></i></a>
         </div>
         <div class="next">
             @*<form class="form-inline" asp-area="" asp-controller="Assessment" asp-action="TahapanTes" method="get">
                 <button type="submit"><i class="fa fa-chevron-right"></i></button>
             </form>*@
-            <a asp-area="Assessments" asp-controller="TahapanTes" asp-action="Index"><i class="fa fa-chevron-right"></i></a>
+            <a asp-route="TahapanTes"><i class="fa fa-chevron-right"></i></a>
         </div>
     </div>
 

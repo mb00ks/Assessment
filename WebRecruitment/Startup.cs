@@ -14,6 +14,8 @@ using WebRecruitment.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebRecruitment.Models;
+using WebRecruitment.Middleware;
+using WebRecruitment.Extensions;
 
 namespace WebRecruitment
 {
@@ -36,12 +38,26 @@ namespace WebRecruitment
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDistributedMemoryCache();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            
+
+            services.AddSession(options =>
+            {
+                //options.Cookie.Name = ".Mb00ks.Session";
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                // Make the session cookie essential
+                options.Cookie.IsEssential = true;
+            });
 
             services.AddMvc()
                 .AddRazorPagesOptions(options => options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", ""))
@@ -79,15 +95,19 @@ namespace WebRecruitment
 
             app.UseAuthentication();
 
+            app.UseSession();
+            app.UseHttpContextItemsMiddleware();
+            app.UsePageValidation();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "MyArea",
-                    template: "{area:exists}/{controller=Assessments}/{action=Index}/{id?}");
+                    template: "{area:exists}/{controller=Assessments}/{action=DataPribadi}/{id?}");
 
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Assessments}/{action=Index}/{id?}");
+                    template: "{controller=Assessments}/{action=DataPribadi}/{id?}");
             });
         }
     }

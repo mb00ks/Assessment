@@ -1,0 +1,182 @@
+﻿
+@{
+    Layout = null;
+    ViewData["Title"] = "Index";
+}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Aplikasi CAT - PELINDO</title>
+
+    <link href="~/css/gaya.css" rel="stylesheet" />
+
+    <!-- BG FULLSCREEN -->
+    <link href="~/lib/vegas/jquery.vegas.min.css" rel="stylesheet" />
+    <script src="~/lib/vegas/jquery-1.11.1.min.js"></script>
+    <script src="~/lib/vegas/jquery.vegas.min.js"></script>
+    <script>
+        $(function () {
+            $.vegas('slideshow', {
+                delay: 8000,
+                backgrounds: [
+                    { src: '/images/bg-1.jpg', fade: 4000 },
+                    { src: '/images/bg-2.jpg', fade: 4000 }
+                ]
+            })('overlay');
+
+            $('.documentation').click(function () {
+                $('ul ul').slideToggle();
+                return false;
+            });
+
+            $('.credits, .contact').click(function () {
+                $('#overlay, #credits').fadeIn();
+                return false;
+            });
+
+            $('#overlay a, #credits a').click(function (e) {
+                e.stopPropagation();
+            });
+
+            $('#overlay, #credits, #download').click(function () {
+                $('#overlay, #credits, #download').fadeOut();
+                return false;
+            });
+
+
+            $("#superheader h6").click(function (e) {
+                var $$ = $(this),
+                    $menu = $('#superheader ul');
+
+                e.stopPropagation();
+
+                if ($menu.is(':visible')) {
+                    $menu.hide();
+                    $$.removeClass('open');
+                } else {
+                    $menu.show();
+                    $$.addClass('open');
+                    $('body').one('click', function () {
+                        $('#superheader ul').hide();
+                    });
+                }
+            });
+            $("#superheader li").click(function (e) {
+                document.location = $(this).find('a').attr('href');
+            });
+
+            $('.download').click(function () {
+                $('#overlay, #download').show();
+            });
+        });
+    </script>
+
+    <!-- TAB SLIDE OUT -->
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/font/titillium/stylesheet.css" rel="stylesheet" />
+    <link href="~/css/reset.css" rel="stylesheet" />
+    <link href="~/css/animation.css" rel="stylesheet" />
+    <link href="~/css/yellow-green/style.css" rel="stylesheet" />
+    <link href="~/css/yellow-green/color.css" rel="stylesheet" />
+    <link href="~/css/live-preview.css" rel="stylesheet" />
+    <link href="~/live-font/stylesheet.css" rel="stylesheet" />
+    <script src="~/js/selectivizr-min.js"></script>
+    <style>
+        .parent {
+            /*background: lightblue;*/
+            padding: 1%;
+            position: absolute;
+            height: 50%;
+            width: 30%;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        .children {
+            /*background: lightgreen;*/
+            display: block;
+            padding-top: 10%;
+            position: relative;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="kontainer">
+        <div id="header-login">
+            <div class="parent">
+                <div class="logo">
+                    <img src="~/images/logo.png" />
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- KONTEN TENGAH -->
+        <div style="float:left; width:100%;">
+
+            <div style="float:left; width:50%;">
+                <div class="parent">
+                    <div class="children">
+                        <div id="login-area" style="margin-top:-40px;">
+                            <div style="color:#FFF; text-align:center;">
+                                Silakan login dengan<br> username dan password Anda
+                                <br style="margin-bottom:14px;">
+                            </div>
+                            <form method="post" action="">
+                                <div>
+                                    <input name="reqUser" id="a" type="text" placeholder="Username...">
+                                </div>
+                                <div>
+                                    <input name="reqPasswd" id="s" type="password" placeholder="Password">
+                                </div>
+                                <div>
+                                    <input type="hidden" name="reqMode" value="submitLogin" />
+                                    <input type="submit" value="LOGIN" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="float:right; width:50%;">
+                <div class="parent">
+                    <div class="children">
+                        <div class="nama-apps-login">Aplikasi CAT<!--<img src="../WEB-INF/images/logo-login-besar.png">--></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div id="footer-login">
+            <div style="width:100%; height:120px; line-height:120px; text-align:right;">
+                Copyright <span>© 2019</span> PT Pelabuhan Indonesia III (Persero). All Rights Reserved.
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

@@ -29,7 +29,11 @@ namespace WebRecruitment.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
-            TempData.Clear();
+            HttpContext.Session.Clear();
+            foreach (var key in HttpContext.Session.Keys)
+            {
+                HttpContext.Session.Remove(key);
+            }
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
             if (returnUrl != null)
