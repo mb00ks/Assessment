@@ -15,40 +15,25 @@ namespace WebRecruitment.Controllers
         [HttpGet(Name = "DataPribadi")]
         public ActionResult DataPribadi()
         {
-            HttpContext.Session.SetString("status", "DataPribadi");
+            HttpContext.Session.SetInt32("NavigateId", 2);
+            HttpContext.Session.SetInt32("OrderId", 2);
             return View();
         }
 
         [HttpGet(Name = "FormPersetujuan")]
         public ActionResult FormPersetujuan()
         {
-            var status = HttpContext.Session.GetString("status");
-            if (!string.IsNullOrEmpty(status))
-            {
-                HttpContext.Session.SetString("status", "FormPersetujuan");
-                return View();
-            }
-            else
-            {
-                var url = Url.RouteUrl("DataPribadi");
-                return LocalRedirect(url);
-            }
+            HttpContext.Session.SetInt32("NavigateId", 3);
+            HttpContext.Session.SetInt32("OrderId", 3);
+            return View();
         }
 
         [HttpGet(Name = "Persiapan")]
         public ActionResult Persiapan()
         {
-            var status = HttpContext.Session.GetString("status");
-            if (!string.IsNullOrEmpty(status))
-            {
-                HttpContext.Session.SetString("status", "Persiapan");
-                return View();
-            }
-            else
-            {
-                var url = Url.RouteUrl("DataPribadi");
-                return LocalRedirect(url);
-            }
+            HttpContext.Session.SetInt32("NavigateId", 5);
+            HttpContext.Session.SetInt32("OrderId", 4);
+            return View();
         }
     }
 }

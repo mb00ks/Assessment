@@ -15,6 +15,7 @@ namespace WebRecruitment.Data
         public DbSet<Religion> Religions { get; set; }
         public DbSet<MaritalStatus> MaritalStatuses { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Navigation> Navigations { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

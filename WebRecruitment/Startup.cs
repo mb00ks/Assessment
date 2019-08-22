@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebRecruitment.Data;
@@ -16,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using WebRecruitment.Models;
 using WebRecruitment.Middleware;
 using WebRecruitment.Extensions;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace WebRecruitment
 {
@@ -47,16 +44,27 @@ namespace WebRecruitment
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            
-
             services.AddSession(options =>
             {
-                //options.Cookie.Name = ".Mb00ks.Session";
+                options.Cookie.Name = "Mb00ksSession";
                 // Set a short timeout for easy testing.
-                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
                 options.Cookie.HttpOnly = true;
                 // Make the session cookie essential
                 options.Cookie.IsEssential = true;
+            });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.Cookie.Name = "Mb00ksCookie";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.LoginPath = "/Identity/Account/Login";
+                // ReturnUrlParameter requires 
+                //using Microsoft.AspNetCore.Authentication.Cookies;
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
             });
 
             services.AddMvc()
@@ -103,11 +111,11 @@ namespace WebRecruitment
             {
                 routes.MapRoute(
                     name: "MyArea",
-                    template: "{area:exists}/{controller=Assessments}/{action=DataPribadi}/{id?}");
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Assessments}/{action=DataPribadi}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

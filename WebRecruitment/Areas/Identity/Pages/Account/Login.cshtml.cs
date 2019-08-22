@@ -13,6 +13,7 @@ using WebRecruitment.Models;
 using WebRecruitment.Data;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
+using Microsoft.AspNetCore.Http;
 
 namespace WebRecruitment.Areas.Identity.Pages.Account
 {
@@ -80,8 +81,17 @@ namespace WebRecruitment.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
+                    HttpContext.Session.Clear();
+                    foreach (var key in HttpContext.Session.Keys)
+                    {
+                        HttpContext.Session.Remove(key);
+                    }
+
+                    HttpContext.Session.SetInt32("NavigateId", 10);
+                    HttpContext.Session.SetInt32("OrderId", 1);
+
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -101,6 +111,19 @@ namespace WebRecruitment.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        private IActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return LocalRedirect(returnUrl);
+            }
+            else
+            {
+                returnUrl = Url.Content("~/");
+                return LocalRedirect(returnUrl);
+            }
         }
     }
 }
