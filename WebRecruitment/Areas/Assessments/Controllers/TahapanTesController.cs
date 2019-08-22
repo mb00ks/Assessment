@@ -16,50 +16,25 @@ namespace WebRecruitment.Areas.Assessments.Controllers
         [HttpGet(Name = "TahapanTes")]
         public ActionResult Index()
         {
-            var status = HttpContext.Session.GetString("status");
-            if (!string.IsNullOrEmpty(status))
-            {
-                HttpContext.Session.SetString("status", "TahapanTes");
-                return View();
-            }
-            else
-            {
-                var url = Url.RouteUrl("DataPribadi");
-                return LocalRedirect(url);
-            }
+            HttpContext.Session.SetInt32("NavigateId", 11);
+            HttpContext.Session.SetInt32("OrderId", 5);
+            return View();
         }
 
         [HttpGet("[action]", Name = "Tahap1")]
         public ActionResult Tahap1()
         {
-            var status = HttpContext.Session.GetString("status");
-            if (!string.IsNullOrEmpty(status))
-            {
-                HttpContext.Session.SetString("status", "Tahap1");
-                return View();
-            }
-            else
-            {
-                var url = Url.RouteUrl("DataPribadi");
-                return LocalRedirect(url);
-            }
-
+            HttpContext.Session.SetInt32("NavigateId", 12);
+            HttpContext.Session.SetInt32("OrderId", 6);
+            return View();
         }
 
         [HttpGet("Tahap1/{nomer}", Name = "Tahap1Soal")]
         public ActionResult Soal(int nomer)
         {
-            var status = HttpContext.Session.GetString("status");
-            if (!string.IsNullOrEmpty(status))
-            {
-                HttpContext.Session.SetString("status", "Tahap1Soal");
-                return View($"Soal{nomer}");
-            }
-            else
-            {
-                var url = Url.RouteUrl("DataPribadi");
-                return LocalRedirect(url);
-            }
+            HttpContext.Session.SetInt32("NavigateId", 13);
+            HttpContext.Session.SetInt32("OrderId", 7);
+            return View($"Soal{nomer}");
         }
     }
 }
