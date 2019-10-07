@@ -23,8 +23,23 @@ namespace WebRecruitment.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGet(string returnUrl = null)
         {
+            HttpContext.Session.Clear();
+            foreach (var key in HttpContext.Session.Keys)
+            {
+                HttpContext.Session.Remove(key);
+            }
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
+            if (returnUrl != null)
+            {
+                return LocalRedirect(returnUrl);
+            }
+            else
+            {
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPost(string returnUrl = null)

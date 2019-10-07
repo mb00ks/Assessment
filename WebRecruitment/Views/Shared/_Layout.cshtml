@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Assessment</title>
 
-    <link href="~/lib/ujian/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="~/css/ujian/gaya.css" rel="stylesheet" type="text/css" />
-    <link href="~/lib/ujian/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/lib-ujian/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/css-ujian/gaya.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib-ujian/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
     <style>
         .col-md-12 {
@@ -30,9 +30,7 @@
                         <div class="tombol-kanan-atas">
                             @if ((string)ViewData["Title"] == "Data Pribadi" || 1 == 1)
                             {
-                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("DataPribadi", "Assessments", new { area = "" })">
-                                    <button type="submit" class="logout">Logout</button>
-                                </form>
+                                <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("DataPribadi", "Assessments", new { area = "" })" class="logout">Logout</a>
                             }
                         </div>
                     </div>
@@ -51,43 +49,43 @@
         </div>
     </div>
 
-    <script src="~/lib/ujian/bootstrap/jquery.js"></script>
-    <script src="~/lib/ujian/bootstrap/bootstrap.js"></script>
-    <script src="~/lib/ujian/emodal/eModal.js"></script>
-    <script src="~/lib/ujian/bootstrap/angular.js"></script>
+    <script src="~/lib-ujian/bootstrap/jquery.js"></script>
+    <script src="~/lib-ujian/bootstrap/bootstrap.js"></script>
+    <script src="~/lib-ujian/emodal/eModal.js"></script>
+    <script src="~/lib-ujian/bootstrap/angular.js"></script>
     @*<script>
-        function openPopup() {
-            eModal.ajax('ubah_password.php', 'UBAH PASSWORD')
-        }
-
-        function disableBackButton() {
-            setTimeout("preventPageLoad()", 1);
-        }
-
-        function preventPageLoad() {
-            try {
-                history.forward();
+            function openPopup() {
+                eModal.ajax('ubah_password.php', 'UBAH PASSWORD')
             }
-            catch (e) {
-            }
-            setTimeout("preventPageLoad()", 100);
-        }
 
-        $(document).ready(function () {
-            var idleState = false;
-            var idleTimer = null;
-            $('*').bind('mousemove click mouseup mousedown keydown keypress keyup submit change mouseenter scroll resize dblclick', function () {
-                clearTimeout(idleTimer);
-                if (idleState == true) {
+            function disableBackButton() {
+                setTimeout("preventPageLoad()", 1);
+            }
+
+            function preventPageLoad() {
+                try {
+                    history.forward();
                 }
-                idleState = false;
-                idleTimer = setTimeout(function () {
-                    idleState = true;
-                }, 1000000);
+                catch (e) {
+                }
+                setTimeout("preventPageLoad()", 100);
+            }
+
+            $(document).ready(function () {
+                var idleState = false;
+                var idleTimer = null;
+                $('*').bind('mousemove click mouseup mousedown keydown keypress keyup submit change mouseenter scroll resize dblclick', function () {
+                    clearTimeout(idleTimer);
+                    if (idleState == true) {
+                    }
+                    idleState = false;
+                    idleTimer = setTimeout(function () {
+                        idleState = true;
+                    }, 1000000);
+                });
+                $("body").trigger("mousemove");
             });
-            $("body").trigger("mousemove");
-        });
-    </script>*@
+        </script>*@
     @RenderSection("Scripts", required: false)
 </body>
 </html>

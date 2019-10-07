@@ -24,7 +24,7 @@ namespace WebRecruitment.Controllers
         public ActionResult FormPersetujuan()
         {
             HttpContext.Session.SetInt32("NavigateId", 3);
-            HttpContext.Session.SetInt32("OrderId", 3);
+            HttpContext.Session.SetInt32("OrderId", 2);
             return View();
         }
 
@@ -32,7 +32,7 @@ namespace WebRecruitment.Controllers
         public ActionResult Persiapan()
         {
             HttpContext.Session.SetInt32("NavigateId", 5);
-            HttpContext.Session.SetInt32("OrderId", 4);
+            HttpContext.Session.SetInt32("OrderId", 2);
             return View();
         }
     }

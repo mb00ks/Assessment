@@ -16,6 +16,7 @@ namespace WebRecruitment.Data
         public DbSet<MaritalStatus> MaritalStatuses { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Navigation> Navigations { get; set; }
+        public DbSet<City> Cities { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -30,6 +31,8 @@ namespace WebRecruitment.Data
                 .HasOne(p => p.Employee)
                 .WithOne(i => i.ApplicationUser)
                 .HasForeignKey<Employee>(e => e.UserForeignKey);
+
+            builder.Entity<City>().ToTable("Cities", "coba");
 
             #region RoleSeed
             var roleAdmin = new IdentityRole

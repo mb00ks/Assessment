@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WebRecruitment.Data;
@@ -30,7 +29,6 @@ namespace WebRecruitment.Middleware
             //string pattern = "/Assessments/TahapanTes/Tahap1/\d+";
             //Regex re = new Regex(@pattern, RegexOptions.IgnoreCase);
             //var isMatch = re.IsMatch("/Assessments/TahapanTes/Tahap1/123123123");
-
 
             var isPagePersistent = await _context.Navigations.AnyAsync(m => new Regex(@m.Path, RegexOptions.IgnoreCase).IsMatch(path) && m.Id == navigateId);
             

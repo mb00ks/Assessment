@@ -46,7 +46,7 @@ namespace WebRecruitment
 
             services.AddSession(options =>
             {
-                options.Cookie.Name = "Mb00ksSession";
+                //options.Cookie.Name = "Mb00ksSession";
                 // Set a short timeout for easy testing.
                 options.IdleTimeout = TimeSpan.FromMinutes(60);
                 options.Cookie.HttpOnly = true;
@@ -57,7 +57,7 @@ namespace WebRecruitment
             services.ConfigureApplicationCookie(options =>
             {
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-                options.Cookie.Name = "Mb00ksCookie";
+                //options.Cookie.Name = "Mb00ksCookie";
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
                 options.LoginPath = "/Identity/Account/Login";
@@ -105,7 +105,7 @@ namespace WebRecruitment
 
             app.UseSession();
             app.UseHttpContextItemsMiddleware();
-            app.UsePageValidation();
+            //app.UsePageValidation();
 
             app.UseMvc(routes =>
             {
