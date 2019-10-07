@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewData["Title"] = "Tahap 1";
+}
+
+<style>
+    .area-instruksi .judul {
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #333;
+        font-size: 16px;
+        line-height: 30px;
+    }
+
+    .area-instruksi #fvpp-close {
+        display: block;
+        float: right;
+        width: auto;
+        padding: 0 20px;
+        height: 40px;
+        line-height: 40px;
+        text-transform: uppercase;
+        background: #006acc;
+        color: #FFF;
+        text-align: center;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        border: none;
+        *margin-right: 10px;
+        *bottom: 100px;
+        *right: 200px;
+        position: relative;
+    }
+
+    .area-tatacara ul li {
+        border-bottom: none;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="area-judul-halaman">Instruksi Pengerjaan Soal Ujian</div>
+    </div>
+    <div class="col-md-12" style="height:350px;">
+        <div class="area-tatacara" style="height:100%; overflow: auto; background: #FFF;">
+            <ul style="list-style:none !important; list-style-type:none !important;">
+                <li>
+                    <div class="area-instruksi">
+                        <div class="judul">Tes Logika A Sub test 1</div>
+                        <div class="keterangan">
+                            <p>Lihatlah gambar-gambar pada contoh pada tes ini. Kita lihat contoh pada baris pertama. Disitu Anda lihat bagaimana ranting pohon condong merebah, bagaikan tertiup angin. Mulai gambar di kotak pertama sampai pada kotak ketiga.</p>
+
+                            <span><img src="~/images/contoh/a_subtes1_contoh1.jpg"></span>
+
+                            <p>Dapatkah Anda memilih 1 (satu) kotak selanjutnya diantara 6 (enam) kotak yang telah tersedia?</p>
+
+                            <p>Kotak <b>"c"</b> adalah yang tepat untuk gambar ranting yang rendah selanjutnya. Maka pilihlah <b>"c"</b> untuk jawaban Anda.</p>
+
+                            <p>Sekarang lihatlah contoh kedua. Lihatlah bagian yang hitam, makin lama makin turun ke bawah. Seolah-olah itu sebuah tirai yang diturunkan dari atas ke bawah. Tentunya Anda tahu gambar yang tepat untuk mengisi kotak selanjutnya?</p>
+
+                            <span><img src="~/images/contoh/a_subtes1_contoh2.jpg"></span>
+
+                            <p>Kotak <b>"e"</b> adalah yang tepat untuk gambar selanjutnya, maka pilihlah jawaban <b>"e"</b>.</p>
+
+                            <p>Sekarang kita beralih pada contoh ketiga. Lihatlah gambar-gambar kelopak daun bunga itu. Makin lama makin merekah bertambah satu helai daun, dimulai dari atas terus ke kiri. Nah, bagaimanakah Anda mengisi kelanjutan dari gambar-gambar tersebut? Coba cari kotak mana yang paling tepat?</p>
+
+                            <span><img src="~/images/contoh/a_subtes1_contoh3.jpg"></span>
+
+                            <p>Kotak <b>"e"</b> adalah yang tepat untuk gambar selanjutnya.</p>
+
+                            <p>Mulailah dari no. 1 – 13. <b>Waktu anda terbatas, bekerjalah dengan cepat, teliti dan tepat.</b></p>
+
+                            <input type="button" value="OK" onclick="setBacaTipeUjian(8)" id="fvpp-close">
+                            <br /><br />
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>

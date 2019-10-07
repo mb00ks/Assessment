@@ -13,6 +13,8 @@ using WebRecruitment.Models;
 using WebRecruitment.Middleware;
 using WebRecruitment.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Globalization;
+using System.Collections.Generic;
 
 namespace WebRecruitment
 {
@@ -80,6 +82,12 @@ namespace WebRecruitment
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 6;
             });
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("id-ID");
+                options.SupportedCultures = new List<CultureInfo> { new CultureInfo("id-ID") };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,6 +97,7 @@ namespace WebRecruitment
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
             }
             else
             {
@@ -105,6 +114,7 @@ namespace WebRecruitment
 
             app.UseSession();
             app.UseHttpContextItemsMiddleware();
+            app.UseRequestLocalization();
             //app.UsePageValidation();
 
             app.UseMvc(routes =>

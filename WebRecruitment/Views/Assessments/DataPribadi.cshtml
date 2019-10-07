@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DataPribadiViewModel
+@{
     ViewData["Title"] = "Data Pribadi";
 }
 
@@ -20,12 +21,12 @@
                 <tr>
                     <td>Email</td>
                     <td>:</td>
-                    <td>adindanamira97@gmail.com</td>
+                    <td>@Model.Email</td>
                 </tr>
                 <tr>
                     <td>Nama</td>
                     <td>:</td>
-                    <td>Adinda namira</td>
+                    <td>@Model.Name</td>
                 </tr>
             </table>
         </div>

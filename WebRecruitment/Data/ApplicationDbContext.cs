@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Assessment.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +18,14 @@ namespace WebRecruitment.Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Navigation> Navigations { get; set; }
         public DbSet<City> Cities { get; set; }
-
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<AnswerDetail> AnswerDetails { get; set; }
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<QuestionDetail> QuestionDetails { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<ScheduleDetail> ScheduleDetails { get; set; }
+        public DbSet<Assessment.Models.Type> Types { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

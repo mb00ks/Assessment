@@ -27,5 +27,27 @@ namespace WebRecruitment.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [Route("Error/{code:int}")]
+        public IActionResult Error(int code)
+        {
+            if (code == 403 || code == 404 || code == 500)
+            {
+                return View($"~/Views/Shared/Error/{code}.cshtml");
+            }
+            else if (code == 401)
+            {
+                return Unauthorized();
+            }
+            else if (code == 400)
+            {
+                return BadRequest();
+            }
+            else if (code == 204)
+            {
+                return NoContent();
+            }
+            return View("~/Views/Shared/Error.cshtml");
+        }
     }
 }

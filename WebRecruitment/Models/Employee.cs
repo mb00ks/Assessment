@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assessment.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -74,5 +75,7 @@ namespace WebRecruitment.Models
         public Religion Religion { get; set; }
         public MaritalStatus MaritalStatus { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
+        public DateTime Created { get; set; }
+        public ICollection<ScheduleDetail> ScheduleDetails { get; set; }
     }
 }
