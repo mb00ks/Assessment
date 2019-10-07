@@ -1,0 +1,85 @@
+@font-face {
+font-family: 'philosopheritalic';
+src: url('../fonts/philosopher-italic.eot');
+src: url('../fonts/philosopher-italic.eot?#iefix') format('embedded-opentype'),
+url('../fonts/philosopher-italic.woff') format('woff'),
+url('../fonts/philosopher-italic.ttf') format('truetype'),
+url('../fonts/philosopher-italic.svg#philosopheritalic') format('svg');
+font-weight: normal;
+font-style: normal;
+}
+
+@font-face{
+	font-family: myPMS-page-title;
+	src: url('fonts/pacifico.ttf')
+		,url('../fonts/pacifico.ttf'); /* IE9 */
+}
+
+/** { font-family:myPMS-title-page; }*/
+#judul-halaman{
+	background-color: #3f3f3f; 
+	background-repeat: repeat-y;
+	background: -webkit-gradient(linear, left top, right top, from(#3f3f3f), to(#686868)); 
+	background: -webkit-linear-gradient(left, #3f3f3f, #686868); 
+	background: -moz-linear-gradient(left, #3f3f3f, #686868); 
+	background: -ms-linear-gradient(left, #3f3f3f, #686868); 
+	background: -o-linear-gradient(left, #3f3f3f, #686868);
+	
+	/*font-family:'philosopheritalic'; */
+	color:#FFF; 
+	text-shadow:1px 1px 1px #000; 
+	line-height:25px; 
+	font-weight:bold; 
+	padding-right:10px;
+	font-size:16px;
+	text-align:right;
+}
+  
+/* gradient 1 */
+	.gradient1 h1 {
+		font: bold 330%/100% "Lucida Grande", Arial, sans-serif;
+		position: relative;
+		margin: 30px 0 50px;
+		color: #464646;
+	}
+	.gradient1 h1 span {
+		background: url(../main/plugin/css-gradient-demo/images/gradient-white.png) repeat-x;
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 31px;
+	}
+
+/* form */
+@font-face{
+	font-family: myPMS;
+	src: url('../fonts/OpenSans-CondLight.ttf')
+		,url('../fonts/OpenSans-CondLight.ttf'); /* IE9 */
+}
+
+* { font-family:myPMS; }
+h4 { font-size: 18px; }
+input { padding: 3px; border: 1px solid #999; }
+input.error, select.error { border: 1px solid red; }
+label.error { color:red; margin-left: 10px; }
+td { padding: 5px; }
+
+/* table monitoring di popup dhtml window */
+#table-monitoring th, table-monitoring tr {
+	font-weight:lighter;
+	padding:5px;
+}
+.tr-judul{
+	background: #fefeff; /* Fallback background color for non supported browsers */         
+	
+	background-image: -moz-linear-gradient(top, #fefeff, #dde9e8); /* Firefox 3.6 */
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #fefeff),color-stop(1, #dde9e8)); /* Safari & Chrome */
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fefeff', endColorstr='#dde9e8'); /* IE6 & IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fefeff', endColorstr='#dde9e8')"; /* IE8 */
+	
+}
+
+/* area-form - frame bagian bawah */
+#area-form{
+	padding-top:30px;
+}

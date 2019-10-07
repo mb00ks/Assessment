@@ -1,0 +1,673 @@
+
+/*End General Styles*/
+
+
+/* Start button effects */
+
+/* Tuturial button*/
+.button {
+	width:570px;
+	height:64px;
+	display:block;
+	background-image:url(images/downloadbutton.png);
+	background-position: top;
+}
+.button:hover{
+	width:570px; 
+	background-position: bottom;
+	height:64px;
+	background-image:url(images/downloadbutton.png) no repeat;
+}
+
+/* Tutorial button with jQuery */
+.lokasikerja{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/lokasikerja.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.lokasikerja span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/lokasikerja.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.idpegawai{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/idpegawai.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.idpegawai span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/idpegawai.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.pengalamankerja{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/pengalamankerja.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.pengalamankerja span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/pengalamankerja.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.sk-cpns{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/sk-cpns.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.sk-cpns span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/sk-cpns.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.sk-pns{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/sk-pns.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.sk-pns span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/sk-pns.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+
+.riwayatpangkat {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 27px;
+	width: 240px;
+	background:url(images/menukiri/riwayatpangkat.png) no-repeat;
+	background-position:0 0;
+	cursor: pointer;
+}	
+.riwayatpangkat span.hover {
+	position: absolute;
+	display: block;
+	height: 27px;
+	width: 240px;
+	background: url(images/menukiri/riwayatpangkat.png) no-repeat;
+	background-position: 0 -27px;
+}
+
+.riwayatjabatan{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/riwayatjabatan.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.riwayatjabatan span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/riwayatjabatan.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+.riwayatgaji{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/riwayatgaji.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.riwayatgaji span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/riwayatgaji.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+.pendumum{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/pendumum.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.pendumum span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/pendumum.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+.diklatstruktural{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/diklatstruktural.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.diklatstruktural span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/diklatstruktural.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.diklatfungsional{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/diklatfungsional.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.diklatfungsional span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/diklatfungsional.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.diklatteknis{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/diklatteknis.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.diklatteknis span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/diklatteknis.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.penataran{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/penataran.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.penataran span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/penataran.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.seminar{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/seminar.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.seminar span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/seminar.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.kursus{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/kursus.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.kursus span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/kursus.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.ortu{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/ortu.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.ortu span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/ortu.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.mertua{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/mertua.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.mertua span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/mertua.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.suamiistri{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/suamiistri.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.suamiistri span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/suamiistri.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.anak{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/anak.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.anak span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/anak.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.saudara{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/saudara.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.saudara span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/saudara.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.organisasi{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/organisasi.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.organisasi span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/organisasi.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.penghargaan{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/penghargaan.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.penghargaan span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/penghargaan.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.dp3{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/dp3.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.dp3 span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/dp3.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.potensidiri{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/potensidiri.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.potensidiri span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/potensidiri.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.catatanprestasi{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/catatanprestasi.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.catatanprestasi span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/catatanprestasi.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.hukuman{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/hukuman.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.hukuman span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/hukuman.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.cuti{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/cuti.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.cuti span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/cuti.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.riwayatpenugasan{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/riwayatpenugasan.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.riwayatpenugasan span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/riwayatpenugasan.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+
+.bahasa{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/bahasa.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.bahasa span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/bahasa.png) no-repeat; 
+	background-position: 0 -27px;/* margin-top:-30px;*/
+}
+
+
+.nikah{
+	clear: both; position:relative; display:block; height: 27px; width: 240px; background:url(images/menukiri/nikah.png) no-repeat;
+	background-position:0 0; cursor: pointer;
+}	
+.nikah span.hover {
+	position: absolute; display: block; height: 27px; width: 240px; background: url(images/menukiri/nikah.png) no-repeat; 
+	background-position: 0 -27px;
+}
+
+.tambmasakerja {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 27px;
+	width: 240px;
+	background:url(images/menukiri/tambmasakerja.png) no-repeat;
+	background-position:0 0;
+	/*background-image:url(images/sign.png);*/
+	cursor: pointer;
+}	
+.tambmasakerja span.hover {
+	position: absolute;
+	display: block;
+	height: 27px;
+	width: 240px;
+	background: url(images/menukiri/tambmasakerja.png) no-repeat;
+	background-position: 0 -27px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.infopelayanan {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 30px;
+	width: 203px;
+	background:url(images/infopelayanan.png) no-repeat;
+	background-position:0 0;
+	cursor: pointer;
+}	
+.infopelayanan span.hover {
+	position: absolute;
+	display: block;
+	height: 30px;
+	width: 203px;
+	background: url(images/infopelayanan.png) no-repeat;
+	background-position: bottom;
+}
+
+.klasifikasi {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 27px;
+	width: 240px;
+	background:url(images/beranda.png) no-repeat;
+	background-position:0 0;
+	cursor: pointer;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}	
+.klasifikasi span.hover {
+	position: absolute;
+	display: block;
+	height: 27px;
+	width: 240px;
+	background: url(images/beranda.png) no-repeat;
+	background-position: bottom;
+	opacity:0.8;
+	filter:alpha(opacity=80);	
+}
+
+.manuser {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 27px;
+	width: 240px;
+	background:url(images/beranda.png) no-repeat;
+	background-position:0 0;
+	cursor: pointer;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}	
+.manuser span.hover {
+	position: absolute;
+	display: block;
+	height: 27px;
+	width: 240px;
+	background: url(images/beranda.png) no-repeat;
+	background-position: bottom;
+	opacity:0.8;
+	filter:alpha(opacity=80);	
+}
+
+.satker {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 27px;
+	width: 240px;
+	background:url(images/satker.png) no-repeat;
+	background-position:0 0;
+	cursor: pointer;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}	
+.satker span.hover {
+	position: absolute;
+	display: block;
+	height: 27px;
+	width: 240px;
+	background: url(images/satker.png) no-repeat;
+	background-position: bottom;
+	opacity:0.8;
+	filter:alpha(opacity=80);	
+}
+
+.daftaralamat {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 27px;
+	width: 240px;
+	background:url(images/daftaralamat.png) no-repeat;
+	background-position:0 0;
+	cursor: pointer;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}	
+.daftaralamat span.hover {
+	position: absolute;
+	display: block;
+	height: 27px;
+	width: 240px;
+	background: url(images/daftaralamat.png) no-repeat;
+	background-position: bottom;
+	opacity:0.8;
+	filter:alpha(opacity=80);	
+}
+
+.suratmasuk {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 27px;
+	width: 240px;
+	background:url(images/suratmasuk.png) no-repeat;
+	background-position:0 0;
+	cursor: pointer;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}	
+.suratmasuk span.hover {
+	position: absolute;
+	display: block;
+	height: 27px;
+	width: 240px;
+	background: url(images/suratmasuk.png) no-repeat;
+	background-position: bottom;
+	opacity:0.8;
+	filter:alpha(opacity=80);	
+}
+.entrisuratmasuk {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 27px;
+	width: 240px;
+	background:url(images/entrisuratmasuk.png) no-repeat;
+	background-position:0 0;
+	cursor: pointer;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}	
+.entrisuratmasuk span.hover {
+	position: absolute;
+	display: block;
+	height: 27px;
+	width: 240px;
+	background: url(images/entrisuratmasuk.png) no-repeat;
+	background-position: bottom;
+	opacity:0.8;
+	filter:alpha(opacity=80);	
+}
+.entrisuratkeluar {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 27px;
+	width: 240px;
+	background:url(images/entrisuratkeluar.png) no-repeat;
+	background-position:0 0;
+	cursor: pointer;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}	
+.entrisuratkeluar span.hover {
+	position: absolute;
+	display: block;
+	height: 27px;
+	width: 240px;
+	background: url(images/entrisuratkeluar.png) no-repeat;
+	background-position: bottom;
+	opacity:0.8;
+	filter:alpha(opacity=80);	
+}
+.notadinas {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 27px;
+	width: 240px;
+	background:url(images/notadinas.png) no-repeat;
+	background-position:0 0;
+	cursor: pointer;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}	
+.notadinas span.hover {
+	position: absolute;
+	display: block;
+	height: 27px;
+	width: 240px;
+	background: url(images/notadinas.png) no-repeat;
+	background-position: bottom;
+	opacity:0.8;
+	filter:alpha(opacity=80);	
+}
+.entrinotadinas {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 27px;
+	width: 240px;
+	background:url(images/entrinotadinas.png) no-repeat;
+	background-position:0 0;
+	cursor: pointer;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}	
+.entrinotadinas span.hover {
+	position: absolute;
+	display: block;
+	height: 27px;
+	width: 240px;
+	background: url(images/entrinotadinas.png) no-repeat;
+	background-position: bottom;
+	opacity:0.8;
+	filter:alpha(opacity=80);	
+}
+.rekapsuratmasuk {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 27px;
+	width: 240px;
+	background:url(images/rekapsuratmasuk.png) no-repeat;
+	background-position:0 0;
+	cursor: pointer;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}	
+.rekapsuratmasuk span.hover {
+	position: absolute;
+	display: block;
+	height: 27px;
+	width: 240px;
+	background: url(images/rekapsuratmasuk.png) no-repeat;
+	background-position: bottom;
+	opacity:0.8;
+	filter:alpha(opacity=80);	
+}
+.rekapnotadinas {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 27px;
+	width: 240px;
+	background:url(images/rekapnotadinas.png) no-repeat;
+	background-position:0 0;
+	cursor: pointer;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}	
+.rekapnotadinas span.hover {
+	position: absolute;
+	display: block;
+	height: 27px;
+	width: 240px;
+	background: url(images/rekapnotadinas.png) no-repeat;
+	background-position: bottom;
+	opacity:0.8;
+	filter:alpha(opacity=80);	
+}
+
