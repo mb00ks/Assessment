@@ -11,23 +11,23 @@ namespace WebRecruitment.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Answer> Answers { get; set; }
-        public DbSet<AnswerDetail> AnswerDetails { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Gender> Genders { get; set; }
+        public DbSet<Religion> Religions { get; set; }
+        public DbSet<MaritalStatus> MaritalStatuses { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<Exam> Exams { get; set; }
-        public DbSet<ExamEmployee> ExamEmployees { get; set; }
-        public DbSet<ExamQuestion> ExamQuestions { get; set; }
-        public DbSet<ExamSchedule> ExamSchedules { get; set; }
-        public DbSet<ExamSection> ExamSections { get; set; }
-        public DbSet<Gender> Genders { get; set; }
-        public DbSet<MaritalStatus> MaritalStatuses { get; set; }
-        public DbSet<Navigation> Navigations { get; set; }
+        public DbSet<QuestionType> QuestionTypes { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<QuestionDetail> QuestionDetails { get; set; }
-        public DbSet<QuestionType> QuestionTypes { get; set; }
-        public DbSet<Religion> Religions { get; set; }
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<ExamSection> ExamSections { get; set; }
+        public DbSet<ExamQuestion> ExamQuestions { get; set; }
+        public DbSet<ExamSchedule> ExamSchedules { get; set; }
+        public DbSet<ExamEmployee> ExamEmployees { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<AnswerDetail> AnswerDetails { get; set; }
+        public DbSet<Navigation> Navigations { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

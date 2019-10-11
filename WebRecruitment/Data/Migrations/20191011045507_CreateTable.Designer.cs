@@ -10,7 +10,7 @@ using WebRecruitment.Data;
 namespace Assessment.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191011041631_CreateTable")]
+    [Migration("20191011045507_CreateTable")]
     partial class CreateTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -116,8 +116,6 @@ namespace Assessment.Data.Migrations
 
                     b.Property<TimeSpan>("Duration");
 
-                    b.Property<int?>("ExamId");
-
                     b.Property<int>("ExamSectionId");
 
                     b.Property<int>("QuestionId");
@@ -125,8 +123,6 @@ namespace Assessment.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedId");
-
-                    b.HasIndex("ExamId");
 
                     b.HasIndex("ExamSectionId");
 
@@ -250,8 +246,6 @@ namespace Assessment.Data.Migrations
 
                     b.Property<TimeSpan>("Duration");
 
-                    b.Property<int?>("ExamId");
-
                     b.Property<string>("Item");
 
                     b.Property<int>("QuestionTypeId");
@@ -259,8 +253,6 @@ namespace Assessment.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedId");
-
-                    b.HasIndex("ExamId");
 
                     b.HasIndex("QuestionTypeId");
 
@@ -675,10 +667,6 @@ namespace Assessment.Data.Migrations
                         .WithMany("ExamQuestions")
                         .HasForeignKey("CreatedId");
 
-                    b.HasOne("WebRecruitment.Models.Exam")
-                        .WithMany("QuestionGroups")
-                        .HasForeignKey("ExamId");
-
                     b.HasOne("Assessment.Models.ExamSection", "ExamSection")
                         .WithMany("ExamQuestions")
                         .HasForeignKey("ExamSectionId")
@@ -733,10 +721,6 @@ namespace Assessment.Data.Migrations
                     b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
                         .WithMany("Questions")
                         .HasForeignKey("CreatedId");
-
-                    b.HasOne("WebRecruitment.Models.Exam")
-                        .WithMany("Questions")
-                        .HasForeignKey("ExamId");
 
                     b.HasOne("Assessment.Models.QuestionType", "QuestionType")
                         .WithMany("Questions")

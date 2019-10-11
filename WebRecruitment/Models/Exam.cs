@@ -15,8 +15,6 @@ namespace WebRecruitment.Models
         public DateTime CreatedDate { get; set; }
         public ICollection<ExamSection> ExamSections { get; set; }
         public ICollection<ExamSchedule> ExamSchedules { get; set; }
-        public ICollection<Question> Questions { get; set; }
-        public ICollection<ExamQuestion> QuestionGroups { get; set; }
         public ApplicationUser Created { get; set; }
     }
 }

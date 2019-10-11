@@ -50,7 +50,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 310, DateTimeKind.Local).AddTicks(2889),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(8553),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             ExamEmployeeId = 1,
                             Item = "1, 3, 2, 6, 5, 15, 14, ....",
@@ -59,7 +59,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 310, DateTimeKind.Local).AddTicks(3311),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(8974),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             ExamEmployeeId = 1,
                             Item = "100, 95, ..., 91, 92, 87, 88, 83.",
@@ -68,7 +68,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 310, DateTimeKind.Local).AddTicks(3317),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(8980),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             ExamEmployeeId = 1,
                             Item = "INSOMNIA = ...",
@@ -77,7 +77,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 310, DateTimeKind.Local).AddTicks(3318),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(8982),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             ExamEmployeeId = 1,
                             Item = "BONGSOR >< ...",
@@ -117,7 +117,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 1,
                             AnswerId = 1,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 310, DateTimeKind.Local).AddTicks(5706),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 892, DateTimeKind.Local).AddTicks(1407),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "42",
                             QuestionDetailId = 4
@@ -126,7 +126,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 2,
                             AnswerId = 2,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 310, DateTimeKind.Local).AddTicks(6128),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 892, DateTimeKind.Local).AddTicks(1827),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "96",
                             QuestionDetailId = 9
@@ -135,7 +135,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 3,
                             AnswerId = 3,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 310, DateTimeKind.Local).AddTicks(6134),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 892, DateTimeKind.Local).AddTicks(1835),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "Tidak bisa tidur",
                             QuestionDetailId = 13
@@ -144,7 +144,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 4,
                             AnswerId = 4,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 310, DateTimeKind.Local).AddTicks(6135),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 892, DateTimeKind.Local).AddTicks(1837),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "Kerdil",
                             QuestionDetailId = 16
@@ -180,7 +180,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(9984),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(5653),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             EmployeeId = 1,
                             ExamScheduleId = 1
@@ -188,7 +188,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 310, DateTimeKind.Local).AddTicks(397),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(6066),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             EmployeeId = 2,
                             ExamScheduleId = 1
@@ -208,8 +208,6 @@ namespace WebRecruitment.Data.Migrations
 
                     b.Property<TimeSpan>("Duration");
 
-                    b.Property<int?>("ExamId");
-
                     b.Property<int>("ExamSectionId");
 
                     b.Property<int>("QuestionId");
@@ -217,8 +215,6 @@ namespace WebRecruitment.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedId");
-
-                    b.HasIndex("ExamId");
 
                     b.HasIndex("ExamSectionId");
 
@@ -230,7 +226,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(3874),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 890, DateTimeKind.Local).AddTicks(9427),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 1,
@@ -239,7 +235,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(4672),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(246),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 1,
@@ -248,7 +244,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(4680),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(254),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 2,
@@ -257,7 +253,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(4682),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(256),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 2,
@@ -266,7 +262,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(4683),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(257),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 3,
@@ -275,7 +271,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(4684),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(259),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 3,
@@ -284,7 +280,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(4685),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(260),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 4,
@@ -293,7 +289,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(4686),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(262),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 4,
@@ -332,7 +328,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(7150),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(2789),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             DateExam = new DateTime(2019, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
@@ -342,7 +338,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(7941),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 891, DateTimeKind.Local).AddTicks(3579),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             DateExam = new DateTime(2019, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
@@ -380,7 +376,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(901),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 890, DateTimeKind.Local).AddTicks(5468),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamId = 1,
@@ -389,7 +385,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(1797),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 890, DateTimeKind.Local).AddTicks(6660),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamId = 1,
@@ -398,7 +394,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(1805),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 890, DateTimeKind.Local).AddTicks(6669),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamId = 2,
@@ -407,7 +403,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 309, DateTimeKind.Local).AddTicks(1807),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 890, DateTimeKind.Local).AddTicks(6670),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamId = 2,
@@ -443,7 +439,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 1,
                             Code = "L",
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 305, DateTimeKind.Local).AddTicks(6126),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 886, DateTimeKind.Local).AddTicks(9560),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Laki-laki"
                         },
@@ -451,7 +447,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 2,
                             Code = "P",
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 306, DateTimeKind.Local).AddTicks(4345),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 887, DateTimeKind.Local).AddTicks(5445),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Perempuan"
                         });
@@ -485,7 +481,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 1,
                             Code = "BK",
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 306, DateTimeKind.Local).AddTicks(9912),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 888, DateTimeKind.Local).AddTicks(616),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Belum Kawin"
                         },
@@ -493,7 +489,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 2,
                             Code = "K",
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 307, DateTimeKind.Local).AddTicks(347),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 888, DateTimeKind.Local).AddTicks(1049),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Kawin"
                         });
@@ -512,8 +508,6 @@ namespace WebRecruitment.Data.Migrations
 
                     b.Property<TimeSpan>("Duration");
 
-                    b.Property<int?>("ExamId");
-
                     b.Property<string>("Item");
 
                     b.Property<int>("QuestionTypeId");
@@ -521,8 +515,6 @@ namespace WebRecruitment.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedId");
-
-                    b.HasIndex("ExamId");
 
                     b.HasIndex("QuestionTypeId");
 
@@ -532,7 +524,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(2703),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(3219),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             Item = "1, 3, 2, 6, 5, 15, 14, ....",
@@ -541,7 +533,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(3551),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(4012),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             Item = "100, 95, ..., 91, 92, 87, 88, 83.",
@@ -550,7 +542,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(3560),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(4021),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             Item = "INSOMNIA = ...",
@@ -559,7 +551,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(3561),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(4023),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             Item = "BONGSOR >< ...",
@@ -594,7 +586,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(5670),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6062),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "24",
                             QuestionId = 1
@@ -602,7 +594,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6086),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6477),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "28",
                             QuestionId = 1
@@ -610,7 +602,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6092),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6483),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "32",
                             QuestionId = 1
@@ -618,7 +610,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6094),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6485),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "42",
                             QuestionId = 1
@@ -626,7 +618,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6095),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6486),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "52",
                             QuestionId = 1
@@ -634,7 +626,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6096),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6487),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "90",
                             QuestionId = 2
@@ -642,7 +634,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6097),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6488),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "92",
                             QuestionId = 2
@@ -650,7 +642,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6098),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6489),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "94",
                             QuestionId = 2
@@ -658,7 +650,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6099),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6490),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "96",
                             QuestionId = 2
@@ -666,7 +658,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6100),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6492),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "97",
                             QuestionId = 2
@@ -674,7 +666,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6101),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6493),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "Cemas",
                             QuestionId = 3
@@ -682,7 +674,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6102),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6494),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "Sedih",
                             QuestionId = 3
@@ -690,7 +682,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 13,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6103),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6494),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "Tidak bisa tidur",
                             QuestionId = 3
@@ -698,7 +690,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 14,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6104),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6495),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "Kenyataanya",
                             QuestionId = 3
@@ -706,7 +698,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 15,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6105),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6496),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "Menumpuk",
                             QuestionId = 4
@@ -714,7 +706,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 16,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6106),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6497),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "Kerdil",
                             QuestionId = 4
@@ -722,7 +714,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 17,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6107),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6499),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "Macet",
                             QuestionId = 4
@@ -730,7 +722,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 18,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(6108),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(6500),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Item = "Susut",
                             QuestionId = 4
@@ -760,21 +752,21 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(212),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(774),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Multiple Choice"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(626),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(1190),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Multiple Answer"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(632),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(1195),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Essay"
                         });
@@ -808,7 +800,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 1,
                             Code = "ISL",
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 306, DateTimeKind.Local).AddTicks(7256),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 887, DateTimeKind.Local).AddTicks(7983),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Islam"
                         },
@@ -816,7 +808,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 2,
                             Code = "KTP",
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 306, DateTimeKind.Local).AddTicks(7718),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 887, DateTimeKind.Local).AddTicks(8436),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Kristen Protestan"
                         },
@@ -824,7 +816,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 3,
                             Code = "KTK",
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 306, DateTimeKind.Local).AddTicks(7725),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 887, DateTimeKind.Local).AddTicks(8442),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Kristen Katolik"
                         },
@@ -832,7 +824,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 4,
                             Code = "HIN",
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 306, DateTimeKind.Local).AddTicks(7726),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 887, DateTimeKind.Local).AddTicks(8444),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Hindu"
                         },
@@ -840,7 +832,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 5,
                             Code = "BUD",
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 306, DateTimeKind.Local).AddTicks(7727),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 887, DateTimeKind.Local).AddTicks(8445),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Buddha"
                         },
@@ -848,7 +840,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 6,
                             Code = "KHO",
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 306, DateTimeKind.Local).AddTicks(7729),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 887, DateTimeKind.Local).AddTicks(8446),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Khonghucu"
                         });
@@ -1122,7 +1114,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 1,
                             Code = "SUB",
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 307, DateTimeKind.Local).AddTicks(2588),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 888, DateTimeKind.Local).AddTicks(3201),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Surabaya"
                         },
@@ -1130,7 +1122,7 @@ namespace WebRecruitment.Data.Migrations
                         {
                             Id = 2,
                             Code = "CGK",
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 307, DateTimeKind.Local).AddTicks(3017),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 888, DateTimeKind.Local).AddTicks(3641),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Jakarta"
                         });
@@ -1195,7 +1187,7 @@ namespace WebRecruitment.Data.Migrations
                             BirthDate = new DateTime(1990, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             BirthDatePlace = "Surabaya",
                             CityId = 1,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 307, DateTimeKind.Local).AddTicks(8033),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 888, DateTimeKind.Local).AddTicks(8633),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             GenderId = 2,
                             IdentityNumber = 1234567890L,
@@ -1211,7 +1203,7 @@ namespace WebRecruitment.Data.Migrations
                             BirthDate = new DateTime(1991, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             BirthDatePlace = "Surabaya",
                             CityId = 1,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 307, DateTimeKind.Local).AddTicks(8470),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 888, DateTimeKind.Local).AddTicks(9071),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             GenderId = 2,
                             IdentityNumber = 9999999999L,
@@ -1247,7 +1239,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(7850),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 889, DateTimeKind.Local).AddTicks(9179),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             Name = "Rekrutmen Grade 6A"
@@ -1255,7 +1247,7 @@ namespace WebRecruitment.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2019, 10, 11, 11, 18, 27, 308, DateTimeKind.Local).AddTicks(8728),
+                            CreatedDate = new DateTime(2019, 10, 11, 11, 55, 30, 890, DateTimeKind.Local).AddTicks(2082),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             Name = "Rekrutmen Grade 7A"
@@ -1347,10 +1339,6 @@ namespace WebRecruitment.Data.Migrations
                         .WithMany("ExamQuestions")
                         .HasForeignKey("CreatedId");
 
-                    b.HasOne("WebRecruitment.Models.Exam")
-                        .WithMany("QuestionGroups")
-                        .HasForeignKey("ExamId");
-
                     b.HasOne("Assessment.Models.ExamSection", "ExamSection")
                         .WithMany("ExamQuestions")
                         .HasForeignKey("ExamSectionId")
@@ -1405,10 +1393,6 @@ namespace WebRecruitment.Data.Migrations
                     b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
                         .WithMany("Questions")
                         .HasForeignKey("CreatedId");
-
-                    b.HasOne("WebRecruitment.Models.Exam")
-                        .WithMany("Questions")
-                        .HasForeignKey("ExamId");
 
                     b.HasOne("Assessment.Models.QuestionType", "QuestionType")
                         .WithMany("Questions")

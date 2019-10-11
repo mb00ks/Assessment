@@ -257,8 +257,7 @@ namespace Assessment.Data.Migrations
                     CreatedId = table.Column<string>(nullable: true),
                     Item = table.Column<string>(nullable: true),
                     Duration = table.Column<TimeSpan>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "NOW()"),
-                    ExamId = table.Column<int>(nullable: true)
+                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "NOW()")
                 },
                 constraints: table =>
                 {
@@ -267,12 +266,6 @@ namespace Assessment.Data.Migrations
                         name: "FK_Questions_AspNetUsers_CreatedId",
                         column: x => x.CreatedId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Questions_Exams_ExamId",
-                        column: x => x.ExamId,
-                        principalTable: "Exams",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -353,8 +346,7 @@ namespace Assessment.Data.Migrations
                     QuestionId = table.Column<int>(nullable: false),
                     CreatedId = table.Column<string>(nullable: true),
                     Duration = table.Column<TimeSpan>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "NOW()"),
-                    ExamId = table.Column<int>(nullable: true)
+                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "NOW()")
                 },
                 constraints: table =>
                 {
@@ -363,12 +355,6 @@ namespace Assessment.Data.Migrations
                         name: "FK_ExamQuestions_AspNetUsers_CreatedId",
                         column: x => x.CreatedId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ExamQuestions_Exams_ExamId",
-                        column: x => x.ExamId,
-                        principalTable: "Exams",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -604,11 +590,6 @@ namespace Assessment.Data.Migrations
                 column: "CreatedId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ExamQuestions_ExamId",
-                table: "ExamQuestions",
-                column: "ExamId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ExamQuestions_ExamSectionId",
                 table: "ExamQuestions",
                 column: "ExamSectionId");
@@ -667,11 +648,6 @@ namespace Assessment.Data.Migrations
                 name: "IX_Questions_CreatedId",
                 table: "Questions",
                 column: "CreatedId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Questions_ExamId",
-                table: "Questions",
-                column: "ExamId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Questions_QuestionTypeId",
