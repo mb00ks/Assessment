@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using WebRecruitment.Models;
 
 namespace Assessment.Models
 {
-    public class AnswerDetail
+    public class Gender
     {
         public int Id { get; set; }
-        public int AnswerId { get; set; }
-        public int QuestionDetailId { get; set; }
         public string CreatedId { get; set; }
-        public string Item { get; set; }
+        [Required] public string Code { get; set; }
+        [Required] public string Name { get; set; }
         public DateTime CreatedDate { get; set; }
-        public Answer Answer { get; set; }
-        public QuestionDetail QuestionDetail { get; set; }
+        public ICollection<Employee> Employees { get; set; }
         public ApplicationUser Created { get; set; }
     }
 }

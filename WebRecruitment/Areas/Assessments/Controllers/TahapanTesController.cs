@@ -35,25 +35,24 @@ namespace WebRecruitment.Areas.Assessments.Controllers
             //HttpContext.Session.SetInt32("NavigateId", 11);
             //HttpContext.Session.SetInt32("OrderId", 5);
             var user = await _userManager.GetUserAsync(User);
-            var scheduleDetail = await _context.ScheduleDetails
+            var scheduleDetail = await _context.ExamEmployees
                 .Include(m => m.Employee)
-                .Include(m => m.Schedule)
-                .Include(m => m.Exam)
-                .Where(m => m.Schedule.DateExam.Date == DateTime.Now.Date)
+                .Include(m => m.ExamSchedule)
+                .Where(m => m.ExamSchedule.DateExam.Date == DateTime.Now.Date)
                 .Where(m => m.Employee.UserForeignKey == user.Id)
                 .LastOrDefaultAsync();
 
             var tahapanTesViewModels = _context.Questions
-                .Include(m => m.Type)
-                .Where(m => m.ExamId == scheduleDetail.ExamId)
-                .Select(m => new TahapanTesViewModel { TypeId = m.TypeId, TypeName = m.Type.Name })
+                .Include(m => m.QuestionType)
+                .Where(m => m.QuestionTypeId == scheduleDetail.ExamScheduleId)
+                .Select(m => new TahapanTesViewModel { ExamSectionId = m.QuestionTypeId, ExamSectionName = m.QuestionType.Name })
                 .Distinct();
 
             return View(tahapanTesViewModels);
         }
 
         [HttpGet("[action]", Name = "Exam")]
-        public ActionResult Exam(int TypeId)
+        public ActionResult Exam(int QuestionTypeId)
         {
             //HttpContext.Session.SetInt32("NavigateId", 12);
             //HttpContext.Session.SetInt32("OrderId", 6);

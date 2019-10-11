@@ -10,8 +10,8 @@ using WebRecruitment.Data;
 namespace Assessment.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191007101046_Migration7")]
-    partial class Migration7
+    [Migration("20191011041631_CreateTable")]
+    partial class CreateTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,19 +26,25 @@ namespace Assessment.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
+
+                    b.Property<int>("ExamEmployeeId");
 
                     b.Property<string>("Item");
 
                     b.Property<int>("QuestionId");
 
-                    b.Property<int>("ScheduleDetailId");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("QuestionId");
+                    b.HasIndex("CreatedId");
 
-                    b.HasIndex("ScheduleDetailId");
+                    b.HasIndex("ExamEmployeeId");
+
+                    b.HasIndex("QuestionId");
 
                     b.ToTable("Answers");
                 });
@@ -50,7 +56,11 @@ namespace Assessment.Data.Migrations
 
                     b.Property<int>("AnswerId");
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
 
                     b.Property<string>("Item");
 
@@ -60,9 +70,171 @@ namespace Assessment.Data.Migrations
 
                     b.HasIndex("AnswerId");
 
+                    b.HasIndex("CreatedId");
+
                     b.HasIndex("QuestionDetailId");
 
                     b.ToTable("AnswerDetails");
+                });
+
+            modelBuilder.Entity("Assessment.Models.ExamEmployee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
+
+                    b.Property<int>("EmployeeId");
+
+                    b.Property<int>("ExamScheduleId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ExamScheduleId");
+
+                    b.ToTable("ExamEmployees");
+                });
+
+            modelBuilder.Entity("Assessment.Models.ExamQuestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
+
+                    b.Property<TimeSpan>("Duration");
+
+                    b.Property<int?>("ExamId");
+
+                    b.Property<int>("ExamSectionId");
+
+                    b.Property<int>("QuestionId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedId");
+
+                    b.HasIndex("ExamId");
+
+                    b.HasIndex("ExamSectionId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("ExamQuestions");
+                });
+
+            modelBuilder.Entity("Assessment.Models.ExamSchedule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
+
+                    b.Property<DateTime>("DateExam");
+
+                    b.Property<TimeSpan>("Duration");
+
+                    b.Property<int>("ExamId");
+
+                    b.Property<string>("Notes");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedId");
+
+                    b.HasIndex("ExamId");
+
+                    b.ToTable("ExamSchedules");
+                });
+
+            modelBuilder.Entity("Assessment.Models.ExamSection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
+
+                    b.Property<TimeSpan>("Duration");
+
+                    b.Property<int>("ExamId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedId");
+
+                    b.HasIndex("ExamId");
+
+                    b.ToTable("ExamSections");
+                });
+
+            modelBuilder.Entity("Assessment.Models.Gender", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Code")
+                        .IsRequired();
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedId");
+
+                    b.ToTable("Genders");
+                });
+
+            modelBuilder.Entity("Assessment.Models.MaritalStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Code")
+                        .IsRequired();
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedId");
+
+                    b.ToTable("MaritalStatuses");
                 });
 
             modelBuilder.Entity("Assessment.Models.Question", b =>
@@ -70,19 +242,27 @@ namespace Assessment.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
 
-                    b.Property<int>("ExamId");
+                    b.Property<string>("CreatedId");
+
+                    b.Property<TimeSpan>("Duration");
+
+                    b.Property<int?>("ExamId");
 
                     b.Property<string>("Item");
 
-                    b.Property<int>("TypeId");
+                    b.Property<int>("QuestionTypeId");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedId");
+
                     b.HasIndex("ExamId");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("QuestionTypeId");
 
                     b.ToTable("Questions");
                 });
@@ -92,7 +272,11 @@ namespace Assessment.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
 
                     b.Property<string>("Item");
 
@@ -100,65 +284,55 @@ namespace Assessment.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedId");
+
                     b.HasIndex("QuestionId");
 
                     b.ToTable("QuestionDetails");
                 });
 
-            modelBuilder.Entity("Assessment.Models.Schedule", b =>
+            modelBuilder.Entity("Assessment.Models.QuestionType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
 
-                    b.Property<DateTime>("DateExam");
-
-                    b.Property<string>("Notes");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Schedules");
-                });
-
-            modelBuilder.Entity("Assessment.Models.ScheduleDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("Created");
-
-                    b.Property<TimeSpan>("Duration");
-
-                    b.Property<int>("EmployeeId");
-
-                    b.Property<int>("ExamId");
-
-                    b.Property<int>("ScheduleId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("ExamId");
-
-                    b.HasIndex("ScheduleId");
-
-                    b.ToTable("ScheduleDetails");
-                });
-
-            modelBuilder.Entity("Assessment.Models.Type", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("Created");
+                    b.Property<string>("CreatedId");
 
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Types");
+                    b.HasIndex("CreatedId");
+
+                    b.ToTable("QuestionTypes");
+                });
+
+            modelBuilder.Entity("Assessment.Models.Religion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Code")
+                        .IsRequired();
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedId");
+
+                    b.ToTable("Religions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -182,22 +356,6 @@ namespace Assessment.Data.Migrations
                         .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "32ff273e-e327-4f0b-b08e-a2e02b0880d6",
-                            ConcurrencyStamp = "c6c609bd-85da-4629-9c56-f23c489830d2",
-                            Name = "Admin",
-                            NormalizedName = "Admin"
-                        },
-                        new
-                        {
-                            Id = "04e83eaf-298f-4be6-9f05-2956b2030e5e",
-                            ConcurrencyStamp = "5402d890-3359-4b8f-a144-9d2afee67e1d",
-                            Name = "Peserta",
-                            NormalizedName = "Peserta"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -267,18 +425,6 @@ namespace Assessment.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
-                            RoleId = "32ff273e-e327-4f0b-b08e-a2e02b0880d6"
-                        },
-                        new
-                        {
-                            UserId = "77e285fb-43e8-4846-b763-9fcc0138ea99",
-                            RoleId = "04e83eaf-298f-4be6-9f05-2956b2030e5e"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -344,40 +490,6 @@ namespace Assessment.Data.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "233e5870-bfa6-4ba4-b3bd-73cf85c5d173",
-                            Email = "admin@rekrutmen.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@REKRUTMEN.COM",
-                            NormalizedUserName = "ADMIN@REKRUTMEN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEp1sap4dxD2mtlMuEPd5CIN2p1lcaKGjOejHk2GjLl+BwkmCW38AtHU5fhBkmlOOA==",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "7a1e8e47-50f4-4922-a855-7001a615fb5e",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@rekrutmen.com"
-                        },
-                        new
-                        {
-                            Id = "77e285fb-43e8-4846-b763-9fcc0138ea99",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "93182e87-c18a-4fc7-8ac7-63100c9e803e",
-                            Email = "adindanamira97@gmail.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADINDANAMIRA97@GMAIL.COM",
-                            NormalizedUserName = "ADINDANAMIRA97@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMiQscjx4+VAFyt6lKUPW2AkZ6mLOtJcnTST6KOYclS3VFLwMFKdD61UA2S9iVlYig==",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "80b9327b-15db-49c9-86fa-1e3f21b74bb7",
-                            TwoFactorEnabled = false,
-                            UserName = "adindanamira97@gmail.com"
-                        });
                 });
 
             modelBuilder.Entity("WebRecruitment.Models.City", b =>
@@ -388,14 +500,20 @@ namespace Assessment.Data.Migrations
                     b.Property<string>("Code")
                         .IsRequired();
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
 
                     b.Property<string>("Name")
                         .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cities","coba");
+                    b.HasIndex("CreatedId");
+
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("WebRecruitment.Models.Employee", b =>
@@ -410,11 +528,17 @@ namespace Assessment.Data.Migrations
                     b.Property<string>("BirthDatePlace")
                         .IsRequired();
 
-                    b.Property<DateTime>("Created");
+                    b.Property<int>("CityId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
 
                     b.Property<int>("GenderId");
 
-                    b.Property<int>("IdentityNumber");
+                    b.Property<long>("IdentityNumber");
 
                     b.Property<int>("MaritalStatusId");
 
@@ -428,6 +552,10 @@ namespace Assessment.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("CreatedId");
+
                     b.HasIndex("GenderId");
 
                     b.HasIndex("MaritalStatusId");
@@ -438,22 +566,6 @@ namespace Assessment.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Employees");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "Jl Surabaya No 1",
-                            BirthDate = new DateTime(1990, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            BirthDatePlace = "Surabaya",
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            GenderId = 2,
-                            IdentityNumber = 1234567890,
-                            MaritalStatusId = 1,
-                            Name = "Adinda Namira",
-                            ReligionId = 1,
-                            UserForeignKey = "77e285fb-43e8-4846-b763-9fcc0138ea99"
-                        });
                 });
 
             modelBuilder.Entity("WebRecruitment.Models.Exam", b =>
@@ -461,73 +573,21 @@ namespace Assessment.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
+
+                    b.Property<TimeSpan>("Duration");
 
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedId");
+
                     b.ToTable("Exams");
-                });
-
-            modelBuilder.Entity("WebRecruitment.Models.Gender", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Code")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Genders");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Code = "L",
-                            Name = "Laki-laki"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Code = "P",
-                            Name = "Perempuan"
-                        });
-                });
-
-            modelBuilder.Entity("WebRecruitment.Models.MaritalStatus", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Code")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MaritalStatuses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Code = "BK",
-                            Name = "Belum Kawin"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Code = "K",
-                            Name = "Kawin"
-                        });
                 });
 
             modelBuilder.Entity("WebRecruitment.Models.Navigation", b =>
@@ -558,70 +618,20 @@ namespace Assessment.Data.Migrations
                     b.ToTable("Navigations");
                 });
 
-            modelBuilder.Entity("WebRecruitment.Models.Religion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Code")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Religions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Code = "ISL",
-                            Name = "Islam"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Code = "KTP",
-                            Name = "Kristen Protestan"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Code = "KTK",
-                            Name = "Kristen Katolik"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Code = "HIN",
-                            Name = "Hindu"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Code = "BUD",
-                            Name = "Buddha"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Code = "KHO",
-                            Name = "Khonghucu"
-                        });
-                });
-
             modelBuilder.Entity("Assessment.Models.Answer", b =>
                 {
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
+                        .WithMany("Answers")
+                        .HasForeignKey("CreatedId");
+
+                    b.HasOne("Assessment.Models.ExamEmployee", "ExamEmployee")
+                        .WithMany("Answers")
+                        .HasForeignKey("ExamEmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("Assessment.Models.Question", "Question")
                         .WithMany("Answers")
                         .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Assessment.Models.ScheduleDetail", "ScheduleDetail")
-                        .WithMany("Answers")
-                        .HasForeignKey("ScheduleDetailId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -632,49 +642,132 @@ namespace Assessment.Data.Migrations
                         .HasForeignKey("AnswerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
+                        .WithMany("AnswerDetails")
+                        .HasForeignKey("CreatedId");
+
                     b.HasOne("Assessment.Models.QuestionDetail", "QuestionDetail")
                         .WithMany("AnswerDetails")
                         .HasForeignKey("QuestionDetailId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Assessment.Models.Question", b =>
+            modelBuilder.Entity("Assessment.Models.ExamEmployee", b =>
                 {
-                    b.HasOne("WebRecruitment.Models.Exam", "Exam")
-                        .WithMany("Questions")
-                        .HasForeignKey("ExamId")
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
+                        .WithMany("ExamEmployees")
+                        .HasForeignKey("CreatedId");
+
+                    b.HasOne("WebRecruitment.Models.Employee", "Employee")
+                        .WithMany("ExamEmployees")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Assessment.Models.Type", "Type")
+                    b.HasOne("Assessment.Models.ExamSchedule", "ExamSchedule")
+                        .WithMany("ExamEmployees")
+                        .HasForeignKey("ExamScheduleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Assessment.Models.ExamQuestion", b =>
+                {
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
+                        .WithMany("ExamQuestions")
+                        .HasForeignKey("CreatedId");
+
+                    b.HasOne("WebRecruitment.Models.Exam")
+                        .WithMany("QuestionGroups")
+                        .HasForeignKey("ExamId");
+
+                    b.HasOne("Assessment.Models.ExamSection", "ExamSection")
+                        .WithMany("ExamQuestions")
+                        .HasForeignKey("ExamSectionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Assessment.Models.Question", "Question")
+                        .WithMany("ExamQuestions")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Assessment.Models.ExamSchedule", b =>
+                {
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
+                        .WithMany("ExamSchedules")
+                        .HasForeignKey("CreatedId");
+
+                    b.HasOne("WebRecruitment.Models.Exam", "Exam")
+                        .WithMany("ExamSchedules")
+                        .HasForeignKey("ExamId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Assessment.Models.ExamSection", b =>
+                {
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
+                        .WithMany("ExamSections")
+                        .HasForeignKey("CreatedId");
+
+                    b.HasOne("WebRecruitment.Models.Exam", "Exam")
+                        .WithMany("ExamSections")
+                        .HasForeignKey("ExamId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Assessment.Models.Gender", b =>
+                {
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
+                        .WithMany("Genders")
+                        .HasForeignKey("CreatedId");
+                });
+
+            modelBuilder.Entity("Assessment.Models.MaritalStatus", b =>
+                {
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
+                        .WithMany("MaritalStatuses")
+                        .HasForeignKey("CreatedId");
+                });
+
+            modelBuilder.Entity("Assessment.Models.Question", b =>
+                {
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
                         .WithMany("Questions")
-                        .HasForeignKey("TypeId")
+                        .HasForeignKey("CreatedId");
+
+                    b.HasOne("WebRecruitment.Models.Exam")
+                        .WithMany("Questions")
+                        .HasForeignKey("ExamId");
+
+                    b.HasOne("Assessment.Models.QuestionType", "QuestionType")
+                        .WithMany("Questions")
+                        .HasForeignKey("QuestionTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Assessment.Models.QuestionDetail", b =>
                 {
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
+                        .WithMany("QuestionDetails")
+                        .HasForeignKey("CreatedId");
+
                     b.HasOne("Assessment.Models.Question", "Question")
                         .WithMany("QuestionDetails")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Assessment.Models.ScheduleDetail", b =>
+            modelBuilder.Entity("Assessment.Models.QuestionType", b =>
                 {
-                    b.HasOne("WebRecruitment.Models.Employee", "Employee")
-                        .WithMany("ScheduleDetails")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
+                        .WithMany("QuestionTypes")
+                        .HasForeignKey("CreatedId");
+                });
 
-                    b.HasOne("WebRecruitment.Models.Exam", "Exam")
-                        .WithMany("ScheduleDetails")
-                        .HasForeignKey("ExamId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Assessment.Models.Schedule", "Schedule")
-                        .WithMany()
-                        .HasForeignKey("ScheduleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity("Assessment.Models.Religion", b =>
+                {
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
+                        .WithMany("Religions")
+                        .HasForeignKey("CreatedId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -722,20 +815,36 @@ namespace Assessment.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("WebRecruitment.Models.City", b =>
+                {
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
+                        .WithMany("Cities")
+                        .HasForeignKey("CreatedId");
+                });
+
             modelBuilder.Entity("WebRecruitment.Models.Employee", b =>
                 {
-                    b.HasOne("WebRecruitment.Models.Gender", "Gender")
-                        .WithMany()
+                    b.HasOne("WebRecruitment.Models.City", "City")
+                        .WithMany("Employees")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
+                        .WithMany("Employees")
+                        .HasForeignKey("CreatedId");
+
+                    b.HasOne("Assessment.Models.Gender", "Gender")
+                        .WithMany("Employees")
                         .HasForeignKey("GenderId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("WebRecruitment.Models.MaritalStatus", "MaritalStatus")
-                        .WithMany()
+                    b.HasOne("Assessment.Models.MaritalStatus", "MaritalStatus")
+                        .WithMany("Employees")
                         .HasForeignKey("MaritalStatusId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("WebRecruitment.Models.Religion", "Religion")
-                        .WithMany()
+                    b.HasOne("Assessment.Models.Religion", "Religion")
+                        .WithMany("Employees")
                         .HasForeignKey("ReligionId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -743,6 +852,13 @@ namespace Assessment.Data.Migrations
                         .WithOne("Employee")
                         .HasForeignKey("WebRecruitment.Models.Employee", "UserForeignKey")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("WebRecruitment.Models.Exam", b =>
+                {
+                    b.HasOne("WebRecruitment.Models.ApplicationUser", "Created")
+                        .WithMany("Exams")
+                        .HasForeignKey("CreatedId");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,16 +6,16 @@ using WebRecruitment.Models;
 
 namespace Assessment.Models
 {
-    public class AnswerDetail
+    public class ExamEmployee
     {
         public int Id { get; set; }
-        public int AnswerId { get; set; }
-        public int QuestionDetailId { get; set; }
+        public int ExamScheduleId { get; set; }
+        public int EmployeeId { get; set; }
         public string CreatedId { get; set; }
-        public string Item { get; set; }
         public DateTime CreatedDate { get; set; }
-        public Answer Answer { get; set; }
-        public QuestionDetail QuestionDetail { get; set; }
+        public ExamSchedule ExamSchedule { get; set; }
+        public Employee Employee { get; set; }
+        public ICollection<Answer> Answers { get; set; }
         public ApplicationUser Created { get; set; }
     }
 }

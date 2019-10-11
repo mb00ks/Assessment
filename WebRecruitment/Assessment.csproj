@@ -9,8 +9,18 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20190813081947_Migration5.cs" />
     <Compile Remove="Data\Migrations\20190813081947_Migration5.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190916104318_Migration6.cs" />
+    <Compile Remove="Data\Migrations\20190916104318_Migration6.Designer.cs" />
     <Compile Remove="Data\Migrations\20191007092704_Migration7.cs" />
     <Compile Remove="Data\Migrations\20191007092704_Migration7.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191011040453_CreateTable.cs" />
+    <Compile Remove="Data\Migrations\20191011040453_CreateTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191011041049_SeederData.cs" />
+    <Compile Remove="Data\Migrations\20191011041049_SeederData.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191011041324_CreateTable.cs" />
+    <Compile Remove="Data\Migrations\20191011041324_CreateTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191011041647_SeederData.cs" />
+    <Compile Remove="Data\Migrations\20191011041647_SeederData.Designer.cs" />
   </ItemGroup>
 
 

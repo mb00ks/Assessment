@@ -9,13 +9,15 @@ namespace Assessment.Models
     public class Question
     {
         public int Id { get; set; }
-        public int ExamId { get; set; }
-        public int TypeId { get; set; }
+        public int QuestionTypeId { get; set; }
+        public string CreatedId { get; set; }
         public string Item { get; set; }
-        public DateTime Created { get; set; }
-        public Exam Exam { get; set; }
-        public Type Type { get; set; }
+        public TimeSpan Duration { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public QuestionType QuestionType { get; set; }
         public ICollection<QuestionDetail> QuestionDetails { get; set; }
+        public ICollection<ExamQuestion> ExamQuestions { get; set; }
         public ICollection<Answer> Answers { get; set; }
+        public ApplicationUser Created { get; set; }
     }
 }

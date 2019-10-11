@@ -52,13 +52,13 @@ namespace WebRecruitment.Controllers
             //HttpContext.Session.SetInt32("NavigateId", 5);
             //HttpContext.Session.SetInt32("OrderId", 2);
             var user = await _userManager.GetUserAsync(User);
-            var scheduleDetail = await _context.ScheduleDetails
+            var scheduleDetail = await _context.ExamEmployees
                 .Include(m => m.Employee)
-                .Include(m => m.Schedule)
-                .Where(m => m.Schedule.DateExam.Date == DateTime.Now.Date)
+                .Include(m => m.ExamSchedule)
+                .Where(m => m.ExamSchedule.DateExam.Date == DateTime.Now.Date)
                 .Where(m => m.Employee.UserForeignKey == user.Id)
                 .LastOrDefaultAsync();
-            var persiapan = new Models.AssessmentViewModels.PersiapanViewModel { DateExam = scheduleDetail.Schedule.DateExam, Duration = scheduleDetail.Duration };
+            var persiapan = new Models.AssessmentViewModels.PersiapanViewModel { DateExam = scheduleDetail.ExamSchedule.DateExam, Duration = new TimeSpan() };
             return View(persiapan);
         }
     }
