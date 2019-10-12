@@ -45,7 +45,7 @@ namespace WebRecruitment.Areas.Assessments.Controllers
             var tahapanTesViewModels = _context.Questions
                 .Include(m => m.QuestionType)
                 .Where(m => m.QuestionTypeId == scheduleDetail.ExamScheduleId)
-                .Select(m => new TahapanTesViewModel { ExamSectionId = m.QuestionTypeId, ExamSectionName = m.QuestionType.Name })
+                .Select(m => new TahapanTesViewModel { SectionId = m.QuestionTypeId, SectionName = m.QuestionType.Name })
                 .Distinct();
 
             return View(tahapanTesViewModels);

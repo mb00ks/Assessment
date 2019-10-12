@@ -7,8 +7,8 @@ namespace WebRecruitment.Models.AssessmentViewModels
 {
     public class TahapanTesViewModel
     {
-        public int ExamSectionId { get; set; }
-        public string ExamSectionName { get; set; }
+        public int SectionId { get; set; }
+        public string SectionName { get; set; }
         public TimeSpan Duration { get; set; }
     }
 }
