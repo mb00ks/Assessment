@@ -58,11 +58,11 @@ namespace Assessment
 
             services.ConfigureApplicationCookie(options =>
             {
-                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.AccessDeniedPath = "/AccessDenied";
                 //options.Cookie.Name = "Mb00ksCookie";
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-                options.LoginPath = "/Identity/Account/Login";
+                options.LoginPath = "/Login"; //"/Identity/Account/Login";
                 // ReturnUrlParameter requires 
                 //using Microsoft.AspNetCore.Authentication.Cookies;
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
@@ -71,7 +71,17 @@ namespace Assessment
 
             services.AddMvc()
                 .AddRazorPagesOptions(options => options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", ""))
+                //.AddRazorPagesOptions(options => options.Conventions.AddPageRoute("/Login", ""))
+                .AddRazorPagesOptions(options => options.Conventions.AllowAnonymousToPage("/Login"))
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme,
+            opt => {
+                //configure your other propertie
+                opt.LoginPath = "/Login";
+                opt.LogoutPath = "/Logout";
+                opt.AccessDeniedPath = "/AccessDenied";
+            });
 
             services.Configure<IdentityOptions>(options =>
             {

@@ -49,16 +49,8 @@ namespace Assessment.Controllers
                         HttpContext.Session.Remove(key);
                     }
 
-                    if (User.IsInRole("Admin"))
-                    {
-                        _logger.LogInformation("User logged in.");
-                        return RedirectToLocal(returnUrl);
-                    }
-                    else
-                    {
-                        _logger.LogWarning("User account locked out.");
-                        return RedirectToLocal("~/Logout");
-                    }
+                    _logger.LogInformation("User logged in.");
+                    return RedirectToLocal(returnUrl);
                 }
                 if (result.IsLockedOut)
                 {
@@ -75,11 +67,11 @@ namespace Assessment.Controllers
             // If we got this far, something failed, redisplay form
             return View();
         }
-        
+
         [HttpGet("Dashboard")]
         public async Task<IActionResult> Dashboard()
         {
-            return Content("Welcome to Dashboard");
+            return View();
         }
 
         private IActionResult RedirectToLocal(string returnUrl)

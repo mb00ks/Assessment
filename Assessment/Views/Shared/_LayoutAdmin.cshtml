@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="~/admin/lib/bootstrap-3.3.7/docs/favicon.ico">
+
+    <title>@ViewData["Title"] - Aplikasi Pelaporan Hasil Assesment</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/admin/lib/bootstrap-3.3.7/docs/dist/css/bootstrap.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="~/admin/lib/bootstrap-3.3.7/docs/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/admin/lib/bootstrap-3.3.7/docs/examples/dashboard/dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <script src="~/admin/lib/bootstrap-3.3.7/docs/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <link href="~/admin/css/gaya.css" rel="stylesheet">
+
+    @RenderSection("Styles", required: false)
+</head>
+
+<body class="index">
+    @RenderBody()
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.php"><img src="~/admin/images/logo.png"></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown" style="display: none;">
+                        <a href="#"><i class="glyphicon glyphicon-envelope"></i> <span class="badge">3</span></a>
+                        <ul class="dropdown-menu dropdown-pesan">
+                            <li><a href="#"><span class="label label-primary">20/06/2019</span> Lorem ipsum dolor sit amet</a></li>
+                            <li><a href="#"><span class="label label-primary">18/06/2019</span> Sed do eiusmod tempor incididunt ut labore</a></li>
+                            <li><a href="#"><span class="label label-primary">17/06/2019</span> Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</a></li>
+                            <li><a href="#"><span class="label label-warning"><i class="glyphicon glyphicon-alert"></i></span> Tidak ada pesan</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" style="display: none;">
+                        <a href="#"><i class="glyphicon glyphicon-bell"></i> <span class="badge">42</span></a>
+                        <ul class="dropdown-menu dropdown-pesan">
+                            <li><a href="#"><span class="label label-primary">20/06/2019</span> Lorem ipsum dolor sit amet</a></li>
+                            <li><a href="#"><span class="label label-primary">18/06/2019</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</a></li>
+                            <li><a href="#"><span class="label label-primary">17/06/2019</span> quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</a></li>
+                            <li><a href="#"><span class="label label-warning"><i class="glyphicon glyphicon-alert"></i></span> Tidak ada notifikasi</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="glyphicon glyphicon-user"></i>Selamat datang, <strong>Administrator</strong> (Administrator) -
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Ubah Password</a></li>
+                            <li><a href="login.php?reqMode=submitLogout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <div class="area-profil-sidebar">
+                    <div class="foto"><img src="~/admin/images/icon-profil.png"></div>
+                    <div class="nama">Administrator</div>
+                    <div class="nik">570890 0002</div>
+                    <div class="jabatan">Staff Komunikasi &amp; Informasi</div>
+                </div>
+
+                <!--<div id="cssmenu">
+                    <ul>
+                        <li><a href="home.php" target="mainFrame">Home</a></li>
+                        <li class="has-sub"><a href="#">Pegawai</a>
+                          <ul>
+                             <li><a href="pegawai.php" target="mainFrame">Data Pegawai</a></li>
+                             <li><a href="duk.php" target="mainFrame">DUK</a></li>
+                          </ul>
+                        </li>
+                        <li class="has-sub"><a href="#">Coba 2</a>
+                          <ul>
+                             <li><a href="#" target="mainFrame">Coba 2.1</a></li>
+                             <li><a href="#" target="mainFrame">Coba 2.2</a></li>
+                          </ul>
+                        </li>
+                    </ul>
+                </div>   -->
+
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <iframe src="home.php" name="mainFrameUtama"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="~/admin/lib/js/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="~/admin/lib/bootstrap-3.3.7/docs/dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="~/admin/lib/bootstrap-3.3.7/docs/assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="~/admin/lib/bootstrap-3.3.7/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- CSS MENU -->
+    <link rel="stylesheet" href="~/admin/lib/cssmenu/styles.css">
+    <script src="~/admin/lib/cssmenu/script.js"></script>
+    <script src="~/admin/lib/js/eModal.min.js"></script>
+    <script type="application/javascript">
+        function openPopup(page) {
+            //alert("hhhhh");
+            //eModal.alert('You shall not pass!');
+            //eModal.iframe();
+            // eModal.iframe('pegawai_edit.php', 'SIMPEG KOTA MOJOKERTO')
+            eModal.iframe(page, 'PELINDO III')
+        }
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
