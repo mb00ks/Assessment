@@ -1,0 +1,89 @@
+﻿@inject Assessment.Services.Profile.ProfileManager ProfileManager
+
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="~/admin/images/icon-profil.png" class="img-circle" alt="User Image" />
+            </div>
+            <div class="pull-left info">
+                <p>@ProfileManager.CurrentUser.UserName</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">Pengaturan</li>
+            <li class="treeview @(Html.IsMenuActive("/Dashboards") ? "active" : "")">
+                <a href="#">
+                    <i class="fa fa-book"></i> <span>Master Soal</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@(Html.IsMenuActive("/Dashboards/Dashboard1") ? "active" : "")"><a href="~/Dashboards/Dashboard1"><i class="fa fa-circle"></i> Potential Test A</a></li>
+                    <li class="@(Html.IsMenuActive("/Dashboards/Dashboard2") ? "active" : "")"><a href="~/Dashboards/Dashboard2"><i class="fa fa-circle"></i> Potential Test B</a></li>
+                    <li class="@(Html.IsMenuActive("/Dashboards/Dashboard2") ? "active" : "")"><a href="~/Dashboards/Dashboard2"><i class="fa fa-circle"></i> Pengetahuan Umum</a></li>
+                    <li class="@(Html.IsMenuActive("/Dashboards/Dashboard2") ? "active" : "")"><a href="~/Dashboards/Dashboard2"><i class="fa fa-circle"></i> English Test</a></li>
+                    <li class="@(Html.IsMenuActive("/Dashboards/Dashboard2") ? "active" : "")"><a href="~/Dashboards/Dashboard2"><i class="fa fa-circle"></i> Tes Mekanikal</a></li>
+                    <li class="@(Html.IsMenuActive("/Dashboards/Dashboard2") ? "active" : "")"><a href="~/Dashboards/Dashboard2"><i class="fa fa-circle"></i> Personality Tes</a></li>
+                    <li class="@(Html.IsMenuActive("/Dashboards/Dashboard2") ? "active" : "")"><a href="~/Dashboards/Dashboard2"><i class="fa fa-circle"></i> Tes Kraeplin</a></li>
+                    <li class="@(Html.IsMenuActive("/Dashboards/Dashboard2") ? "active" : "")"><a href="~/Dashboards/Dashboard2"><i class="fa fa-circle"></i> EPPS</a></li>
+                    <li class="@(Html.IsMenuActive("/Dashboards/Dashboard2") ? "active" : "")"><a href="~/Dashboards/Dashboard2"><i class="fa fa-circle"></i> IST</a></li>
+                    <li class="@(Html.IsMenuActive("/Dashboards/Dashboard2") ? "active" : "")"><a href="~/Dashboards/Dashboard2"><i class="fa fa-circle"></i> Tes Pauli</a></li>
+                    <li class="@(Html.IsMenuActive("/Dashboards/Dashboard2") ? "active" : "")"><a href="~/Dashboards/Dashboard2"><i class="fa fa-circle"></i> TKD</a></li>
+                    <li class="@(Html.IsMenuActive("/Dashboards/Dashboard2") ? "active" : "")"><a href="~/Dashboards/Dashboard2"><i class="fa fa-circle"></i> 16 PF</a></li>
+                    <li class="@(Html.IsMenuActive("/Dashboards/Dashboard2") ? "active" : "")"><a href="~/Dashboards/Dashboard2"><i class="fa fa-circle"></i> MBTI</a></li>
+                    <li class="@(Html.IsMenuActive("/Dashboards/Dashboard2") ? "active" : "")"><a href="~/Dashboards/Dashboard2"><i class="fa fa-circle"></i> D.I.S.C. Tes</a></li>
+                </ul>
+            </li>
+            <li class="treeview @(Html.IsMenuActive("/Settings") ? "active" : "")">
+                <a href="#">
+                    <i class="fa fa-gear"></i> <span>Setting User</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@(Html.IsMenuActive("/Settings/Profile") ? "active" : "")"><a href="~/Settings/Profile"><i class="fa fa-circle"></i> Master User</a></li>
+                    <li class="@(Html.IsMenuActive("/Settings/Account") ? "active" : "")"><a href="~/Settings/Account"><i class="fa fa-circle"></i> Master User Cat</a></li>
+                    <li class="@(Html.IsMenuActive("/Settings/Security") ? "active" : "")"><a href="~/Settings/Security"><i class="fa fa-circle"></i> Master Peserta</a></li>
+                </ul>
+            </li>
+            <li class="treeview @(Html.IsMenuActive("/Widgets") ? "active" : "")">
+                <a href="#">
+                    <i class="fa fa-book"></i> <span>Master Pra Pelaksanaan</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@(Html.IsMenuActive("/Settings/Profile") ? "active" : "")"><a href="~/Settings/Profile"><i class="fa fa-circle"></i> Peraturan</a></li>
+                    <li class="@(Html.IsMenuActive("/Settings/Account") ? "active" : "")"><a href="~/Settings/Account"><i class="fa fa-circle"></i> Kamus Kompetensi</a></li>
+                    <li class="@(Html.IsMenuActive("/Settings/Security") ? "active" : "")"><a href="~/Settings/Security"><i class="fa fa-circle"></i> Indikator Prilaku</a></li>
+                    <li class="@(Html.IsMenuActive("/Settings/Security") ? "active" : "")"><a href="~/Settings/Security"><i class="fa fa-circle"></i> Diklat Training</a></li>
+                    <li class="@(Html.IsMenuActive("/Settings/Security") ? "active" : "")"><a href="~/Settings/Security"><i class="fa fa-circle"></i> Asesor</a></li>
+                </ul>
+            </li>
+            <li class="treeview @(Html.IsMenuActive("/Charts") ? "active" : "")">
+                <a href="#">
+                    <i class="fa fa-book"></i> <span>Master Pelaksanaan</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@(Html.IsMenuActive("/Charts/ChartJS") ? "active" : "")"><a href="~/Charts/ChartJS"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+                    <li class="@(Html.IsMenuActive("/Charts/Morris") ? "active" : "")"><a href="~/Charts/Morris"><i class="fa fa-circle-o"></i> Morris</a></li>
+                    <li class="@(Html.IsMenuActive("/Charts/Flot") ? "active" : "")"><a href="~/Charts/Flot"><i class="fa fa-circle-o"></i> Flot</a></li>
+                    <li class="@(Html.IsMenuActive("/Charts/Inline") ? "active" : "")"><a href="~/Charts/Inline"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

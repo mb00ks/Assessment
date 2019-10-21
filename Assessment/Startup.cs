@@ -98,6 +98,8 @@ namespace Assessment
                 options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("id-ID");
                 options.SupportedCultures = new List<CultureInfo> { new CultureInfo("id-ID") };
             });
+
+            services.AddScoped<Services.Profile.ProfileManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

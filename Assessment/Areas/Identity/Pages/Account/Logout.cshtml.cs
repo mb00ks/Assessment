@@ -38,7 +38,8 @@ namespace Assessment.Areas.Identity.Pages.Account
             }
             else
             {
-                return Page();
+                //return Page();
+                return LocalRedirect("/");
             }
         }
 
@@ -57,7 +58,8 @@ namespace Assessment.Areas.Identity.Pages.Account
             }
             else
             {
-                return Page();
+                //return Page();
+                return LocalRedirect("/");
             }
         }
     }
