@@ -10,9 +10,10 @@ namespace Assessment.Models
     {
         public int Id { get; set; }
         public int AnswerId { get; set; }
-        public int QuestionDetailId { get; set; }
+        public int? QuestionDetailId { get; set; }
         public string CreatedId { get; set; }
         public string Item { get; set; }
+        public bool? IsTrue { get; set; }
         public DateTime CreatedDate { get; set; }
         public Answer Answer { get; set; }
         public QuestionDetail QuestionDetail { get; set; }

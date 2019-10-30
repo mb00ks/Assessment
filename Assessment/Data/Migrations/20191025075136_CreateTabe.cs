@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Assessment.Data.Migrations
 {
-    public partial class CreateTable : Migration
+    public partial class CreateTabe : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -189,6 +189,28 @@ namespace Assessment.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Sections",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    CreatedId = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Duration = table.Column<TimeSpan>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "NOW()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sections", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Sections_AspNetUsers_CreatedId",
+                        column: x => x.CreatedId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ExamSchedules",
                 columns: table => new
                 {
@@ -212,35 +234,6 @@ namespace Assessment.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ExamSchedules_Exams_ExamId",
-                        column: x => x.ExamId,
-                        principalTable: "Exams",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ExamSections",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    ExamId = table.Column<int>(nullable: false),
-                    CreatedId = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    Duration = table.Column<TimeSpan>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "NOW()")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExamSections", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ExamSections_AspNetUsers_CreatedId",
-                        column: x => x.CreatedId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ExamSections_Exams_ExamId",
                         column: x => x.ExamId,
                         principalTable: "Exams",
                         principalColumn: "Id",
@@ -337,36 +330,38 @@ namespace Assessment.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ExamQuestions",
+                name: "ExamSections",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    ExamSectionId = table.Column<int>(nullable: false),
-                    QuestionId = table.Column<int>(nullable: false),
+                    ExamId = table.Column<int>(nullable: false),
+                    SectionId = table.Column<int>(nullable: false),
                     CreatedId = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     Duration = table.Column<TimeSpan>(nullable: false),
+                    Notes = table.Column<string>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "NOW()")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ExamQuestions", x => x.Id);
+                    table.PrimaryKey("PK_ExamSections", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ExamQuestions_AspNetUsers_CreatedId",
+                        name: "FK_ExamSections_AspNetUsers_CreatedId",
                         column: x => x.CreatedId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ExamQuestions_ExamSections_ExamSectionId",
-                        column: x => x.ExamSectionId,
-                        principalTable: "ExamSections",
+                        name: "FK_ExamSections_Exams_ExamId",
+                        column: x => x.ExamId,
+                        principalTable: "Exams",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ExamQuestions_Questions_QuestionId",
-                        column: x => x.QuestionId,
-                        principalTable: "Questions",
+                        name: "FK_ExamSections_Sections_SectionId",
+                        column: x => x.SectionId,
+                        principalTable: "Sections",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -380,6 +375,7 @@ namespace Assessment.Data.Migrations
                     QuestionId = table.Column<int>(nullable: false),
                     CreatedId = table.Column<string>(nullable: true),
                     Item = table.Column<string>(nullable: true),
+                    IsTrue = table.Column<bool>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "NOW()")
                 },
                 constraints: table =>
@@ -434,20 +430,144 @@ namespace Assessment.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ExamQuestions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Number = table.Column<int>(nullable: false),
+                    ExamSectionId = table.Column<int>(nullable: false),
+                    QuestionId = table.Column<int>(nullable: false),
+                    CreatedId = table.Column<string>(nullable: true),
+                    Duration = table.Column<TimeSpan>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "NOW()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExamQuestions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ExamQuestions_AspNetUsers_CreatedId",
+                        column: x => x.CreatedId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ExamQuestions_ExamSections_ExamSectionId",
+                        column: x => x.ExamSectionId,
+                        principalTable: "ExamSections",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ExamQuestions_Questions_QuestionId",
+                        column: x => x.QuestionId,
+                        principalTable: "Questions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AnswerSections",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    ExamEmployeeId = table.Column<int>(nullable: false),
+                    ExamId = table.Column<int>(nullable: false),
+                    SectionId = table.Column<int>(nullable: false),
+                    CreatedId = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Duration = table.Column<TimeSpan>(nullable: false),
+                    Notes = table.Column<string>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "NOW()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AnswerSections", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AnswerSections_AspNetUsers_CreatedId",
+                        column: x => x.CreatedId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AnswerSections_ExamEmployees_ExamEmployeeId",
+                        column: x => x.ExamEmployeeId,
+                        principalTable: "ExamEmployees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AnswerSections_Exams_ExamId",
+                        column: x => x.ExamId,
+                        principalTable: "Exams",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AnswerSections_Sections_SectionId",
+                        column: x => x.SectionId,
+                        principalTable: "Sections",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AnswerQuestion",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Number = table.Column<int>(nullable: false),
+                    AnswerSectionId = table.Column<int>(nullable: false),
+                    QuestionId = table.Column<int>(nullable: false),
+                    CreatedId = table.Column<string>(nullable: true),
+                    Duration = table.Column<TimeSpan>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AnswerQuestion", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AnswerQuestion_AnswerSections_AnswerSectionId",
+                        column: x => x.AnswerSectionId,
+                        principalTable: "AnswerSections",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AnswerQuestion_AspNetUsers_CreatedId",
+                        column: x => x.CreatedId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AnswerQuestion_Questions_QuestionId",
+                        column: x => x.QuestionId,
+                        principalTable: "Questions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Answers",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     ExamEmployeeId = table.Column<int>(nullable: false),
+                    ExamSectionId = table.Column<int>(nullable: false),
                     QuestionId = table.Column<int>(nullable: false),
                     CreatedId = table.Column<string>(nullable: true),
                     Item = table.Column<string>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "NOW()")
+                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "NOW()"),
+                    AnswerSectionId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Answers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Answers_AnswerSections_AnswerSectionId",
+                        column: x => x.AnswerSectionId,
+                        principalTable: "AnswerSections",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Answers_AspNetUsers_CreatedId",
                         column: x => x.CreatedId,
@@ -458,6 +578,12 @@ namespace Assessment.Data.Migrations
                         name: "FK_Answers_ExamEmployees_ExamEmployeeId",
                         column: x => x.ExamEmployeeId,
                         principalTable: "ExamEmployees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Answers_ExamSections_ExamSectionId",
+                        column: x => x.ExamSectionId,
+                        principalTable: "ExamSections",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -475,9 +601,10 @@ namespace Assessment.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     AnswerId = table.Column<int>(nullable: false),
-                    QuestionDetailId = table.Column<int>(nullable: false),
+                    QuestionDetailId = table.Column<int>(nullable: true),
                     CreatedId = table.Column<string>(nullable: true),
                     Item = table.Column<string>(nullable: true),
+                    IsTrue = table.Column<bool>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "NOW()")
                 },
                 constraints: table =>
@@ -500,7 +627,7 @@ namespace Assessment.Data.Migrations
                         column: x => x.QuestionDetailId,
                         principalTable: "QuestionDetails",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -519,6 +646,26 @@ namespace Assessment.Data.Migrations
                 column: "QuestionDetailId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AnswerQuestion_AnswerSectionId",
+                table: "AnswerQuestion",
+                column: "AnswerSectionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AnswerQuestion_CreatedId",
+                table: "AnswerQuestion",
+                column: "CreatedId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AnswerQuestion_QuestionId",
+                table: "AnswerQuestion",
+                column: "QuestionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Answers_AnswerSectionId",
+                table: "Answers",
+                column: "AnswerSectionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Answers_CreatedId",
                 table: "Answers",
                 column: "CreatedId");
@@ -529,9 +676,34 @@ namespace Assessment.Data.Migrations
                 column: "ExamEmployeeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Answers_ExamSectionId",
+                table: "Answers",
+                column: "ExamSectionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Answers_QuestionId",
                 table: "Answers",
                 column: "QuestionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AnswerSections_CreatedId",
+                table: "AnswerSections",
+                column: "CreatedId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AnswerSections_ExamEmployeeId",
+                table: "AnswerSections",
+                column: "ExamEmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AnswerSections_ExamId",
+                table: "AnswerSections",
+                column: "ExamId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AnswerSections_SectionId",
+                table: "AnswerSections",
+                column: "SectionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cities_CreatedId",
@@ -625,6 +797,11 @@ namespace Assessment.Data.Migrations
                 column: "ExamId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ExamSections_SectionId",
+                table: "ExamSections",
+                column: "SectionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Genders_CreatedId",
                 table: "Genders",
                 column: "CreatedId");
@@ -663,12 +840,20 @@ namespace Assessment.Data.Migrations
                 name: "IX_Religions_CreatedId",
                 table: "Religions",
                 column: "CreatedId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sections_CreatedId",
+                table: "Sections",
+                column: "CreatedId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "AnswerDetails");
+
+            migrationBuilder.DropTable(
+                name: "AnswerQuestion");
 
             migrationBuilder.DropTable(
                 name: "ExamQuestions");
@@ -683,22 +868,28 @@ namespace Assessment.Data.Migrations
                 name: "QuestionDetails");
 
             migrationBuilder.DropTable(
+                name: "AnswerSections");
+
+            migrationBuilder.DropTable(
                 name: "ExamSections");
+
+            migrationBuilder.DropTable(
+                name: "Questions");
 
             migrationBuilder.DropTable(
                 name: "ExamEmployees");
 
             migrationBuilder.DropTable(
-                name: "Questions");
+                name: "Sections");
+
+            migrationBuilder.DropTable(
+                name: "QuestionTypes");
 
             migrationBuilder.DropTable(
                 name: "Employees");
 
             migrationBuilder.DropTable(
                 name: "ExamSchedules");
-
-            migrationBuilder.DropTable(
-                name: "QuestionTypes");
 
             migrationBuilder.DropTable(
                 name: "Cities");

@@ -71,7 +71,7 @@ namespace Assessment.Controllers
         [Route("Error/{code:int}")]
         public IActionResult Error(int code)
         {
-            if (code == 403 || code == 404 || code == 500)
+            if (code == 403 || code == 404 || code == 500 || code == 501)
             {
                 return View($"~/Views/Shared/Error/{code}.cshtml");
             }

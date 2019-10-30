@@ -7,8 +7,10 @@ namespace Assessment.Models.AssessmentViewModels
 {
     public class TahapanTesViewModel
     {
-        public int SectionId { get; set; }
-        public string SectionName { get; set; }
+        public int UjianTahapId { get; set; }
+        public int TipeUjianId { get; set; }
+        public string Tipe { get; set; }
         public TimeSpan Duration { get; set; }
+        public IList<Answer> Answers { get; set; }
     }
 }

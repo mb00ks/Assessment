@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Assessment.Data;
 using Assessment.Models;
 using Assessment.Models.AssessmentViewModels;
+using Assessment.Areas.Assessments.Models.AssessmentViewModels;
 
 namespace Assessment.Areas.Assessments.Controllers
 {
@@ -29,42 +30,60 @@ namespace Assessment.Areas.Assessments.Controllers
             _context = context;
         }
 
-        [HttpGet(Name = "TahapanTes")]
-        public async Task<ActionResult> Index()
-        {
-            //HttpContext.Session.SetInt32("NavigateId", 11);
-            //HttpContext.Session.SetInt32("OrderId", 5);
-            var user = await _userManager.GetUserAsync(User);
-            var scheduleDetail = await _context.ExamEmployees
-                .Include(m => m.Employee)
-                .Include(m => m.ExamSchedule)
-                .Where(m => m.ExamSchedule.DateExam.Date == DateTime.Now.Date)
-                .Where(m => m.Employee.UserForeignKey == user.Id)
-                .LastOrDefaultAsync();
+        ////[HttpGet(Name = "TahapanTes")]
+        //public async Task<ActionResult> Index()
+        //{
+        //    //HttpContext.Session.SetInt32("NavigateId", 11);
+        //    //HttpContext.Session.SetInt32("OrderId", 5);
+        //    var user = await _userManager.GetUserAsync(User);
 
-            var tahapanTesViewModels = _context.Questions
-                .Include(m => m.QuestionType)
-                .Where(m => m.QuestionTypeId == scheduleDetail.ExamScheduleId)
-                .Select(m => new TahapanTesViewModel { SectionId = m.QuestionTypeId, SectionName = m.QuestionType.Name })
-                .Distinct();
+        //    var tahapanTesViews = _context.ExamSections
+        //        .Include(m => m.Exam).ThenInclude(m => m.ExamSchedules).ThenInclude(m => m.ExamEmployees).ThenInclude(m => m.Employee)
+        //        .Include(m => m.Answers)
+        //        .Where(m => m.Exam.ExamSchedules.Any(n => n.DateExam.Date == DateTime.Now.Date))
+        //        .Where(m => m.Exam.ExamSchedules.Any(n => n.ExamEmployees.Any(o => o.Employee.UserForeignKey == user.Id)))
+        //        .OrderBy(m => m.Id)
+        //        .Select(m => new TahapanTesViewModel { SectionId = m.Id, SectionName = m.Name, Duration = m.Duration });
 
-            return View(tahapanTesViewModels);
-        }
+        //    return View(tahapanTesViews);
+        //}
 
-        [HttpGet("[action]", Name = "Exam")]
-        public ActionResult Exam(int QuestionTypeId)
-        {
-            //HttpContext.Session.SetInt32("NavigateId", 12);
-            //HttpContext.Session.SetInt32("OrderId", 6);
-            return View();
-        }
+        ////[HttpGet("[action]", Name = "Instruction")]
+        //public async Task<ActionResult> Instruction(int SectionId)
+        //{
+        //    var examSection = await _context.ExamSections.FirstOrDefaultAsync(m => m.Id == SectionId);
+        //    var instructionView = new InstructionViewModel
+        //    {
+        //        SectionId = examSection.Id,
+        //        SectionName = examSection.Name,
+        //        Notes = examSection.Notes,
+        //        Duration = examSection.Duration
+        //    };
+        //    return View(instructionView);
+        //}
 
-        [HttpGet("Tahap1/{nomer}", Name = "Tahap1Soal")]
-        public ActionResult Soal(int nomer)
-        {
-            HttpContext.Session.SetInt32("NavigateId", 13);
-            HttpContext.Session.SetInt32("OrderId", 7);
-            return View($"Soal{nomer}");
-        }
+        ////[HttpGet("[action]", Name = "Exam")]
+        //public async Task<ActionResult> Exam(int SectionId, int QuestionId)
+        //{
+        //    //HttpContext.Session.SetInt32("NavigateId", 12);
+        //    //HttpContext.Session.SetInt32("OrderId", 6);
+        //    var examSection = await _context.ExamSections.FirstOrDefaultAsync(m => m.Id == SectionId);
+        //    var instructionView = new InstructionViewModel
+        //    {
+        //        SectionId = examSection.Id,
+        //        SectionName = examSection.Name,
+        //        Notes = examSection.Notes,
+        //        Duration = examSection.Duration
+        //    };
+        //    return View(instructionView);
+        //}
+
+        ////[HttpGet("Tahap1/{nomer}", Name = "Tahap1Soal")]
+        //public ActionResult Soal(int nomer)
+        //{
+        //    HttpContext.Session.SetInt32("NavigateId", 13);
+        //    HttpContext.Session.SetInt32("OrderId", 7);
+        //    return View($"Soal{nomer}");
+        //}
     }
 }

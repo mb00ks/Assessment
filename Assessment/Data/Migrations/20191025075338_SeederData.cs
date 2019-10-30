@@ -50,8 +50,8 @@ namespace Assessment.Data.Migrations
                 columns: new[] { "Id", "CreatedDate", "CreatedId", "Duration", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), "Rekrutmen Grade 6A" },
-                    { 2, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), "Rekrutmen Grade 7A" }
+                    { 2, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), "Rekrutmen Grade 7A" },
+                    { 1, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), "Rekrutmen Grade 6A" }
                 });
 
             migrationBuilder.InsertData(
@@ -77,9 +77,9 @@ namespace Assessment.Data.Migrations
                 columns: new[] { "Id", "CreatedDate", "CreatedId", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Multiple Choice" },
                     { 3, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Essay" },
-                    { 2, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Multiple Answer" }
+                    { 2, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Multiple Answer" },
+                    { 1, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Multiple Choice" }
                 });
 
             migrationBuilder.InsertData(
@@ -87,12 +87,21 @@ namespace Assessment.Data.Migrations
                 columns: new[] { "Id", "Code", "CreatedDate", "CreatedId", "Name" },
                 values: new object[,]
                 {
-                    { 1, "ISL", new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Islam" },
-                    { 2, "KTP", new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Kristen Protestan" },
                     { 3, "KTK", new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Kristen Katolik" },
                     { 4, "HIN", new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Hindu" },
                     { 5, "BUD", new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Buddha" },
-                    { 6, "KHO", new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Khonghucu" }
+                    { 6, "KHO", new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Khonghucu" },
+                    { 1, "ISL", new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Islam" },
+                    { 2, "KTP", new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Kristen Protestan" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Sections",
+                columns: new[] { "Id", "CreatedDate", "CreatedId", "Duration", "Name" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), "Tes Potensi Akademik" },
+                    { 2, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), "Tes Psikotes" }
                 });
 
             migrationBuilder.InsertData(
@@ -115,13 +124,13 @@ namespace Assessment.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "ExamSections",
-                columns: new[] { "Id", "CreatedDate", "CreatedId", "Duration", "ExamId", "Name" },
+                columns: new[] { "Id", "CreatedDate", "CreatedId", "Duration", "ExamId", "Name", "Notes", "SectionId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 1, "Tes Potensi Akademik 6A" },
-                    { 2, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 1, "Tes Psikotes 6A" },
-                    { 3, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 2, "Tes Potensi Akademik 7A" },
-                    { 4, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 2, "Tes Psikotes 7A" }
+                    { 1, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 1, "Tes Potensi Akademik 6A", null, 1 },
+                    { 3, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 2, "Tes Potensi Akademik 7A", null, 1 },
+                    { 2, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 1, "Tes Psikotes 6A", null, 2 },
+                    { 4, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 2, "Tes Psikotes 7A", null, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -146,64 +155,64 @@ namespace Assessment.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "ExamQuestions",
-                columns: new[] { "Id", "CreatedDate", "CreatedId", "Duration", "ExamSectionId", "QuestionId" },
+                columns: new[] { "Id", "CreatedDate", "CreatedId", "Duration", "ExamSectionId", "Number", "QuestionId" },
                 values: new object[,]
                 {
-                    { 8, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 4, 4 },
-                    { 4, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 2, 4 },
-                    { 7, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 4, 3 },
-                    { 3, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 2, 3 },
-                    { 6, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 3, 2 },
-                    { 1, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 1, 1 },
-                    { 5, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 3, 1 },
-                    { 2, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 1, 2 }
+                    { 8, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 4, 0, 4 },
+                    { 4, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 2, 0, 4 },
+                    { 3, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 2, 0, 3 },
+                    { 6, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 3, 0, 2 },
+                    { 5, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 3, 0, 1 },
+                    { 2, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 1, 0, 2 },
+                    { 1, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 1, 0, 1 },
+                    { 7, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", new TimeSpan(0, 0, 0, 0, 0), 4, 0, 3 }
                 });
 
             migrationBuilder.InsertData(
                 table: "QuestionDetails",
-                columns: new[] { "Id", "CreatedDate", "CreatedId", "Item", "QuestionId" },
+                columns: new[] { "Id", "CreatedDate", "CreatedId", "IsTrue", "Item", "QuestionId" },
                 values: new object[,]
                 {
-                    { 5, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "52", 1 },
-                    { 18, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Susut", 4 },
-                    { 17, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Macet", 4 },
-                    { 16, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Kerdil", 4 },
-                    { 15, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Menumpuk", 4 },
-                    { 1, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "24", 1 },
-                    { 14, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Kenyataanya", 3 },
-                    { 13, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Tidak bisa tidur", 3 },
-                    { 12, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Sedih", 3 },
-                    { 2, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "28", 1 },
-                    { 3, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "32", 1 },
-                    { 4, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "42", 1 },
-                    { 9, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "96", 2 },
-                    { 8, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "94", 2 },
-                    { 7, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "92", 2 },
-                    { 6, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "90", 2 },
-                    { 11, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Cemas", 3 },
-                    { 10, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "97", 2 }
+                    { 18, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", false, "Susut", 4 },
+                    { 17, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", false, "Macet", 4 },
+                    { 16, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", true, "Kerdil", 4 },
+                    { 15, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", false, "Menumpuk", 4 },
+                    { 14, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", false, "Kenyataanya", 3 },
+                    { 12, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", false, "Sedih", 3 },
+                    { 11, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", false, "Cemas", 3 },
+                    { 10, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", false, "97", 2 },
+                    { 9, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", true, "96", 2 },
+                    { 8, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", false, "94", 2 },
+                    { 7, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", false, "92", 2 },
+                    { 6, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", false, "90", 2 },
+                    { 5, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", false, "52", 1 },
+                    { 4, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", true, "42", 1 },
+                    { 3, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", false, "32", 1 },
+                    { 2, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", false, "28", 1 },
+                    { 13, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", true, "Tidak bisa tidur", 3 },
+                    { 1, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", false, "24", 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Answers",
-                columns: new[] { "Id", "CreatedDate", "CreatedId", "ExamEmployeeId", "Item", "QuestionId" },
+                columns: new[] { "Id", "AnswerSectionId", "CreatedDate", "CreatedId", "ExamEmployeeId", "ExamSectionId", "Item", "QuestionId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", 1, "1, 3, 2, 6, 5, 15, 14, ....", 1 },
-                    { 2, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", 1, "100, 95, ..., 91, 92, 87, 88, 83.", 2 },
-                    { 3, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", 1, "INSOMNIA = ...", 3 },
-                    { 4, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", 1, "BONGSOR >< ...", 4 }
+                    { 1, null, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", 1, 1, "1, 3, 2, 6, 5, 15, 14, ....", 1 },
+                    { 2, null, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", 1, 1, "100, 95, ..., 91, 92, 87, 88, 83.", 2 },
+                    { 3, null, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", 1, 2, "INSOMNIA = ...", 3 },
+                    { 4, null, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", 1, 2, "BONGSOR >< ...", 4 }
                 });
 
             migrationBuilder.InsertData(
                 table: "AnswerDetails",
-                columns: new[] { "Id", "AnswerId", "CreatedDate", "CreatedId", "Item", "QuestionDetailId" },
+                columns: new[] { "Id", "AnswerId", "CreatedDate", "CreatedId", "IsTrue", "Item", "QuestionDetailId" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "42", 4 },
-                    { 2, 2, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "96", 9 },
-                    { 3, 3, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Tidak bisa tidur", 13 },
-                    { 4, 4, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", "Kerdil", 16 }
+                    { 1, 1, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", true, "42", 4 },
+                    { 2, 2, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", true, "96", 9 },
+                    { 3, 3, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", true, "Tidak bisa tidur", 13 },
+                    { 4, 4, new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), "f91a6f48-4c5b-4750-8341-bbb4d6905c74", true, "Kerdil", 16 }
                 });
         }
 
@@ -452,16 +461,6 @@ namespace Assessment.Data.Migrations
             migrationBuilder.DeleteData(
                 table: "ExamSections",
                 keyColumn: "Id",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "ExamSections",
-                keyColumn: "Id",
-                keyValue: 2);
-
-            migrationBuilder.DeleteData(
-                table: "ExamSections",
-                keyColumn: "Id",
                 keyValue: 3);
 
             migrationBuilder.DeleteData(
@@ -498,6 +497,16 @@ namespace Assessment.Data.Migrations
                 table: "ExamEmployees",
                 keyColumn: "Id",
                 keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "ExamSections",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "ExamSections",
+                keyColumn: "Id",
+                keyValue: 2);
 
             migrationBuilder.DeleteData(
                 table: "Exams",
@@ -538,6 +547,16 @@ namespace Assessment.Data.Migrations
                 table: "QuestionTypes",
                 keyColumn: "Id",
                 keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "Sections",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "Sections",
+                keyColumn: "Id",
+                keyValue: 2);
 
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +9,9 @@ using DataTables.AspNetCore.Mvc.Binder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Npgsql;
+using GeneralClass;
+
 
 namespace Assessment.Models
 {
@@ -86,8 +91,28 @@ namespace Assessment.Models
 
 namespace Assessment.Controllers
 {
+    public class Eselon
+    {
+        public DataTable Dt { get; set; }
+    }
     public class TestingController : Controller
     {
+        public ActionResult eselon()
+        {
+            var sb = new StringBuilder();
+            var dt = new DataTable();
+
+            sb.Append(" select * from eselon");
+            dt = GeneralClass.POSTGREMYSQL.Instance.ExecuteQuery(sb.ToString());
+            var eselon = new Eselon { Dt = dt };
+            //for (var i = 0; i <= dt.Rows.Count - 1; i++)
+            //{
+            //    string a = "";
+
+            //    a = dt.Rows[i][0].ToString();
+            //}
+            return View(eselon);
+        }
         // GET: Testing
         public ActionResult Index()
         {

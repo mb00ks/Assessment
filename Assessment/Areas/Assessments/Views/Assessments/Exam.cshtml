@@ -1,0 +1,166 @@
+﻿@model IEnumerable<ExamViewModel>
+
+@{
+    ViewData["Title"] = "Soal";
+    ExamViewModel exam = Model.FirstOrDefault();
+}
+
+@section Styles {
+    <style>
+        .area-main .container {
+            background: rgba(255,255,255,1);
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="area-judul-halaman">
+            @exam.Judul
+            @*@Model.SectionName*@
+            @*@Model.Duration
+                <span class="milisecond-interval">@Model.Duration</span>*@
+            <span style="float:right" class="lengkapimodif-data" id="reqIdSelesai">
+                <a class="selesai" asp-route="TahapanTes">Selesai »</a>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-9 area-soal-wrapper">
+        <div class="area-soal reqInfoIsi">
+            <div id="main-slider-wrapper" class="ls-wrapper arrows ls-responsive">
+                <div id="main-slider" class="liquid-slider">
+                    <div id="1" class="area-soal-item main-slider-panel ls-panel currentPanel" style="width: 738px;">
+                        <div class="panel-wrapper">
+                            <br />
+                            <form id="Answer" asp-route="Answer" method="post">
+                                <input name="UjianBankSoalId" value="@exam.UjianBankSoalId" type="hidden" />
+                                <input name="BankSoalId" value="@exam.BankSoalId" type="hidden" />
+                                <span class="nomor">@exam.BankSoalId</span>
+                                <span class="pertanyaan">@exam.PathGambar @exam.PathSoal</span><br />
+                                <div class="area-jawab-pilihan-ganda">
+                                    @{ var i = 0; }
+                                    @foreach (var item in Model)
+                                    {
+                                        @item.PathGambar
+                                        @item.PathJawaban
+                                        <br />
+                                    }
+                                    <br>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 area-sudah-wrapper reqInfoIsi">
+        <br />
+        <div class="area-sudah">
+            @*@foreach (var item in Model.ExamQuestions)
+            {
+                var aClass = "pilih";
+                var iClass = "fa fa-circle";
+                if (Model.Answers.Any(m => m.QuestionId == item.QuestionId))
+                {
+                    aClass = "sudah pilih";
+                    iClass = "fa fa-check-circle";
+                }
+                <div class="item">
+                    <a class="@aClass" asp-route="Exam" asp-route-SectionId="@item.ExamSectionId" asp-route-QuestionId="@item.QuestionId"><i class="@iClass"></i>  @item.Number</a>
+                </div>
+            }*@
+        </div>
+    </div>
+    <div class="area-prev-next-ujian reqInfoIsi">
+        @*@{
+            var number = Model.ExamQuestions.FirstOrDefault(m => m.QuestionId == Model.QuestionId).Number;
+            var lastNumber = Model.ExamQuestions.LastOrDefault().Number;
+            if (number > 1)
+            {
+                var newNumber = number - 1;
+                var QuestionId = Model.ExamQuestions.FirstOrDefault(m => m.Number == newNumber).QuestionId;
+                <div class="prev-ujian" id="reqIdPrev"><a id="reqHrefIdPrev" asp-route="Exam" asp-route-SectionId="@Model.SectionId" asp-route-QuestionId="@QuestionId"><i class="fa fa-chevron-left"></i>  Sebelumnya</a></div>
+            }
+            if (number < lastNumber)
+            {
+                var newNumber = number + 1;
+                var QuestionId = Model.ExamQuestions.FirstOrDefault(m => m.Number == newNumber).QuestionId;
+                <div class="next-ujian" id="reqIdNext"><a id="reqHrefIdNext" asp-route="Exam" asp-route-SectionId="@Model.SectionId" asp-route-QuestionId="@QuestionId"> Selanjutnya <i class="fa fa-chevron-right"></i></a></div>
+            }
+        }*@
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        //$('#reqHrefIdNext').click(function () {
+        //    $('#IsNext').val(true);
+        //    $('#Answer').submit();
+        //});
+        //$('#reqHrefIdPrev').click(function () {
+        //    $('#IsNext').val(false);
+        //    $('#Answer').submit();
+        //});
+
+        // STEP 1
+        // cek apakah ada ExamEmployeeId & QuestionId di table answer?
+        // jika ada maka set time menjadi 0
+        // jika tidak ada maka step 2
+
+        // STEP 2
+        // ambil time di table ExamQuestion yang ExamSectionId & QuestionId
+
+        // STEP 3
+        // lakukan force submit
+
+        const timeRemaining = 0;@*@Model.Duration.TotalMilliseconds;*@ // in milisecond
+        //console.log(timeRemaining);
+        //setTimeout(function () {
+        //    formSubmit(true);
+        //}, timeRemaining);
+
+        var actionAnswer = $('input[id^="QuestionDetailId-"]');
+        $(actionAnswer).click(function () {
+            formSubmit();
+        });
+
+        var formSubmit = function (next) {
+            /*
+            if (typeof next != 'undefined') {
+                $('#IsNext').val(null);
+            }
+            else if (next) {
+                $('#IsNext').val(true);
+            }
+            else {
+                $('#IsNext').val(false);
+            }
+            */
+            $('#IsNext').val(true);
+            $('#Answer').submit();
+        }
+
+
+        var timer2 = '00:10';
+        var interval = setInterval(function () {
+            var timer = timer2.split(':');
+            //by parsing integer, I avoid all extra string processing
+            var minutes = parseInt(timer[0], 10);
+            var seconds = parseInt(timer[1], 10);
+            --seconds;
+            minutes = (seconds < 0) ? --minutes : minutes;
+            if (minutes < 0) clearInterval(interval);
+            seconds = (seconds < 0) ? 59 : seconds;
+            seconds = (seconds < 10) ? '0' + seconds : seconds;
+            //minutes = (minutes < 10) ?  minutes : minutes;
+            $('.milisecond-interval').html(minutes + ':' + seconds);
+            timer2 = minutes + ':' + seconds;
+        }, 1000);
+        //$('input[id^="QuestionDetailId-"]').click(function () {
+          //  console.log($(this).val());
+            //$('#IsNext').val(null);
+            //$('#Answer').submit();
+        //});
+    </script>
+}

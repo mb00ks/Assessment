@@ -7,41 +7,44 @@
     <div class="col-md-12">
         <div class="area-judul-halaman">Persiapan</div>
     </div>
-
     <div class="col-md-12">
-        <div class="area-persetujuan">
-            <ul>
-                <li>Pastikan anda menggunakan browser Firefox (Mozilla) / Chrome, dengan update terbaru.</li>
-                <li>Pastikan anda memiliki koneksi jaringan internet yang bagus, sehingga tidak ada kendala koneksi waktu Tes Online.</li>
-                <li>Jika anda sudah siap, tekan Tombol "SIAP IKUT UJIAN" untuk memulai tes online.</li>
-                <li>Jawablah pertanyaan dengan seksama dengan tenang, dikarenakan waktu yang diberikan tidak dapat dihentikan.</li>
-                <li>Anda dapat mereview kembali pertanyaan anda ketika waktu yang diberikan masih ada.</li>
-                <li>Jangan lupa berdoa agar semua tes berjalan lancar.</li>
-                <li>Jadwal Ujian Anda <b>@Model.DateExam.ToString(@"dd MMMM yyyy, 00\:00\:01") s/d @Model.DateExam.ToString(@"dd MMMM yyyy, 23\:59\:59")</b>.</li>
-            </ul>
-
-            <div class="alert alert-warning atas-10">
-                Peringatan : Apabila anda telah siap melaksanakan ujian klik tombol "Mulai Ujian".<br> Anda diberikan waktu <strong>@Model.Duration</strong> untuk mengerjakan ujian.
+        @if (Model == null)
+        {
+            <div class="area-persetujuan">
+                <div class="alert alert-warning atas-10">
+                    Peringatan : Belum ada jadwal ujian untuk anda.
+                </div>
             </div>
-
-            <div class="ikut"><a asp-area="Assessments" asp-controller="TahapanTes" asp-action="Index">Siap Ikut Ujian &raquo;</a></div>
-        </div>
-
+        }
+        else
+        {
+            <div class="area-persetujuan">
+                <ul>
+                    <li>Pastikan anda menggunakan browser Firefox (Mozilla) / Chrome, dengan update terbaru.</li>
+                    <li>Pastikan anda memiliki koneksi jaringan internet yang bagus, sehingga tidak ada kendala koneksi waktu Tes Online.</li>
+                    <li>Jika anda sudah siap, tekan Tombol "SIAP IKUT UJIAN" untuk memulai tes online.</li>
+                    <li>Jawablah pertanyaan dengan seksama dengan tenang, dikarenakan waktu yang diberikan tidak dapat dihentikan.</li>
+                    <li>Anda dapat mereview kembali pertanyaan anda ketika waktu yang diberikan masih ada.</li>
+                    <li>Jangan lupa berdoa agar semua tes berjalan lancar.</li>
+                    @*<li>Jadwal Ujian Anda <b>@Model.DateExam.ToString(@"dd MMMM yyyy, 00\:00\:01") s/d @Model.DateExam.ToString(@"dd MMMM yyyy, 23\:59\:59")</b>.</li>*@
+                    <li>Jadwal Ujian Anda <b>@Model.TanggalAwal.ToString("dd MMMM yyyy, HH:mm:ss") s/d @Model.TanggalAkhir.ToString("dd MMMM yyyy, HH:mm:ss")</b>.</li>
+                </ul>
+                <div class="alert alert-warning atas-10">
+                    Peringatan : Apabila anda telah siap melaksanakan ujian klik tombol "Mulai Ujian".<br> Anda diberikan waktu <strong>@(string.Format("{0:00}:{1:00}", Model.Duration.Minutes, Model.Duration.Seconds))</strong> untuk mengerjakan ujian.
+                </div>
+                <div class="ikut"><a asp-area="Assessments" asp-controller="TahapanTes" asp-action="Index">Siap Ikut Ujian &raquo;</a></div>
+            </div>
+        }
     </div>
-
     <div class="area-prev-next">
         <div class="prev">
-            @*<form class="form-inline" asp-route="LandingPage" asp-route-pages="FormPersetujuan" method="post">
-                <button type="submit"><i class="fa fa-chevron-left"></i></button>
-            </form>*@
             <a asp-route="FormPersetujuan"><i class="fa fa-chevron-left"></i></a>
         </div>
-        <div class="next">
-            @*<form class="form-inline" asp-area="" asp-controller="Assessment" asp-action="TahapanTes" method="get">
-                <button type="submit"><i class="fa fa-chevron-right"></i></button>
-            </form>*@
-            <a asp-route="TahapanTes"><i class="fa fa-chevron-right"></i></a>
-        </div>
+        @if (Model != null)
+        {
+            <div class="next">
+                <a asp-route="TahapanTes"><i class="fa fa-chevron-right"></i></a>
+            </div>
+        }
     </div>
-
 </div>

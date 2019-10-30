@@ -21,10 +21,12 @@ namespace Assessment.Data
         public DbSet<Question> Questions { get; set; }
         public DbSet<QuestionDetail> QuestionDetails { get; set; }
         public DbSet<Exam> Exams { get; set; }
+        public DbSet<Section> Sections { get; set; }
         public DbSet<ExamSection> ExamSections { get; set; }
         public DbSet<ExamQuestion> ExamQuestions { get; set; }
         public DbSet<ExamSchedule> ExamSchedules { get; set; }
         public DbSet<ExamEmployee> ExamEmployees { get; set; }
+        public DbSet<AnswerSection> AnswerSections { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<AnswerDetail> AnswerDetails { get; set; }
         public DbSet<Navigation> Navigations { get; set; }
@@ -36,11 +38,13 @@ namespace Assessment.Data
         {
             base.OnModelCreating(builder);
             builder.Entity<ApplicationUser>().HasOne(p => p.Employee).WithOne(i => i.ApplicationUser).HasForeignKey<Employee>(e => e.UserForeignKey);
+            builder.Entity<AnswerSection>().Property(m => m.CreatedDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
             builder.Entity<Answer>().Property(m => m.CreatedDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
             builder.Entity<AnswerDetail>().Property(m => m.CreatedDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
             builder.Entity<City>().Property(m => m.CreatedDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
             builder.Entity<Employee>().Property(m => m.CreatedDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
             builder.Entity<Exam>().Property(m => m.CreatedDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
+            builder.Entity<Section>().Property(m => m.CreatedDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
             builder.Entity<ExamEmployee>().Property(m => m.CreatedDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
             builder.Entity<ExamQuestion>().Property(m => m.CreatedDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
             builder.Entity<ExamSchedule>().Property(m => m.CreatedDate).HasDefaultValueSql("NOW()").ValueGeneratedOnAdd();
@@ -194,24 +198,24 @@ namespace Assessment.Data
 
             #region QuestionDetailSeed
             builder.Entity<QuestionDetail>().HasData(
-                new QuestionDetail { Id = 1, Item = "24", QuestionId = 1, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 2, Item = "28", QuestionId = 1, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 3, Item = "32", QuestionId = 1, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 4, Item = "42", QuestionId = 1, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 5, Item = "52", QuestionId = 1, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 6, Item = "90", QuestionId = 2, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 7, Item = "92", QuestionId = 2, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 8, Item = "94", QuestionId = 2, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 9, Item = "96", QuestionId = 2, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 10, Item = "97", QuestionId = 2, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 11, Item = "Cemas", QuestionId = 3, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 12, Item = "Sedih", QuestionId = 3, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 13, Item = "Tidak bisa tidur", QuestionId = 3, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 14, Item = "Kenyataanya", QuestionId = 3, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 15, Item = "Menumpuk", QuestionId = 4, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 16, Item = "Kerdil", QuestionId = 4, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 17, Item = "Macet", QuestionId = 4, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new QuestionDetail { Id = 18, Item = "Susut", QuestionId = 4, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) }
+                new QuestionDetail { Id = 1, Item = "24", IsTrue = false, QuestionId = 1, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 2, Item = "28", IsTrue = false, QuestionId = 1, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 3, Item = "32", IsTrue = false, QuestionId = 1, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 4, Item = "42", IsTrue = true, QuestionId = 1, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 5, Item = "52", IsTrue = false, QuestionId = 1, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 6, Item = "90", IsTrue = false, QuestionId = 2, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 7, Item = "92", IsTrue = false, QuestionId = 2, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 8, Item = "94", IsTrue = false, QuestionId = 2, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 9, Item = "96", IsTrue = true, QuestionId = 2, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 10, Item = "97", IsTrue = false, QuestionId = 2, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 11, Item = "Cemas", IsTrue = false, QuestionId = 3, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 12, Item = "Sedih", IsTrue = false, QuestionId = 3, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 13, Item = "Tidak bisa tidur", IsTrue = true, QuestionId = 3, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 14, Item = "Kenyataanya", IsTrue = false, QuestionId = 3, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 15, Item = "Menumpuk", IsTrue = false, QuestionId = 4, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 16, Item = "Kerdil", IsTrue = true, QuestionId = 4, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 17, Item = "Macet", IsTrue = false, QuestionId = 4, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new QuestionDetail { Id = 18, Item = "Susut", IsTrue = false, QuestionId = 4, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) }
             );
             #endregion
 
@@ -222,12 +226,19 @@ namespace Assessment.Data
             );
             #endregion
 
+            #region SectionSeed
+            builder.Entity<Section>().HasData(
+                new Section { Id = 1, CreatedId = userAdmin.Id, Name = "Tes Potensi Akademik", CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), Duration = new TimeSpan() },
+                new Section { Id = 2, CreatedId = userAdmin.Id, Name = "Tes Psikotes", CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), Duration = new TimeSpan() }
+            );
+            #endregion
+
             #region ExamSectionSeed
             builder.Entity<ExamSection>().HasData(
-                new ExamSection { Id = 1, ExamId = 1, CreatedId = userAdmin.Id, Name = "Tes Potensi Akademik 6A", CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), Duration = new TimeSpan() },
-                new ExamSection { Id = 2, ExamId = 1, CreatedId = userAdmin.Id, Name = "Tes Psikotes 6A", CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), Duration = new TimeSpan() },
-                new ExamSection { Id = 3, ExamId = 2, CreatedId = userAdmin.Id, Name = "Tes Potensi Akademik 7A", CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), Duration = new TimeSpan() },
-                new ExamSection { Id = 4, ExamId = 2, CreatedId = userAdmin.Id, Name = "Tes Psikotes 7A", CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), Duration = new TimeSpan() }
+                new ExamSection { Id = 1, ExamId = 1, SectionId = 1, CreatedId = userAdmin.Id, Name = "Tes Potensi Akademik 6A", CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), Duration = new TimeSpan() },
+                new ExamSection { Id = 2, ExamId = 1, SectionId = 2, CreatedId = userAdmin.Id, Name = "Tes Psikotes 6A", CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), Duration = new TimeSpan() },
+                new ExamSection { Id = 3, ExamId = 2, SectionId = 1, CreatedId = userAdmin.Id, Name = "Tes Potensi Akademik 7A", CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), Duration = new TimeSpan() },
+                new ExamSection { Id = 4, ExamId = 2, SectionId = 2, CreatedId = userAdmin.Id, Name = "Tes Psikotes 7A", CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local), Duration = new TimeSpan() }
             );
             #endregion
 
@@ -260,19 +271,19 @@ namespace Assessment.Data
 
             #region AnswerSeed
             builder.Entity<Answer>().HasData(
-                new Answer { Id = 1, ExamEmployeeId = 1, QuestionId = 1, Item = "1, 3, 2, 6, 5, 15, 14, ....", CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new Answer { Id = 2, ExamEmployeeId = 1, QuestionId = 2, Item = "100, 95, ..., 91, 92, 87, 88, 83.", CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new Answer { Id = 3, ExamEmployeeId = 1, QuestionId = 3, Item = "INSOMNIA = ...", CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new Answer { Id = 4, ExamEmployeeId = 1, QuestionId = 4, Item = "BONGSOR >< ...", CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) }
+                new Answer { Id = 1, ExamEmployeeId = 1, ExamSectionId = 1, QuestionId = 1, Item = "1, 3, 2, 6, 5, 15, 14, ....", CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new Answer { Id = 2, ExamEmployeeId = 1, ExamSectionId = 1, QuestionId = 2, Item = "100, 95, ..., 91, 92, 87, 88, 83.", CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new Answer { Id = 3, ExamEmployeeId = 1, ExamSectionId = 2, QuestionId = 3, Item = "INSOMNIA = ...", CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new Answer { Id = 4, ExamEmployeeId = 1, ExamSectionId = 2, QuestionId = 4, Item = "BONGSOR >< ...", CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) }
             );
             #endregion
 
             #region AnswerDetailSeed
             builder.Entity<AnswerDetail>().HasData(
-                new AnswerDetail { Id = 1, AnswerId = 1, QuestionDetailId = 4, Item = "42", CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new AnswerDetail { Id = 2, AnswerId = 2, QuestionDetailId = 9, Item = "96", CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new AnswerDetail { Id = 3, AnswerId = 3, QuestionDetailId = 13, Item = "Tidak bisa tidur", CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
-                new AnswerDetail { Id = 4, AnswerId = 4, QuestionDetailId = 16, Item = "Kerdil", CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) }
+                new AnswerDetail { Id = 1, AnswerId = 1, QuestionDetailId = 4, Item = "42", IsTrue = true, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new AnswerDetail { Id = 2, AnswerId = 2, QuestionDetailId = 9, Item = "96", IsTrue = true, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new AnswerDetail { Id = 3, AnswerId = 3, QuestionDetailId = 13, Item = "Tidak bisa tidur", IsTrue = true, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) },
+                new AnswerDetail { Id = 4, AnswerId = 4, QuestionDetailId = 16, Item = "Kerdil", IsTrue = true, CreatedId = userAdmin.Id, CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local) }
             );
             #endregion
         }

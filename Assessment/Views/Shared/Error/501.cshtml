@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Pesan Kesalahan";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="area-judul-halaman">Pesan Kesalahan</div>
+    </div>
+    <div class="col-md-12">
+        <div class="area-persetujuan">
+            <div class="alert alert-warning atas-10">
+                Peringatan : Belum ada jadwal ujian untuk anda.
+            </div>
+        </div>
+    </div>
+    <div class="area-prev-next">
+        <div class="prev">
+            <a asp-route="FormPersetujuan"><i class="fa fa-chevron-left"></i></a>
+        </div>
+        @if (Model != null)
+        {
+            <div class="next">
+                <a asp-route="TahapanTes"><i class="fa fa-chevron-right"></i></a>
+            </div>
+        }
+    </div>
+</div>

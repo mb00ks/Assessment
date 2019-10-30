@@ -8,6 +8,8 @@ namespace Assessment.Models.AssessmentViewModels
     public class PersiapanViewModel
     {
         public DateTime DateExam { get; set; }
+        public DateTime TanggalAwal { get; set; }
+        public DateTime TanggalAkhir { get; set; }
         public TimeSpan Duration { get; set; }
     }
 }

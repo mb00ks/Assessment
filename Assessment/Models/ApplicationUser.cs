@@ -16,6 +16,7 @@ namespace Assessment.Models
         [InverseProperty("Created")] public ICollection<City> Cities { get; set; }
         [InverseProperty("Created")] public ICollection<Employee> Employees { get; set; }
         [InverseProperty("Created")] public ICollection<Exam> Exams { get; set; }
+        [InverseProperty("Created")] public ICollection<Section> Sections { get; set; }
         [InverseProperty("Created")] public ICollection<ExamSection> ExamSections { get; set; }
         [InverseProperty("Created")] public ICollection<ExamQuestion> ExamQuestions { get; set; }
         [InverseProperty("Created")] public ICollection<ExamSchedule> ExamSchedules { get; set; }

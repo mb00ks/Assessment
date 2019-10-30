@@ -31,6 +31,20 @@
     <Compile Remove="Data\Migrations\20191014110242_Migration1.Designer.cs" />
     <Compile Remove="Data\Migrations\20191014111033_Migration1.cs" />
     <Compile Remove="Data\Migrations\20191014111033_Migration1.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191021061216_Migration1.cs" />
+    <Compile Remove="Data\Migrations\20191021061216_Migration1.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191025014453_Migration6.cs" />
+    <Compile Remove="Data\Migrations\20191025014453_Migration6.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191025015057_CreateTabe.cs" />
+    <Compile Remove="Data\Migrations\20191025015057_CreateTabe.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191025015130_SeederData.cs" />
+    <Compile Remove="Data\Migrations\20191025015130_SeederData.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191025031713_SeederData.cs" />
+    <Compile Remove="Data\Migrations\20191025031713_SeederData.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191025032324_CreateTabe.cs" />
+    <Compile Remove="Data\Migrations\20191025032324_CreateTabe.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191025034331_CreateTabe.cs" />
+    <Compile Remove="Data\Migrations\20191025034331_CreateTabe.Designer.cs" />
   </ItemGroup>
 
 
@@ -43,14 +57,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.4" />
   </ItemGroup>
 
 
   <ItemGroup>
     <Folder Include="Areas\Assessments\Data\" />
-    <Folder Include="Areas\Assessments\Models\" />
     <Folder Include="Areas\Employees\Controllers\" />
     <Folder Include="Areas\Employees\Data\" />
     <Folder Include="Areas\Employees\Models\" />
@@ -75,6 +88,18 @@
     <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\GeneralClass\GeneralClass.vbproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Reference Include="Npgsql">
+      <HintPath>..\GeneralClass\bin\x86\Debug\Npgsql.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

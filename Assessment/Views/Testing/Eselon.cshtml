@@ -1,0 +1,41 @@
+﻿@model Assessment.Controllers.Eselon
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ini Eselon</title>
+</head>
+<body>
+    <h1>Eselon</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Nama</td>
+                <td>Note</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i <= Model.Dt.Rows.Count - 1; i++)
+            {
+                string a = "";
+
+                var id = Model.Dt.Rows[i]["eselon_id"].ToString();
+                var nama = Model.Dt.Rows[i]["nama"].ToString();
+                var note = Model.Dt.Rows[i]["note"].ToString();
+                <tr>
+                    <td>@id</td>
+                    <td>@nama</td>
+                    <td>@note</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Model.Dt
+</body>
+</html>

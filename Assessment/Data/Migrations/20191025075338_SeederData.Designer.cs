@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Assessment.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191014110912_SeederData")]
+    [Migration("20191025075338_SeederData")]
     partial class SeederData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,6 +26,8 @@ namespace Assessment.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("AnswerSectionId");
+
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("NOW()");
@@ -34,15 +36,21 @@ namespace Assessment.Data.Migrations
 
                     b.Property<int>("ExamEmployeeId");
 
+                    b.Property<int>("ExamSectionId");
+
                     b.Property<string>("Item");
 
                     b.Property<int>("QuestionId");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AnswerSectionId");
+
                     b.HasIndex("CreatedId");
 
                     b.HasIndex("ExamEmployeeId");
+
+                    b.HasIndex("ExamSectionId");
 
                     b.HasIndex("QuestionId");
 
@@ -55,6 +63,7 @@ namespace Assessment.Data.Migrations
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             ExamEmployeeId = 1,
+                            ExamSectionId = 1,
                             Item = "1, 3, 2, 6, 5, 15, 14, ....",
                             QuestionId = 1
                         },
@@ -64,6 +73,7 @@ namespace Assessment.Data.Migrations
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             ExamEmployeeId = 1,
+                            ExamSectionId = 1,
                             Item = "100, 95, ..., 91, 92, 87, 88, 83.",
                             QuestionId = 2
                         },
@@ -73,6 +83,7 @@ namespace Assessment.Data.Migrations
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             ExamEmployeeId = 1,
+                            ExamSectionId = 2,
                             Item = "INSOMNIA = ...",
                             QuestionId = 3
                         },
@@ -82,6 +93,7 @@ namespace Assessment.Data.Migrations
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             ExamEmployeeId = 1,
+                            ExamSectionId = 2,
                             Item = "BONGSOR >< ...",
                             QuestionId = 4
                         });
@@ -100,9 +112,11 @@ namespace Assessment.Data.Migrations
 
                     b.Property<string>("CreatedId");
 
+                    b.Property<bool?>("IsTrue");
+
                     b.Property<string>("Item");
 
-                    b.Property<int>("QuestionDetailId");
+                    b.Property<int?>("QuestionDetailId");
 
                     b.HasKey("Id");
 
@@ -121,6 +135,7 @@ namespace Assessment.Data.Migrations
                             AnswerId = 1,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = true,
                             Item = "42",
                             QuestionDetailId = 4
                         },
@@ -130,6 +145,7 @@ namespace Assessment.Data.Migrations
                             AnswerId = 2,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = true,
                             Item = "96",
                             QuestionDetailId = 9
                         },
@@ -139,6 +155,7 @@ namespace Assessment.Data.Migrations
                             AnswerId = 3,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = true,
                             Item = "Tidak bisa tidur",
                             QuestionDetailId = 13
                         },
@@ -148,9 +165,74 @@ namespace Assessment.Data.Migrations
                             AnswerId = 4,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = true,
                             Item = "Kerdil",
                             QuestionDetailId = 16
                         });
+                });
+
+            modelBuilder.Entity("Assessment.Models.AnswerQuestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AnswerSectionId");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("CreatedId");
+
+                    b.Property<TimeSpan>("Duration");
+
+                    b.Property<int>("Number");
+
+                    b.Property<int>("QuestionId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnswerSectionId");
+
+                    b.HasIndex("CreatedId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("AnswerQuestion");
+                });
+
+            modelBuilder.Entity("Assessment.Models.AnswerSection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
+
+                    b.Property<TimeSpan>("Duration");
+
+                    b.Property<int>("ExamEmployeeId");
+
+                    b.Property<int>("ExamId");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Notes");
+
+                    b.Property<int>("SectionId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedId");
+
+                    b.HasIndex("ExamEmployeeId");
+
+                    b.HasIndex("ExamId");
+
+                    b.HasIndex("SectionId");
+
+                    b.ToTable("AnswerSections");
                 });
 
             modelBuilder.Entity("Assessment.Models.ApplicationUser", b =>
@@ -480,6 +562,8 @@ namespace Assessment.Data.Migrations
 
                     b.Property<int>("ExamSectionId");
 
+                    b.Property<int>("Number");
+
                     b.Property<int>("QuestionId");
 
                     b.HasKey("Id");
@@ -500,6 +584,7 @@ namespace Assessment.Data.Migrations
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 1,
+                            Number = 0,
                             QuestionId = 1
                         },
                         new
@@ -509,6 +594,7 @@ namespace Assessment.Data.Migrations
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 1,
+                            Number = 0,
                             QuestionId = 2
                         },
                         new
@@ -518,6 +604,7 @@ namespace Assessment.Data.Migrations
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 2,
+                            Number = 0,
                             QuestionId = 3
                         },
                         new
@@ -527,6 +614,7 @@ namespace Assessment.Data.Migrations
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 2,
+                            Number = 0,
                             QuestionId = 4
                         },
                         new
@@ -536,6 +624,7 @@ namespace Assessment.Data.Migrations
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 3,
+                            Number = 0,
                             QuestionId = 1
                         },
                         new
@@ -545,6 +634,7 @@ namespace Assessment.Data.Migrations
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 3,
+                            Number = 0,
                             QuestionId = 2
                         },
                         new
@@ -554,6 +644,7 @@ namespace Assessment.Data.Migrations
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 4,
+                            Number = 0,
                             QuestionId = 3
                         },
                         new
@@ -563,6 +654,7 @@ namespace Assessment.Data.Migrations
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamSectionId = 4,
+                            Number = 0,
                             QuestionId = 4
                         });
                 });
@@ -634,11 +726,17 @@ namespace Assessment.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("Notes");
+
+                    b.Property<int>("SectionId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedId");
 
                     b.HasIndex("ExamId");
+
+                    b.HasIndex("SectionId");
 
                     b.ToTable("ExamSections");
 
@@ -650,7 +748,8 @@ namespace Assessment.Data.Migrations
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamId = 1,
-                            Name = "Tes Potensi Akademik 6A"
+                            Name = "Tes Potensi Akademik 6A",
+                            SectionId = 1
                         },
                         new
                         {
@@ -659,7 +758,8 @@ namespace Assessment.Data.Migrations
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamId = 1,
-                            Name = "Tes Psikotes 6A"
+                            Name = "Tes Psikotes 6A",
+                            SectionId = 2
                         },
                         new
                         {
@@ -668,7 +768,8 @@ namespace Assessment.Data.Migrations
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamId = 2,
-                            Name = "Tes Potensi Akademik 7A"
+                            Name = "Tes Potensi Akademik 7A",
+                            SectionId = 1
                         },
                         new
                         {
@@ -677,7 +778,8 @@ namespace Assessment.Data.Migrations
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Duration = new TimeSpan(0, 0, 0, 0, 0),
                             ExamId = 2,
-                            Name = "Tes Psikotes 7A"
+                            Name = "Tes Psikotes 7A",
+                            SectionId = 2
                         });
                 });
 
@@ -868,6 +970,8 @@ namespace Assessment.Data.Migrations
 
                     b.Property<string>("CreatedId");
 
+                    b.Property<bool?>("IsTrue");
+
                     b.Property<string>("Item");
 
                     b.Property<int>("QuestionId");
@@ -886,6 +990,7 @@ namespace Assessment.Data.Migrations
                             Id = 1,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = false,
                             Item = "24",
                             QuestionId = 1
                         },
@@ -894,6 +999,7 @@ namespace Assessment.Data.Migrations
                             Id = 2,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = false,
                             Item = "28",
                             QuestionId = 1
                         },
@@ -902,6 +1008,7 @@ namespace Assessment.Data.Migrations
                             Id = 3,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = false,
                             Item = "32",
                             QuestionId = 1
                         },
@@ -910,6 +1017,7 @@ namespace Assessment.Data.Migrations
                             Id = 4,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = true,
                             Item = "42",
                             QuestionId = 1
                         },
@@ -918,6 +1026,7 @@ namespace Assessment.Data.Migrations
                             Id = 5,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = false,
                             Item = "52",
                             QuestionId = 1
                         },
@@ -926,6 +1035,7 @@ namespace Assessment.Data.Migrations
                             Id = 6,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = false,
                             Item = "90",
                             QuestionId = 2
                         },
@@ -934,6 +1044,7 @@ namespace Assessment.Data.Migrations
                             Id = 7,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = false,
                             Item = "92",
                             QuestionId = 2
                         },
@@ -942,6 +1053,7 @@ namespace Assessment.Data.Migrations
                             Id = 8,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = false,
                             Item = "94",
                             QuestionId = 2
                         },
@@ -950,6 +1062,7 @@ namespace Assessment.Data.Migrations
                             Id = 9,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = true,
                             Item = "96",
                             QuestionId = 2
                         },
@@ -958,6 +1071,7 @@ namespace Assessment.Data.Migrations
                             Id = 10,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = false,
                             Item = "97",
                             QuestionId = 2
                         },
@@ -966,6 +1080,7 @@ namespace Assessment.Data.Migrations
                             Id = 11,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = false,
                             Item = "Cemas",
                             QuestionId = 3
                         },
@@ -974,6 +1089,7 @@ namespace Assessment.Data.Migrations
                             Id = 12,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = false,
                             Item = "Sedih",
                             QuestionId = 3
                         },
@@ -982,6 +1098,7 @@ namespace Assessment.Data.Migrations
                             Id = 13,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = true,
                             Item = "Tidak bisa tidur",
                             QuestionId = 3
                         },
@@ -990,6 +1107,7 @@ namespace Assessment.Data.Migrations
                             Id = 14,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = false,
                             Item = "Kenyataanya",
                             QuestionId = 3
                         },
@@ -998,6 +1116,7 @@ namespace Assessment.Data.Migrations
                             Id = 15,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = false,
                             Item = "Menumpuk",
                             QuestionId = 4
                         },
@@ -1006,6 +1125,7 @@ namespace Assessment.Data.Migrations
                             Id = 16,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = true,
                             Item = "Kerdil",
                             QuestionId = 4
                         },
@@ -1014,6 +1134,7 @@ namespace Assessment.Data.Migrations
                             Id = 17,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = false,
                             Item = "Macet",
                             QuestionId = 4
                         },
@@ -1022,6 +1143,7 @@ namespace Assessment.Data.Migrations
                             Id = 18,
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            IsTrue = false,
                             Item = "Susut",
                             QuestionId = 4
                         });
@@ -1141,6 +1263,46 @@ namespace Assessment.Data.Migrations
                             CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
                             CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
                             Name = "Khonghucu"
+                        });
+                });
+
+            modelBuilder.Entity("Assessment.Models.Section", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<string>("CreatedId");
+
+                    b.Property<TimeSpan>("Duration");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedId");
+
+                    b.ToTable("Sections");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
+                            CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            Duration = new TimeSpan(0, 0, 0, 0, 0),
+                            Name = "Tes Potensi Akademik"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2019, 10, 14, 18, 2, 41, 714, DateTimeKind.Local),
+                            CreatedId = "f91a6f48-4c5b-4750-8341-bbb4d6905c74",
+                            Duration = new TimeSpan(0, 0, 0, 0, 0),
+                            Name = "Tes Psikotes"
                         });
                 });
 
@@ -1286,6 +1448,10 @@ namespace Assessment.Data.Migrations
 
             modelBuilder.Entity("Assessment.Models.Answer", b =>
                 {
+                    b.HasOne("Assessment.Models.AnswerSection")
+                        .WithMany("Answers")
+                        .HasForeignKey("AnswerSectionId");
+
                     b.HasOne("Assessment.Models.ApplicationUser", "Created")
                         .WithMany("Answers")
                         .HasForeignKey("CreatedId");
@@ -1293,6 +1459,11 @@ namespace Assessment.Data.Migrations
                     b.HasOne("Assessment.Models.ExamEmployee", "ExamEmployee")
                         .WithMany("Answers")
                         .HasForeignKey("ExamEmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Assessment.Models.ExamSection", "ExamSection")
+                        .WithMany("Answers")
+                        .HasForeignKey("ExamSectionId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Assessment.Models.Question", "Question")
@@ -1314,7 +1485,45 @@ namespace Assessment.Data.Migrations
 
                     b.HasOne("Assessment.Models.QuestionDetail", "QuestionDetail")
                         .WithMany("AnswerDetails")
-                        .HasForeignKey("QuestionDetailId")
+                        .HasForeignKey("QuestionDetailId");
+                });
+
+            modelBuilder.Entity("Assessment.Models.AnswerQuestion", b =>
+                {
+                    b.HasOne("Assessment.Models.AnswerSection", "AnswerSection")
+                        .WithMany("AnswerQuestions")
+                        .HasForeignKey("AnswerSectionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Assessment.Models.ApplicationUser", "Created")
+                        .WithMany()
+                        .HasForeignKey("CreatedId");
+
+                    b.HasOne("Assessment.Models.Question", "Question")
+                        .WithMany()
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Assessment.Models.AnswerSection", b =>
+                {
+                    b.HasOne("Assessment.Models.ApplicationUser", "Created")
+                        .WithMany()
+                        .HasForeignKey("CreatedId");
+
+                    b.HasOne("Assessment.Models.ExamEmployee", "ExamEmployee")
+                        .WithMany()
+                        .HasForeignKey("ExamEmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Assessment.Models.Exam", "Exam")
+                        .WithMany()
+                        .HasForeignKey("ExamId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Assessment.Models.Section", "Section")
+                        .WithMany()
+                        .HasForeignKey("SectionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -1420,6 +1629,11 @@ namespace Assessment.Data.Migrations
                         .WithMany("ExamSections")
                         .HasForeignKey("ExamId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Assessment.Models.Section", "Section")
+                        .WithMany("ExamSections")
+                        .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Assessment.Models.Gender", b =>
@@ -1471,6 +1685,13 @@ namespace Assessment.Data.Migrations
                 {
                     b.HasOne("Assessment.Models.ApplicationUser", "Created")
                         .WithMany("Religions")
+                        .HasForeignKey("CreatedId");
+                });
+
+            modelBuilder.Entity("Assessment.Models.Section", b =>
+                {
+                    b.HasOne("Assessment.Models.ApplicationUser", "Created")
+                        .WithMany("Sections")
                         .HasForeignKey("CreatedId");
                 });
 

@@ -12,6 +12,7 @@ namespace Assessment.Models
         public int QuestionId { get; set; }
         public string CreatedId { get; set; }
         public string Item { get; set; }
+        public bool? IsTrue { get; set; }
         public DateTime CreatedDate { get; set; }
         public Question Question { get; set; }
         public ICollection<AnswerDetail> AnswerDetails { get; set; }
