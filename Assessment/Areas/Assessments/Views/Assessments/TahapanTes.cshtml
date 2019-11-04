@@ -18,9 +18,18 @@
                     <div class="row">
                         <div class="col-md-12">
                             <span class="pilih-data" style="float:left; margin-left:10px;">
-                                <a asp-route="Instruction" asp-route-UjianTahapId="@item.UjianTahapId" class="tahap-belum">
-                                    @item.Tipe &raquo;
-                                </a>
+                                @if (item.TipeStatus == 1)
+                                {
+                                    <span class="tahap-selesai">
+                                        @item.Tipe, selesai dikerjakan <i class="fa fa-check-square" aria-hidden="true"></i>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <a asp-route="Instruction" asp-route-UjianTahapId="@item.UjianTahapId" asp-route-TipeUjianId="@item.TipeUjianId" class="tahap-belum">
+                                        @item.Tipe &raquo;
+                                    </a>
+                                }
                             </span>
                         </div>
                     </div>

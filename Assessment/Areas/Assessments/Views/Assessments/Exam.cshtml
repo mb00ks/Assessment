@@ -1,8 +1,7 @@
-﻿@model IEnumerable<ExamViewModel>
+﻿@model ExamViewModel
 
 @{
     ViewData["Title"] = "Soal";
-    ExamViewModel exam = Model.FirstOrDefault();
 }
 
 @section Styles {
@@ -10,18 +9,26 @@
         .area-main .container {
             background: rgba(255,255,255,1);
         }
+
+        .area-soal-item {
+            padding: 10px;
+        }
     </style>
 }
 
 <div class="row">
     <div class="col-md-12">
         <div class="area-judul-halaman">
-            @exam.Judul
+            @Model.Judul
             @*@Model.SectionName*@
             @*@Model.Duration
                 <span class="milisecond-interval">@Model.Duration</span>*@
             <span style="float:right" class="lengkapimodif-data" id="reqIdSelesai">
-                <a class="selesai" asp-route="TahapanTes">Selesai »</a>
+                @*<form id="finish" asp-route="Finish" method="post">
+                        <input type="hidden" name="UjianTahapId" value="@Model.SoalDanJawaban.UjianTahapId" />
+                        <input id="selesai" class="selesai" type="submit" value="Selesai »" />
+                    </form>*@
+                <a class="selesai" asp-route="Finish" asp-route-UjianTahapId="@Model.SoalDanJawaban.UjianTahapId">Selesai »</a>
             </span>
         </div>
     </div>
@@ -31,21 +38,39 @@
                 <div id="main-slider" class="liquid-slider">
                     <div id="1" class="area-soal-item main-slider-panel ls-panel currentPanel" style="width: 738px;">
                         <div class="panel-wrapper">
-                            <br />
                             <form id="Answer" asp-route="Answer" method="post">
-                                <input name="UjianBankSoalId" value="@exam.UjianBankSoalId" type="hidden" />
-                                <input name="BankSoalId" value="@exam.BankSoalId" type="hidden" />
-                                <span class="nomor">@exam.BankSoalId</span>
-                                <span class="pertanyaan">@exam.PathGambar @exam.PathSoal</span><br />
+                                <input name="Nomer" value="@Model.SoalDanJawaban.Nomer" type="hidden" />
+                                <input name="UjianId" value="@Model.SoalDanJawaban.UjianId" type="hidden" />
+                                <input name="UjianBankSoalId" value="@Model.SoalDanJawaban.UjianBankSoalId" type="hidden" />
+                                <input name="PegawaiId" value="@Model.SoalDanJawaban.PegawaiId" type="hidden" />
+                                <input name="Urut" value="@Model.SoalDanJawaban.Urut" type="hidden" />
+                                <input name="BankSoalId" value="@Model.SoalDanJawaban.BankSoalId" type="hidden" />
+                                @*<input name="BankSoalPilihanId" value="@Model.SoalDanJawaban.BankSoalPilihanId" type="hidden" />*@
+                                <input name="UjianPegawaiId" value="@Model.SoalDanJawaban.UjianPegawaiId" type="hidden" />
+                                <input name="UjianTahapId" value="@Model.SoalDanJawaban.UjianTahapId" type="hidden" />
+                                <input name="IsNext" value="true" type="hidden" />
+
+                                <span class="nomor">@Model.Nomer</span>
+                                <span class="gambar-soal-kiri">
+                                    <img src="@Model.PathGambar@Model.PathSoal">
+                                </span>
+                                @*<span class="pertanyaan"></span><br />*@
                                 <div class="area-jawab-pilihan-ganda">
-                                    @{ var i = 0; }
-                                    @foreach (var item in Model)
+                                    @foreach (var item in Model.PilihanSoals)
                                     {
-                                        @item.PathGambar
-                                        @item.PathJawaban
-                                        <br />
+                                        var IsChecked = false;
+                                        if (Model.SoalDanJawaban.BankSoalPilihanId.HasValue && Model.SoalDanJawaban.BankSoalPilihanId.Value == item.BankSoalPilihanId)
+                                        {
+                                            IsChecked = true;
+                                        }
+                                        var radioButton = $"<input type='radio' class='easyui-validatebox validatebox-text' id='BankSoalPilihanId-{@item.BankSoalPilihanId}' name='BankSoalPilihanId' value='{@item.BankSoalPilihanId}' {(IsChecked ? "checked" : "")} />";
+                                        <label class="gambar-kecil">
+                                            @Html.Raw(radioButton)
+                                            <span>
+                                                <img src="@item.PathGambar@item.PathJawaban" width="55" height="53">
+                                            </span>
+                                        </label>
                                     }
-                                    <br>
                                 </div>
                             </form>
                         </div>
@@ -57,38 +82,54 @@
     <div class="col-md-3 area-sudah-wrapper reqInfoIsi">
         <br />
         <div class="area-sudah">
-            @*@foreach (var item in Model.ExamQuestions)
+            @foreach (var item in Model.Jawabans)
             {
                 var aClass = "pilih";
                 var iClass = "fa fa-circle";
-                if (Model.Answers.Any(m => m.QuestionId == item.QuestionId))
+                if (item.JumlahData == 1)
                 {
                     aClass = "sudah pilih";
                     iClass = "fa fa-check-circle";
                 }
                 <div class="item">
-                    <a class="@aClass" asp-route="Exam" asp-route-SectionId="@item.ExamSectionId" asp-route-QuestionId="@item.QuestionId"><i class="@iClass"></i>  @item.Number</a>
+                    <a class="@aClass" asp-route="Exam" asp-route-UjianTahapId="@item.UjianTahapId" asp-route-Nomer="@item.Nomer"><i class="@iClass"></i>  @item.Nomer</a>
                 </div>
-            }*@
+            }
         </div>
     </div>
     <div class="area-prev-next-ujian reqInfoIsi">
-        @*@{
-            var number = Model.ExamQuestions.FirstOrDefault(m => m.QuestionId == Model.QuestionId).Number;
-            var lastNumber = Model.ExamQuestions.LastOrDefault().Number;
+        @{
+            var number = Model.Nomer;
+            var lastNumber = Model.Jawabans.LastOrDefault().Nomer;
             if (number > 1)
             {
                 var newNumber = number - 1;
-                var QuestionId = Model.ExamQuestions.FirstOrDefault(m => m.Number == newNumber).QuestionId;
-                <div class="prev-ujian" id="reqIdPrev"><a id="reqHrefIdPrev" asp-route="Exam" asp-route-SectionId="@Model.SectionId" asp-route-QuestionId="@QuestionId"><i class="fa fa-chevron-left"></i>  Sebelumnya</a></div>
+                var ujianTahapId = Model.Jawabans.FirstOrDefault(m => m.Nomer == newNumber).UjianTahapId;
+                <div class="prev-ujian" id="reqIdPrev"><a id="reqHrefIdPrev" asp-route="Exam" asp-route-UjianTahapId="@ujianTahapId" asp-route-Nomer="@newNumber"><i class="fa fa-chevron-left"></i>  Sebelumnya</a></div>
             }
             if (number < lastNumber)
             {
                 var newNumber = number + 1;
-                var QuestionId = Model.ExamQuestions.FirstOrDefault(m => m.Number == newNumber).QuestionId;
-                <div class="next-ujian" id="reqIdNext"><a id="reqHrefIdNext" asp-route="Exam" asp-route-SectionId="@Model.SectionId" asp-route-QuestionId="@QuestionId"> Selanjutnya <i class="fa fa-chevron-right"></i></a></div>
+                var ujianTahapId = Model.Jawabans.FirstOrDefault(m => m.Nomer == newNumber).UjianTahapId;
+                <div class="next-ujian" id="reqIdNext"><a id="reqHrefIdNext" asp-route="Exam" asp-route-UjianTahapId="@ujianTahapId" asp-route-Nomer="@newNumber"> Selanjutnya <i class="fa fa-chevron-right"></i></a></div>
             }
-        }*@
+        }
+        @*@{
+                var number = Model.ExamQuestions.FirstOrDefault(m => m.QuestionId == Model.QuestionId).Number;
+                var lastNumber = Model.ExamQuestions.LastOrDefault().Number;
+                if (number > 1)
+                {
+                    var newNumber = number - 1;
+                    var QuestionId = Model.ExamQuestions.FirstOrDefault(m => m.Number == newNumber).QuestionId;
+                    <div class="prev-ujian" id="reqIdPrev"><a id="reqHrefIdPrev" asp-route="Exam" asp-route-SectionId="@Model.SectionId" asp-route-QuestionId="@QuestionId"><i class="fa fa-chevron-left"></i>  Sebelumnya</a></div>
+                }
+                if (number < lastNumber)
+                {
+                    var newNumber = number + 1;
+                    var QuestionId = Model.ExamQuestions.FirstOrDefault(m => m.Number == newNumber).QuestionId;
+                    <div class="next-ujian" id="reqIdNext"><a id="reqHrefIdNext" asp-route="Exam" asp-route-SectionId="@Model.SectionId" asp-route-QuestionId="@QuestionId"> Selanjutnya <i class="fa fa-chevron-right"></i></a></div>
+                }
+            }*@
     </div>
 </div>
 
@@ -120,7 +161,7 @@
         //    formSubmit(true);
         //}, timeRemaining);
 
-        var actionAnswer = $('input[id^="QuestionDetailId-"]');
+        var actionAnswer = $('input[id^="BankSoalPilihanId-"]');
         $(actionAnswer).click(function () {
             formSubmit();
         });

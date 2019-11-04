@@ -45,7 +45,7 @@
         <div class="area-judul-halaman">Instruksi Pengerjaan Soal Ujian</div>
     </div>
     <div class="col-md-12" style="height:350px; background-color: white;">
-        @if (Model.UjianTahapId == 209)
+        @if (Model.TipeUjianId == 8)
         {
             <div class="area-tatacara" style="height:calc(100% - 60px); overflow:auto; padding:0 0;">
                 <ul style="list-style:none !important; list-style-type:none !important;">
@@ -79,7 +79,7 @@
                                 <p>Mulailah dari no. 1 – 13. <b>Waktu anda terbatas, bekerjalah dengan cepat, teliti dan tepat.</b></p>
 
                                 @*<input type="button" value="OK" onclick="setBacaTipeUjian(8)" id="fvpp-close">*@
-                                <a id="fvpp-close" asp-route="Exam" asp-route-UjianTahapId="@Model.UjianTahapId" asp-route-BankSoalId="1">OK</a>
+                                <a id="fvpp-close" asp-route="Exam" asp-route-UjianTahapId="@Model.UjianTahapId" asp-route-Nomer="1">OK</a>
                                 <br /><br />
 
                             </div>
@@ -89,7 +89,7 @@
                 </ul>
             </div>
         }
-        else if (Model.UjianTahapId == 210)
+        else if (Model.TipeUjianId == 9)
         {
             <div class="area-tatacara" style="height:calc(100% - 60px); overflow:auto; padding:0 0;">
                 <ul style="list-style:none !important; list-style-type:none !important;">
@@ -120,7 +120,8 @@
 
                                 <p><b>Waktu anda terbatas, bekerjalah dengan cepat, teliti dan tepat.</b></p>
 
-                                <input type="button" value="OK" onclick="setBacaTipeUjian(9)" id="fvpp-close">
+                                @*<input type="button" value="OK" onclick="setBacaTipeUjian(9)" id="fvpp-close">*@
+                                <a id="fvpp-close" asp-route="ExamMulti" asp-route-UjianTahapId="@Model.UjianTahapId" asp-route-Nomer="1">OK</a>
 
                             </div>
 
@@ -129,7 +130,7 @@
                 </ul>
             </div>
         }
-        else if (Model.UjianTahapId == 211)
+        else if (Model.TipeUjianId == 10)
         {
             <div class="area-tatacara" style="height:calc(100% - 60px); overflow:auto; padding:0 0;">
                 <ul style="list-style:none !important; list-style-type:none !important;">
@@ -161,7 +162,8 @@
 
                                 <p><b>Waktu anda terbatas, bekerjalah dengan cepat, teliti dan tepat.</b></p>
 
-                                <input type="button" value="OK" onclick="setBacaTipeUjian(10)" id="fvpp-close">
+                                @*<input type="button" value="OK" onclick="setBacaTipeUjian(10)" id="fvpp-close">*@
+                                <a id="fvpp-close" asp-route="Exam" asp-route-UjianTahapId="@Model.UjianTahapId" asp-route-Nomer="1">OK</a>
 
                             </div>
 
@@ -170,6 +172,5 @@
                 </ul>
             </div>
         }
-
     </div>
 </div>
