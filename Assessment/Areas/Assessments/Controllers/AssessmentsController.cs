@@ -650,6 +650,193 @@ namespace Assessment.Areas.Assessments.Controllers
             }
         }
 
+        [HttpGet(Name = "ExamKraepelin")]
+        public async Task<ActionResult> ExamKraepelin(int UjianTahapId, int Nomer)
+        {
+            if (HttpContext.Session.Keys.Count() == 0) return Forbid();
+
+            var pegawai_id = HttpContext.Session.GetString("pelamar_id");
+            var ujian_id = HttpContext.Session.GetString("ujian_id");
+            var lowongan_id = HttpContext.Session.GetString("lowongan_id");
+            var tanggal_awal = HttpContext.Session.GetString("pegawai_tanggal_awal");
+            var tanggal_akhir = HttpContext.Session.GetString("pegawai_tanggal_akhir");
+
+            KraepelinViewModel kraepelinViewModel = new KraepelinViewModel();
+
+            var dt = new DataTable();
+
+            var sb2 = new StringBuilder();
+            sb2.Append(" SELECT ");
+            sb2.Append(" 	A.UJIAN_ID, A.UJIAN_PEGAWAI_DAFTAR_ID, B.UJIAN_TAHAP_ID");
+            sb2.Append(" 	, C.TIPE, D.TIPE_INFO");
+            sb2.Append(" 	, B.MENIT_SOAL, C.TIPE_UJIAN_ID, LENGTH(C.PARENT_ID) LENGTH_PARENT, C.PARENT_ID");
+            sb2.Append(" 	, (");
+            sb2.Append(" SELECT 1");
+            sb2.Append(" FROM cat_rekrutmen.UJIAN_TAHAP_STATUS_UJIAN_LATIHAN X");
+            sb2.Append(" WHERE 1=1 AND X.UJIAN_ID = A.UJIAN_ID AND X.UJIAN_TAHAP_ID = B.UJIAN_TAHAP_ID AND X.PEGAWAI_ID = A.PEGAWAI_ID) TIPE_STATUS");
+            sb2.Append(" 	, CASE C.TIPE_UJIAN_ID WHEN 16 THEN 50 ELSE B.JUMLAH_SOAL END JUMLAH_SOAL");
+            sb2.Append(" FROM cat_rekrutmen.ujian_pegawai_daftar A");
+            sb2.Append(" INNER JOIN ");
+            sb2.Append(" (");
+            sb2.Append(" SELECT A.*, JUMLAH_SOAL");
+            sb2.Append(" FROM cat_rekrutmen.ujian_tahap_latihan A");
+            sb2.Append(" LEFT JOIN ");
+            sb2.Append(" 	(");
+            sb2.Append(" SELECT UJIAN_TAHAP_ID ROWID, COUNT(1) JUMLAH_SOAL");
+            sb2.Append(" FROM cat_rekrutmen.ujian_bank_soal_latihan");
+            sb2.Append(" GROUP BY UJIAN_TAHAP_ID");
+            sb2.Append(" 	) B ON UJIAN_TAHAP_ID = ROWID");
+            sb2.Append(" ) B ON A.UJIAN_ID = B.UJIAN_ID");
+            sb2.Append(" LEFT JOIN cat_rekrutmen.TIPE_UJIAN C ON B.TIPE_UJIAN_ID = C.TIPE_UJIAN_ID");
+            sb2.Append(" LEFT JOIN");
+            sb2.Append(" (");
+            sb2.Append(" SELECT");
+            sb2.Append(" 	A.ID ID_ROW, A.TIPE TIPE_INFO");
+            sb2.Append(" FROM cat_rekrutmen.TIPE_UJIAN A");
+            sb2.Append(" WHERE 1=1 AND PARENT_ID = '0'");
+            sb2.Append(" ) D ON C.PARENT_ID = D.ID_ROW");
+            sb2.Append($" WHERE 1=1 AND COALESCE(B.MENIT_SOAL,0) > 0 AND A.PEGAWAI_ID = {pegawai_id} AND A.UJIAN_ID = {ujian_id} AND B.UJIAN_TAHAP_ID = {UjianTahapId}");
+
+            var tipe = string.Empty;
+            var length_parent = 0;
+            var tipe_ujian_id = 0;
+
+            dt = GeneralClass.POSTGREMYSQL.Instance.ExecuteQuery(sb2.ToString());
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                tipe = "UJIAN " + dt.Rows[0]["tipe"].ToString().ToUpper();
+                length_parent = Convert.ToInt32(dt.Rows[0]["length_parent"].ToString());
+                tipe_ujian_id = Convert.ToInt32(dt.Rows[0]["tipe_ujian_id"].ToString());
+            }
+
+            var sb3 = new StringBuilder();
+            sb3.Append(" SELECT A.PAKAI_KRAEPELIN_ID, MAX(A.X_DATA) X_DATA, MAX(A.Y_DATA) Y_DATA");
+            sb3.Append(" 	, MIN(A.X_DATA) MIN_X_DATA, MAX(A.X_DATA) - MIN(A.X_DATA) CHECK_MIN_X_DATA");
+            sb3.Append(" FROM cat_rekrutmen.KRAEPELIN_SOAL_LATIHAN A");
+            sb3.Append(" WHERE 1=1 AND EXISTS");
+            sb3.Append(" (");
+            sb3.Append(" SELECT 1");
+            sb3.Append(" FROM cat_rekrutmen.KRAEPELIN_PAKAI X");
+            sb3.Append(" WHERE COALESCE(NULLIF(X.STATUS, ''), NULL) IS NULL AND A.PAKAI_KRAEPELIN_ID = X.PAKAI_KRAEPELIN_ID");
+            sb3.Append(" ) AND NOT EXISTS");
+            sb3.Append(" (");
+            sb3.Append(" SELECT 1");
+            sb3.Append(" FROM");
+            sb3.Append(" (");
+            sb3.Append(" SELECT");
+            sb3.Append(" LOWONGAN_ID, UJIAN_ID, UJIAN_TAHAP_ID, PEGAWAI_ID, X_DATA");
+            sb3.Append($" FROM cat_rekrutmen_pegawai.UJIAN_KRAEPELIN_LATIHAN_{ujian_id}");
+            sb3.Append(" GROUP BY LOWONGAN_ID, UJIAN_ID, UJIAN_TAHAP_ID, PEGAWAI_ID, X_DATA");
+            sb3.Append(" ) X");
+            sb3.Append($" WHERE 1=1 AND X.PEGAWAI_ID = {pegawai_id} AND X.UJIAN_TAHAP_ID = {UjianTahapId} AND X.LOWONGAN_ID = {lowongan_id} AND A.X_DATA = X.X_DATA");
+            sb3.Append(" )");
+            sb3.Append(" GROUP BY A.PAKAI_KRAEPELIN_ID");
+
+            var pakai_kraepelin_id = 0;
+            var x_data = 0;
+            var y_data = 0;
+            var min_x_data = 0;
+            var check_min_x_data = 0;
+
+            var batas_soal = 0;
+
+            dt = GeneralClass.POSTGREMYSQL.Instance.ExecuteQuery(sb3.ToString());
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                pakai_kraepelin_id = Convert.ToInt32(dt.Rows[0]["pakai_kraepelin_id"].ToString());
+                x_data = Convert.ToInt32(dt.Rows[0]["x_data"].ToString());
+                y_data = Convert.ToInt32(dt.Rows[0]["y_data"].ToString());
+                min_x_data = Convert.ToInt32(dt.Rows[0]["min_x_data"].ToString());
+                check_min_x_data = Convert.ToInt32(dt.Rows[0]["check_min_x_data"].ToString());
+
+                kraepelinViewModel.PakaiKraepelinId = pakai_kraepelin_id;
+                kraepelinViewModel.Xdata = x_data;
+                kraepelinViewModel.Ydata = y_data;
+                kraepelinViewModel.MinXdata = min_x_data;
+                kraepelinViewModel.CheckMinXdata = check_min_x_data;
+
+                if(kraepelinViewModel.CheckMinXdata == 1)
+                {
+                    batas_soal = kraepelinViewModel.Xdata = 1;
+                }
+                else
+                {
+                    batas_soal = kraepelinViewModel.Xdata = 2;
+                }
+                kraepelinViewModel.BatasSoal = batas_soal;
+
+                kraepelinViewModel.Xdata = kraepelinViewModel.Xdata + kraepelinViewModel.MinXdata;
+            }
+
+            var sb4 = new StringBuilder();
+            sb4.Append(" SELECT A.PAKAI_KRAEPELIN_ID, A.X_DATA, A.Y_DATA, A.NILAI");
+            sb4.Append(" FROM cat_rekrutmen.KRAEPELIN_SOAL_LATIHAN A");
+            sb4.Append($" WHERE 1=1 AND A.PAKAI_KRAEPELIN_ID = {pakai_kraepelin_id} AND NOT EXISTS");
+            sb4.Append(" (");
+            sb4.Append(" SELECT 1");
+            sb4.Append(" FROM");
+            sb4.Append(" (");
+            sb4.Append(" SELECT");
+            sb4.Append(" LOWONGAN_ID, UJIAN_ID, UJIAN_TAHAP_ID, PEGAWAI_ID, X_DATA");
+            sb4.Append($" FROM cat_rekrutmen_pegawai.UJIAN_KRAEPELIN_LATIHAN_{ujian_id}");
+            sb4.Append(" GROUP BY LOWONGAN_ID, UJIAN_ID, UJIAN_TAHAP_ID, PEGAWAI_ID, X_DATA");
+            sb4.Append(" ) X");
+            sb4.Append($" WHERE 1=1 AND X.PEGAWAI_ID = {pegawai_id} AND X.UJIAN_TAHAP_ID = {UjianTahapId} AND X.LOWONGAN_ID = {lowongan_id} AND A.X_DATA = X.X_DATA");
+            sb4.Append(" )");
+            sb4.Append(" ORDER BY X_DATA, Y_DATA DESC");
+
+            dt = GeneralClass.POSTGREMYSQL.Instance.ExecuteQuery(sb4.ToString());
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                kraepelinViewModel.KraepelinViewModelSoals = new List<KraepelinViewModelSoal>();
+                for (var i = 0; i < dt.Rows.Count; i++)
+                {
+                    KraepelinViewModelSoal kraepelinViewModelSoal = new KraepelinViewModelSoal();
+                    kraepelinViewModelSoal.PakaiKraepelinId = Convert.ToInt32(dt.Rows[i]["pakai_kraepelin_id"].ToString());
+                    kraepelinViewModelSoal.Xdata = Convert.ToInt32(dt.Rows[i]["x_data"].ToString());
+                    kraepelinViewModelSoal.Ydata = Convert.ToInt32(dt.Rows[i]["y_data"].ToString());
+                    kraepelinViewModelSoal.Koordinat = $"{kraepelinViewModelSoal.Xdata}-{kraepelinViewModelSoal.Ydata}";
+                    kraepelinViewModelSoal.Nilai = Convert.ToInt32(dt.Rows[i]["nilai"].ToString());
+                    kraepelinViewModel.KraepelinViewModelSoals.Add(kraepelinViewModelSoal);
+                }
+            }
+
+            var sb5 = new StringBuilder();
+            sb5.Append(" SELECT A.PAKAI_KRAEPELIN_ID, A.X_DATA, A.Y_DATA, A.NILAI");
+            sb5.Append(" FROM cat_rekrutmen.KRAEPELIN_JAWAB_LATIHAN A");
+            sb5.Append($" WHERE 1=1 AND A.PAKAI_KRAEPELIN_ID = {pakai_kraepelin_id} AND NOT EXISTS");
+            sb5.Append(" (");
+            sb5.Append(" SELECT 1");
+            sb5.Append(" FROM");
+            sb5.Append(" (");
+            sb5.Append(" SELECT");
+            sb5.Append(" LOWONGAN_ID, UJIAN_ID, UJIAN_TAHAP_ID, PEGAWAI_ID, X_DATA");
+            sb5.Append($" FROM cat_rekrutmen_pegawai.UJIAN_KRAEPELIN_LATIHAN_{ujian_id}");
+            sb5.Append(" GROUP BY LOWONGAN_ID, UJIAN_ID, UJIAN_TAHAP_ID, PEGAWAI_ID, X_DATA");
+            sb5.Append(" ) X");
+            sb5.Append($" WHERE 1=1 AND X.PEGAWAI_ID = {pegawai_id} AND X.UJIAN_TAHAP_ID = {UjianTahapId} AND X.LOWONGAN_ID = {lowongan_id} AND A.X_DATA = X.X_DATA");
+            sb5.Append(" )");
+            sb5.Append(" ORDER BY X_DATA, Y_DATA DESC");
+
+            dt = GeneralClass.POSTGREMYSQL.Instance.ExecuteQuery(sb5.ToString());
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                kraepelinViewModel.KraepelinViewModelJawabans = new List<KraepelinViewModelJawaban>();
+                for (var i = 0; i < dt.Rows.Count; i++)
+                {
+                    KraepelinViewModelJawaban kraepelinViewModelJawaban = new KraepelinViewModelJawaban();
+                    kraepelinViewModelJawaban.PakaiKraepelinId = Convert.ToInt32(dt.Rows[i]["pakai_kraepelin_id"].ToString());
+                    kraepelinViewModelJawaban.Xdata = Convert.ToInt32(dt.Rows[i]["x_data"].ToString());
+                    kraepelinViewModelJawaban.Ydata = Convert.ToInt32(dt.Rows[i]["y_data"].ToString());
+                    kraepelinViewModelJawaban.Koordinat = $"{kraepelinViewModelJawaban.Xdata}-{kraepelinViewModelJawaban.Ydata}";
+                    kraepelinViewModelJawaban.Nilai = Convert.ToInt32(dt.Rows[i]["nilai"].ToString());
+                    kraepelinViewModel.KraepelinViewModelJawabans.Add(kraepelinViewModelJawaban);
+                }
+            }
+
+            return View(kraepelinViewModel);
+        }
+
         [HttpPost(Name = "Answer")]
         public async Task<ActionResult> Answer(AnswerModel answerModel)
         {
