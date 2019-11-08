@@ -1,0 +1,47 @@
+﻿@model InstructionViewModel
+
+<div class="area-instruksi">
+
+    <div class="judul" style="text-align:center">
+        <b>
+            <p>PETUNJUK DAN CONTOH UNTUK KELOMPOK SOAL 06</p>
+            <p>(Soal-soal No. 97-116)</p>
+        </b>
+    </div>
+    <br>
+    <div class="keterangan">
+        <p>
+            Pada persoalan berikut akan diberikan deret angka.
+            <br> Setiap deret tersusun menurut suatu aturan yang tertentu dan dapat dilanjutkan menurut aturan itu.
+            <br> Carilah untuk setiap deret, angka berikutnya dan coretlah jawaban saudara pada lembar jawaban dibelakang nomor setiap soal yang sesuai.
+        </p>
+        <br>
+        <br>
+        <b>Contoh 06</b>
+        <br>
+        <br>
+        <p> 2 &nbsp &nbsp 4 &nbsp &nbsp 6 &nbsp &nbsp 8 &nbsp &nbsp 10 &nbsp &nbsp 12 &nbsp &nbsp 14 &nbsp &nbsp ?</p>
+        <br>
+        <p> Pada deret ini angka berikutnya selalu didapat jika angka didepannya ditambah dengan 2.</p>
+        <p> Maka jawabannya ialah 16,</p>
+        <p> Oleh karena itu, <b>pada lembar jawaban</b> dibelakang contoh 06, angka 1 dan 6 harus dicoret.</p>
+        <br>
+        <p style="text-align:center">
+            06)&nbsp &nbsp <s> 1 </s> &nbsp &nbsp 2 &nbsp &nbsp  3  &nbsp &nbsp 4  &nbsp &nbsp 5 &nbsp &nbsp <s> 6 </s>
+            &nbsp &nbsp 7 &nbsp &nbsp 8 &nbsp &nbsp 9 &nbsp &nbsp 0
+        </p>
+        <br>
+        <br>
+        <b>Contoh berikutnya :</b>
+        <br>
+        <br>
+        <p> 9 &nbsp &nbsp 7 &nbsp &nbsp 10 &nbsp &nbsp 8 &nbsp &nbsp 11 &nbsp &nbsp 9 &nbsp &nbsp 12 &nbsp &nbsp ?</p>
+        <br>
+        <p> Pada deret ini selalu berganti-ganti harus dikurangi dengan 2 dan setelah itu ditambah dengan 3</p>
+        <p> jawaban contoh ini ialah : 10, maka dari itu angka 1 dan 0 seharusnya yang dicoret</p>
+        <br>
+        <p> Kadang-kadang pada beberapa soal harus pula dikalikan atau dibagi.</p>
+        <br>
+        <a id="fvpp-close" asp-route="Exam" asp-route-UjianTahapId="@Model.UjianTahapId" asp-route-Nomer="1">OK</a>
+    </div>
+</div>

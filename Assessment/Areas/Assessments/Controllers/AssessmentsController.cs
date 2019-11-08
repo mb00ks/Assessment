@@ -185,44 +185,123 @@ namespace Assessment.Areas.Assessments.Controllers
             sb2.Append(" FROM cat_rekrutmen.TIPE_UJIAN A");
             sb2.Append(" WHERE 1=1 AND PARENT_ID = '0'");
             sb2.Append(" 		) D ON C.PARENT_ID = D.ID_ROW");
-            sb2.Append(" WHERE 1=1 AND COALESCE(B.MENIT_SOAL,0) > 0 AND A.PEGAWAI_ID = " + pegawai_id + " AND A.UJIAN_ID = " + ujian_id + " AND B.UJIAN_TAHAP_ID = " + UjianTahapId);
-            sb2.Append(" ORDER BY ID ASC");
+            sb2.Append(" WHERE 1=1 AND A.PEGAWAI_ID = " + pegawai_id + " AND A.UJIAN_ID = " + ujian_id + " AND B.UJIAN_TAHAP_ID = " + UjianTahapId);
 
             var tipe = string.Empty;
+            var length_parent = 0;
+            var tipe_ujian_id = 0;
 
             dt = GeneralClass.POSTGREMYSQL.Instance.ExecuteQuery(sb2.ToString());
             if (dt != null && dt.Rows.Count > 0)
             {
                 tipe = "UJIAN " + dt.Rows[0]["tipe"].ToString().ToUpper();
+                length_parent = Convert.ToInt32(dt.Rows[0]["length_parent"].ToString());
+                tipe_ujian_id = Convert.ToInt32(dt.Rows[0]["tipe_ujian_id"].ToString());
             }
 
             var sb3 = new StringBuilder();
-            sb3.Append(" SELECT");
-            sb3.Append(" 			A.UJIAN_ID, B.UJIAN_BANK_SOAL_ID, B.BANK_SOAL_ID, C.KEMAMPUAN, C.KATEGORI, C.PERTANYAAN");
-            sb3.Append(" 			, A.PEGAWAI_ID, A.STATUS_SETUJU, A.UJIAN_PEGAWAI_DAFTAR_ID");
-            sb3.Append(" 			, C.TIPE_SOAL, C.PATH_GAMBAR, C.PATH_SOAL");
-            sb3.Append(" 			, B.UJIAN_TAHAP_ID");
-            sb3.Append(" 			, URUT, UP.BANK_SOAL_PILIHAN_ID, UP.UJIAN_PEGAWAI_ID");
-            sb3.Append(" 			, CASE WHEN COALESCE(UPX.JUMLAH_DATA,0) > 0 THEN 1 ELSE 0 END JUMLAH_DATA");
-            sb3.Append(" FROM cat_rekrutmen.ujian_pegawai_daftar A");
-            sb3.Append(" INNER JOIN cat_rekrutmen.ujian_bank_soal B ON A.LOWONGAN_ID = B.LOWONGAN_ID AND A.UJIAN_ID = B.UJIAN_ID");
-            sb3.Append(" INNER JOIN cat_rekrutmen.bank_soal C ON B.BANK_SOAL_ID = C.BANK_SOAL_ID");
-            sb3.Append(" LEFT JOIN");
-            sb3.Append(" 		(");
-            sb3.Append(" SELECT");
-            sb3.Append(" 			UJIAN_ID, UJIAN_BANK_SOAL_ID, UJIAN_PEGAWAI_DAFTAR_ID, UJIAN_PEGAWAI_ID, URUT, BANK_SOAL_PILIHAN_ID, UJIAN_TAHAP_ID");
-            sb3.Append(" FROM cat_rekrutmen_pegawai.ujian_pegawai_" + ujian_id + " A");
-            sb3.Append(" WHERE 1=1 AND A.PEGAWAI_ID = " + pegawai_id + " AND A.UJIAN_ID = " + ujian_id + " AND A.UJIAN_TAHAP_ID = " + UjianTahapId);
-            sb3.Append(" 		) UP ON B.UJIAN_BANK_SOAL_ID = UP.UJIAN_BANK_SOAL_ID");
-            sb3.Append(" LEFT JOIN");
-            sb3.Append(" 		(");
-            sb3.Append(" SELECT COUNT(1) JUMLAH_DATA, PEGAWAI_ID, UJIAN_ID, UJIAN_BANK_SOAL_ID");
-            sb3.Append(" FROM cat_rekrutmen_pegawai.ujian_pegawai_" + ujian_id);
-            sb3.Append(" WHERE BANK_SOAL_PILIHAN_ID IS NOT NULL");
-            sb3.Append(" GROUP BY PEGAWAI_ID, UJIAN_ID, UJIAN_BANK_SOAL_ID");
-            sb3.Append(" 		) UPX ON UPX.PEGAWAI_ID = A.PEGAWAI_ID AND A.UJIAN_ID = UPX.UJIAN_ID AND UPX.UJIAN_BANK_SOAL_ID = B.UJIAN_BANK_SOAL_ID");
-            sb3.Append(" WHERE 1=1 AND A.PEGAWAI_ID = " + pegawai_id + " AND B.UJIAN_TAHAP_ID = " + UjianTahapId + " AND A.UJIAN_ID = " + ujian_id);
-            sb3.Append(" ORDER BY A.UJIAN_ID, B.BANK_SOAL_ID, UP.UJIAN_PEGAWAI_ID");
+            if (tipe_ujian_id == 7)
+            {
+                sb3.Append(" SELECT ");
+                sb3.Append(" 	A.UJIAN_ID, B.UJIAN_BANK_SOAL_ID, B.BANK_SOAL_ID, '' KEMAMPUAN, '' KATEGORI, C.PERTANYAAN ");
+                sb3.Append(" 	, A.PEGAWAI_ID, A.STATUS_SETUJU, A.UJIAN_PEGAWAI_DAFTAR_ID ");
+                sb3.Append(" 	, '' TIPE_SOAL, '' PATH_GAMBAR, '' PATH_SOAL ");
+                sb3.Append(" 	, B.UJIAN_TAHAP_ID ");
+                sb3.Append(" 	, URUT, UP.BANK_SOAL_PILIHAN_ID, UP.UJIAN_PEGAWAI_ID ");
+                sb3.Append(" 	, CASE WHEN COALESCE(UPX.JUMLAH_DATA,0) > 0 THEN 1 ELSE 0 END JUMLAH_DATA");
+                sb3.Append(" FROM cat_rekrutmen.ujian_pegawai_daftar A");
+                sb3.Append(" INNER JOIN cat_rekrutmen.ujian_bank_soal B ON A.LOWONGAN_ID = B.LOWONGAN_ID AND A.UJIAN_ID = B.UJIAN_ID");
+                sb3.Append(" INNER JOIN cat_rekrutmen.soal_papi C ON B.BANK_SOAL_ID = C.SOAL_PAPI_ID");
+                sb3.Append(" LEFT JOIN ");
+                sb3.Append(" (");
+                sb3.Append(" SELECT ");
+                sb3.Append(" 	UJIAN_ID, UJIAN_BANK_SOAL_ID, UJIAN_PEGAWAI_DAFTAR_ID, UJIAN_PEGAWAI_ID, URUT, BANK_SOAL_PILIHAN_ID, UJIAN_TAHAP_ID");
+                sb3.Append($" FROM cat_rekrutmen_pegawai.ujian_pegawai_{ujian_id} A");
+                sb3.Append($" WHERE 1=1 AND A.PEGAWAI_ID = {pegawai_id} AND A.UJIAN_ID = {ujian_id} AND A.UJIAN_TAHAP_ID = {UjianTahapId} ");
+                sb3.Append(" ) UP ON B.UJIAN_BANK_SOAL_ID = UP.UJIAN_BANK_SOAL_ID");
+                sb3.Append(" LEFT JOIN ");
+                sb3.Append(" (");
+                sb3.Append(" SELECT COUNT(1) JUMLAH_DATA, PEGAWAI_ID, UJIAN_ID, UJIAN_BANK_SOAL_ID");
+                sb3.Append($" FROM cat_rekrutmen_pegawai.ujian_pegawai_{ujian_id}");
+                sb3.Append(" WHERE BANK_SOAL_PILIHAN_ID IS NOT NULL");
+                sb3.Append(" GROUP BY PEGAWAI_ID, UJIAN_ID, UJIAN_BANK_SOAL_ID ");
+                sb3.Append(" ) UPX ON UPX.PEGAWAI_ID = A.PEGAWAI_ID AND A.UJIAN_ID = UPX.UJIAN_ID AND UPX.UJIAN_BANK_SOAL_ID = B.UJIAN_BANK_SOAL_ID");
+                sb3.Append($" WHERE 1=1 AND A.PEGAWAI_ID = {pegawai_id} AND B.UJIAN_TAHAP_ID = {UjianTahapId} AND A.UJIAN_ID = {ujian_id}");
+                sb3.Append(" ORDER BY A.UJIAN_ID, B.BANK_SOAL_ID, UP.UJIAN_PEGAWAI_ID");
+            }
+            else if (tipe_ujian_id == 17)
+            {
+                sb3.Append(" SELECT");
+                sb3.Append(" 	A.UJIAN_ID, B.UJIAN_BANK_SOAL_ID, B.BANK_SOAL_ID, '' KEMAMPUAN, '' KATEGORI, C.PERTANYAAN");
+                sb3.Append(" 	, A.PEGAWAI_ID, A.STATUS_SETUJU, A.UJIAN_PEGAWAI_DAFTAR_ID");
+                sb3.Append(" 	, '' TIPE_SOAL, '' PATH_GAMBAR, '' PATH_SOAL");
+                sb3.Append(" 	, B.UJIAN_TAHAP_ID");
+                sb3.Append(" 	, URUT, UP.BANK_SOAL_PILIHAN_ID, UP.UJIAN_PEGAWAI_ID");
+                sb3.Append(" 	, CASE WHEN COALESCE(UPX.JUMLAH_DATA,0) > 0 THEN 1 ELSE 0 END JUMLAH_DATA");
+                sb3.Append(" FROM cat_rekrutmen.ujian_pegawai_daftar A");
+                sb3.Append(" INNER JOIN cat_rekrutmen.ujian_bank_soal B ON A.LOWONGAN_ID = B.LOWONGAN_ID AND A.UJIAN_ID = B.UJIAN_ID");
+                sb3.Append(" INNER JOIN cat_rekrutmen.soal_epps C ON B.BANK_SOAL_ID = C.SOAL_EPPS_ID");
+                sb3.Append(" LEFT JOIN");
+                sb3.Append(" (");
+                sb3.Append(" SELECT");
+                sb3.Append(" 	UJIAN_ID, UJIAN_BANK_SOAL_ID, UJIAN_PEGAWAI_DAFTAR_ID, UJIAN_PEGAWAI_ID, URUT, BANK_SOAL_PILIHAN_ID, UJIAN_TAHAP_ID");
+                sb3.Append($" FROM cat_rekrutmen_pegawai.ujian_pegawai_{ujian_id} A");
+                sb3.Append($" WHERE 1=1 AND A.PEGAWAI_ID = {pegawai_id} AND A.UJIAN_ID = {ujian_id} AND A.UJIAN_TAHAP_ID = {UjianTahapId}");
+                sb3.Append(" ) UP ON B.UJIAN_BANK_SOAL_ID = UP.UJIAN_BANK_SOAL_ID");
+                sb3.Append(" LEFT JOIN");
+                sb3.Append(" (");
+                sb3.Append(" SELECT COUNT(1) JUMLAH_DATA, PEGAWAI_ID, UJIAN_ID, UJIAN_BANK_SOAL_ID");
+                sb3.Append($" FROM cat_rekrutmen_pegawai.ujian_pegawai_{ujian_id}");
+                sb3.Append(" WHERE BANK_SOAL_PILIHAN_ID IS NOT NULL");
+                sb3.Append(" GROUP BY PEGAWAI_ID, UJIAN_ID, UJIAN_BANK_SOAL_ID");
+                sb3.Append(" ) UPX ON UPX.PEGAWAI_ID = A.PEGAWAI_ID AND A.UJIAN_ID = UPX.UJIAN_ID AND UPX.UJIAN_BANK_SOAL_ID = B.UJIAN_BANK_SOAL_ID");
+                sb3.Append($" WHERE 1=1 AND A.PEGAWAI_ID = {pegawai_id} AND B.UJIAN_TAHAP_ID = {UjianTahapId} AND A.UJIAN_ID = {ujian_id}");
+                sb3.Append(" ORDER BY A.UJIAN_ID, B.BANK_SOAL_ID, UP.UJIAN_PEGAWAI_ID");
+            }
+            else if (tipe_ujian_id == 41)
+            {
+
+            }
+            else if (tipe_ujian_id == 42)
+            {
+
+            }
+            else
+            {
+                sb3.Append(" SELECT");
+                sb3.Append(" A.UJIAN_ID, B.UJIAN_BANK_SOAL_ID, B.BANK_SOAL_ID, C.KEMAMPUAN, C.KATEGORI, C.PERTANYAAN");
+                sb3.Append(" , A.PEGAWAI_ID, A.STATUS_SETUJU, A.UJIAN_PEGAWAI_DAFTAR_ID");
+                sb3.Append(" , C.TIPE_SOAL, C.PATH_GAMBAR, C.PATH_SOAL");
+                sb3.Append(" , B.UJIAN_TAHAP_ID");
+                sb3.Append(" , URUT, UP.BANK_SOAL_PILIHAN_ID, UP.UJIAN_PEGAWAI_ID");
+                sb3.Append(" , CASE WHEN COALESCE(UPX.JUMLAH_DATA,0) > 0 THEN 1 ELSE 0 END JUMLAH_DATA");
+                sb3.Append(" FROM cat_rekrutmen.ujian_pegawai_daftar A");
+                sb3.Append(" INNER JOIN cat_rekrutmen.ujian_bank_soal B ON A.LOWONGAN_ID = B.LOWONGAN_ID AND A.UJIAN_ID = B.UJIAN_ID");
+                sb3.Append(" INNER JOIN cat_rekrutmen.bank_soal C ON B.BANK_SOAL_ID = C.BANK_SOAL_ID");
+                sb3.Append(" LEFT JOIN");
+                sb3.Append(" (");
+                sb3.Append(" SELECT");
+                sb3.Append(" UJIAN_ID, UJIAN_BANK_SOAL_ID, UJIAN_PEGAWAI_DAFTAR_ID, UJIAN_PEGAWAI_ID, URUT, BANK_SOAL_PILIHAN_ID, UJIAN_TAHAP_ID");
+                sb3.Append(" FROM cat_rekrutmen_pegawai.ujian_pegawai_" + ujian_id + " A");
+                sb3.Append(" WHERE 1=1 AND A.PEGAWAI_ID = " + pegawai_id + " AND A.UJIAN_ID = " + ujian_id + " AND A.UJIAN_TAHAP_ID = " + UjianTahapId);
+                sb3.Append(" ) UP ON B.UJIAN_BANK_SOAL_ID = UP.UJIAN_BANK_SOAL_ID");
+                sb3.Append(" LEFT JOIN");
+                sb3.Append(" (");
+                sb3.Append(" SELECT COUNT(1) JUMLAH_DATA, PEGAWAI_ID, UJIAN_ID, UJIAN_BANK_SOAL_ID");
+                sb3.Append(" FROM cat_rekrutmen_pegawai.ujian_pegawai_" + ujian_id);
+                sb3.Append(" WHERE BANK_SOAL_PILIHAN_ID IS NOT NULL");
+                sb3.Append(" GROUP BY PEGAWAI_ID, UJIAN_ID, UJIAN_BANK_SOAL_ID");
+                sb3.Append(" ) UPX ON UPX.PEGAWAI_ID = A.PEGAWAI_ID AND A.UJIAN_ID = UPX.UJIAN_ID AND UPX.UJIAN_BANK_SOAL_ID = B.UJIAN_BANK_SOAL_ID");
+                sb3.Append(" WHERE 1=1 AND A.PEGAWAI_ID = " + pegawai_id + " AND B.UJIAN_TAHAP_ID = " + UjianTahapId + " AND A.UJIAN_ID = " + ujian_id);
+
+                var orderBy = " ORDER BY URUT, RANDOM()";
+                if (length_parent == 2)
+                {
+                    orderBy = " ORDER BY A.UJIAN_ID, B.BANK_SOAL_ID, UP.UJIAN_PEGAWAI_ID";
+                }
+
+                sb3.Append(orderBy);
+            }
 
             var jawabans = new List<Jawaban>();
 
@@ -240,6 +319,8 @@ namespace Assessment.Areas.Assessments.Controllers
                     Int32.TryParse(dt.Rows[i]["ujian_pegawai_id"].ToString(), out UjianPegawaiId);
                     int JumlahData = 0;
                     Int32.TryParse(dt.Rows[i]["jumlah_data"].ToString(), out JumlahData);
+                    int TipeSoal = 0;
+                    Int32.TryParse(dt.Rows[i]["tipe_soal"].ToString(), out TipeSoal);
 
                     var jawaban = new Jawaban
                     {
@@ -250,8 +331,8 @@ namespace Assessment.Areas.Assessments.Controllers
                         Pertanyaan = Convert.ToString(dt.Rows[i]["pertanyaan"].ToString()),
                         PegawaiId = Convert.ToInt32(dt.Rows[i]["pegawai_id"].ToString()),
                         UjianPegawaiDaftarId = Convert.ToInt32(dt.Rows[i]["ujian_pegawai_daftar_id"].ToString()),
-                        TipeSoal = Convert.ToInt32(dt.Rows[i]["tipe_soal"].ToString()),
                         UjianTahapId = Convert.ToInt32(dt.Rows[i]["ujian_tahap_id"].ToString()),
+                        TipeSoal = TipeSoal,
                         Urut = Urut,
                         BankSoalPilihanId = BankSoalPilihanId,
                         UjianPegawaiId = UjianPegawaiId,
@@ -265,19 +346,62 @@ namespace Assessment.Areas.Assessments.Controllers
             var BankSoalId = SoalDanJawaban.BankSoalId;
 
             var sb = new StringBuilder();
-            sb.Append(" SELECT");
-            sb.Append(" 	A.UJIAN_ID, B.UJIAN_BANK_SOAL_ID, B.BANK_SOAL_ID, D.BANK_SOAL_PILIHAN_ID, D.JAWABAN");
-            sb.Append(" 	, A.STATUS_SETUJU, A.UJIAN_PEGAWAI_DAFTAR_ID, TIPE_SOAL,");
-            sb.Append(" REPLACE(C.PATH_GAMBAR, '../', '../../angkasapura-admin/') PATH_GAMBAR1");
-            sb.Append(" 	, C.PATH_GAMBAR");
-            sb.Append(" 	, D.PATH_GAMBAR PATH_SOAL");
-            sb.Append(" 	, C.PATH_SOAL PATH_SOAL1");
-            sb.Append(" FROM cat_rekrutmen.ujian_pegawai_daftar A");
-            sb.Append(" INNER JOIN cat_rekrutmen.ujian_bank_soal B ON A.LOWONGAN_ID = B.LOWONGAN_ID AND A.UJIAN_ID = B.UJIAN_ID");
-            sb.Append(" INNER JOIN cat_rekrutmen.bank_soal C ON B.BANK_SOAL_ID = C.BANK_SOAL_ID");
-            sb.Append(" INNER JOIN cat_rekrutmen.bank_soal_pilihan D ON B.BANK_SOAL_ID = D.BANK_SOAL_ID");
-            sb.Append(" WHERE 1=1 AND A.PEGAWAI_ID = " + pegawai_id + " AND B.UJIAN_TAHAP_ID = " + UjianTahapId + " AND COALESCE(NULLIF(D.JAWABAN, ''), NULL) IS NOT NULL AND A.UJIAN_ID = " + ujian_id + " AND B.BANK_SOAl_ID = " + BankSoalId);
-            sb.Append(" ORDER BY D.BANK_SOAL_PILIHAN_ID"); //LENGTH(C.PATH_SOAL), C.PATH_SOAL
+            if (tipe_ujian_id == 7)
+            {
+                sb.Append(" SELECT");
+                sb.Append(" 	A.UJIAN_ID, B.UJIAN_BANK_SOAL_ID, B.BANK_SOAL_ID, D.PAPI_PILIHAN_ID BANK_SOAL_PILIHAN_ID, D.JAWABAN");
+                sb.Append(" 	, A.STATUS_SETUJU, A.UJIAN_PEGAWAI_DAFTAR_ID, C.TIPE_UJIAN_ID TIPE_SOAL, ");
+                sb.Append(" 	'' PATH_GAMBAR1");
+                sb.Append(" 	, '' PATH_GAMBAR");
+                sb.Append(" 	, '' PATH_SOAL");
+                sb.Append(" 	, '' PATH_SOAL1");
+                sb.Append(" FROM cat_rekrutmen.ujian_pegawai_daftar A");
+                sb.Append(" INNER JOIN cat_rekrutmen.ujian_bank_soal B ON A.LOWONGAN_ID = B.LOWONGAN_ID AND A.UJIAN_ID = B.UJIAN_ID");
+                sb.Append(" INNER JOIN cat_rekrutmen.soal_papi C ON B.BANK_SOAL_ID = C.SOAL_PAPI_ID");
+                sb.Append(" INNER JOIN cat_rekrutmen.papi_pilihan D ON B.BANK_SOAL_ID = D.SOAL_PAPI_ID");
+                sb.Append($" WHERE 1=1 AND A.PEGAWAI_ID = {pegawai_id} AND B.UJIAN_TAHAP_ID = {UjianTahapId} AND COALESCE(NULLIF(D.JAWABAN, ''), NULL) IS NOT NULL AND A.UJIAN_ID = {ujian_id} AND B.BANK_SOAl_ID = {BankSoalId}");
+                sb.Append(" ORDER BY A.UJIAN_ID, B.BANK_SOAL_ID");
+            }
+            else if (tipe_ujian_id == 17)
+            {
+                sb.Append(" SELECT");
+                sb.Append(" 	A.UJIAN_ID, B.UJIAN_BANK_SOAL_ID, B.BANK_SOAL_ID, D.EPPS_PILIHAN_ID BANK_SOAL_PILIHAN_ID, D.JAWABAN");
+                sb.Append(" 	, A.STATUS_SETUJU, A.UJIAN_PEGAWAI_DAFTAR_ID, C.TIPE_UJIAN_ID TIPE_SOAL, ");
+                sb.Append(" 	'' PATH_GAMBAR1");
+                sb.Append(" 	, '' PATH_GAMBAR");
+                sb.Append(" 	, '' PATH_SOAL");
+                sb.Append(" 	, '' PATH_SOAL1");
+                sb.Append(" FROM cat_rekrutmen.ujian_pegawai_daftar A");
+                sb.Append(" INNER JOIN cat_rekrutmen.ujian_bank_soal B ON A.LOWONGAN_ID = B.LOWONGAN_ID AND A.UJIAN_ID = B.UJIAN_ID");
+                sb.Append(" INNER JOIN cat_rekrutmen.soal_epps C ON B.BANK_SOAL_ID = C.SOAL_EPPS_ID");
+                sb.Append(" INNER JOIN cat_rekrutmen.epps_pilihan D ON B.BANK_SOAL_ID = D.SOAL_EPPS_ID");
+                sb.Append($" WHERE 1=1 AND A.PEGAWAI_ID = {pegawai_id} AND B.UJIAN_TAHAP_ID = {UjianTahapId} AND COALESCE(NULLIF(D.JAWABAN, ''), NULL) IS NOT NULL AND A.UJIAN_ID = {ujian_id} AND B.BANK_SOAL_ID = {BankSoalId}");
+                sb.Append(" ORDER BY A.UJIAN_ID, B.BANK_SOAL_ID");
+            }
+            else if (tipe_ujian_id == 41)
+            {
+
+            }
+            else if (tipe_ujian_id == 42)
+            {
+
+            }
+            else
+            {
+                sb.Append(" SELECT");
+                sb.Append(" 	A.UJIAN_ID, B.UJIAN_BANK_SOAL_ID, B.BANK_SOAL_ID, D.BANK_SOAL_PILIHAN_ID, D.JAWABAN");
+                sb.Append(" 	, A.STATUS_SETUJU, A.UJIAN_PEGAWAI_DAFTAR_ID, TIPE_SOAL,");
+                sb.Append(" REPLACE(C.PATH_GAMBAR, '../', '../../angkasapura-admin/') PATH_GAMBAR1");
+                sb.Append(" 	, C.PATH_GAMBAR");
+                sb.Append(" 	, D.PATH_GAMBAR PATH_SOAL");
+                sb.Append(" 	, C.PATH_SOAL PATH_SOAL1");
+                sb.Append(" FROM cat_rekrutmen.ujian_pegawai_daftar A");
+                sb.Append(" INNER JOIN cat_rekrutmen.ujian_bank_soal B ON A.LOWONGAN_ID = B.LOWONGAN_ID AND A.UJIAN_ID = B.UJIAN_ID");
+                sb.Append(" INNER JOIN cat_rekrutmen.bank_soal C ON B.BANK_SOAL_ID = C.BANK_SOAL_ID");
+                sb.Append(" INNER JOIN cat_rekrutmen.bank_soal_pilihan D ON B.BANK_SOAL_ID = D.BANK_SOAL_ID");
+                sb.Append(" WHERE 1=1 AND A.PEGAWAI_ID = " + pegawai_id + " AND B.UJIAN_TAHAP_ID = " + UjianTahapId + " AND COALESCE(NULLIF(D.JAWABAN, ''), NULL) IS NOT NULL AND A.UJIAN_ID = " + ujian_id + " AND B.BANK_SOAl_ID = " + BankSoalId);
+                sb.Append(" ORDER BY D.BANK_SOAL_PILIHAN_ID"); //LENGTH(C.PATH_SOAL), C.PATH_SOAL}
+            }
 
             dt = GeneralClass.POSTGREMYSQL.Instance.ExecuteQuery(sb.ToString());
             if (dt != null && dt.Rows.Count > 0)
@@ -288,6 +412,7 @@ namespace Assessment.Areas.Assessments.Controllers
                     var pilihanSoal = new PilihanSoal
                     {
                         BankSoalPilihanId = Convert.ToInt32(dt.Rows[i]["bank_soal_pilihan_id"].ToString()),
+                        Jawaban = dt.Rows[i]["jawaban"].ToString(),
                         PathGambar = dt.Rows[i]["path_gambar"].ToString(),
                         PathJawaban = dt.Rows[i]["jawaban"].ToString()
                     };
@@ -314,46 +439,6 @@ namespace Assessment.Areas.Assessments.Controllers
             {
                 return NotFound();
             }
-
-            ////HttpContext.Session.SetInt32("NavigateId", 12);
-            ////HttpContext.Session.SetInt32("OrderId", 6);
-            //var user = await _userManager.GetUserAsync(User);
-            //var examQuestions = await _context.ExamQuestions
-            //    .Include(m => m.ExamSection).ThenInclude(m => m.Exam).ThenInclude(m => m.ExamSchedules).ThenInclude(m => m.ExamEmployees).ThenInclude(m => m.Employee)
-            //    .Include(m => m.Question).ThenInclude(m => m.QuestionDetails)
-            //    .Include(m => m.Question).ThenInclude(m => m.Answers).ThenInclude(m => m.AnswerDetails)
-            //    .Where(m => m.ExamSectionId == SectionId)
-            //    .OrderBy(m => m.Number)
-            //    .ToListAsync();
-            //var examQuestion = examQuestions.FirstOrDefault(m => m.QuestionId == QuestionId);
-            //if (examQuestion == null)
-            //{
-            //    return NotFound();
-            //}
-            //var examSchedule = examQuestion.ExamSection.Exam.ExamSchedules.FirstOrDefault(m => m.DateExam.Date == DateTime.Now.Date);
-            //if (examSchedule == null)
-            //{
-            //    return StatusCode(501);
-            //}
-            //var examEmployee = examSchedule.ExamEmployees.FirstOrDefault(m => m.Employee.UserForeignKey == user.Id);
-            //var examEmployeeId = examEmployee.Id;
-            //var answers = examEmployee.Answers?.ToList() ?? new List<Answer>();
-            //var examView = new ExamViewModel
-            //{
-            //    ExamEmployeeId = examEmployeeId,
-            //    SectionId = examQuestion.ExamSectionId,
-            //    QuestionId = examQuestion.QuestionId,
-            //    QuestionDetailId = 0,
-            //    Number = examQuestion.Number,
-            //    Duration = examQuestion.Duration,
-            //    IsNext = false,
-            //    SectionName = examQuestion.ExamSection.Name,
-            //    Question = examQuestion.Question,
-            //    QuestionDetails = examQuestion.Question.QuestionDetails.ToList(),
-            //    ExamQuestions = examQuestions,
-            //    Answers = answers,
-            //};
-            //return View(examView);
         }
 
         [HttpGet(Name = "ExamMulti")]
@@ -398,44 +483,73 @@ namespace Assessment.Areas.Assessments.Controllers
             sb2.Append(" FROM cat_rekrutmen.TIPE_UJIAN A");
             sb2.Append(" WHERE 1=1 AND PARENT_ID = '0'");
             sb2.Append(" 		) D ON C.PARENT_ID = D.ID_ROW");
-            sb2.Append(" WHERE 1=1 AND COALESCE(B.MENIT_SOAL,0) > 0 AND A.PEGAWAI_ID = " + pegawai_id + " AND A.UJIAN_ID = " + ujian_id + " AND B.UJIAN_TAHAP_ID = " + UjianTahapId);
-            sb2.Append(" ORDER BY ID ASC");
+            sb2.Append(" WHERE 1=1 AND A.PEGAWAI_ID = " + pegawai_id + " AND A.UJIAN_ID = " + ujian_id + " AND B.UJIAN_TAHAP_ID = " + UjianTahapId);
 
             var tipe = string.Empty;
+            var length_parent = 0;
+            var tipe_ujian_id = 0;
 
             dt = GeneralClass.POSTGREMYSQL.Instance.ExecuteQuery(sb2.ToString());
             if (dt != null && dt.Rows.Count > 0)
             {
                 tipe = "UJIAN " + dt.Rows[0]["tipe"].ToString().ToUpper();
+                length_parent = Convert.ToInt32(dt.Rows[0]["length_parent"].ToString());
+                tipe_ujian_id = Convert.ToInt32(dt.Rows[0]["tipe_ujian_id"].ToString());
             }
 
             var sb3 = new StringBuilder();
-            sb3.Append(" SELECT");
-            sb3.Append(" 			A.UJIAN_ID, B.UJIAN_BANK_SOAL_ID, B.BANK_SOAL_ID, C.KEMAMPUAN, C.KATEGORI, C.PERTANYAAN");
-            sb3.Append(" 			, A.PEGAWAI_ID, A.STATUS_SETUJU, A.UJIAN_PEGAWAI_DAFTAR_ID");
-            sb3.Append(" 			, C.TIPE_SOAL, C.PATH_GAMBAR, C.PATH_SOAL");
-            sb3.Append(" 			, B.UJIAN_TAHAP_ID");
-            sb3.Append(" 			, URUT, UP.BANK_SOAL_PILIHAN_ID, UP.UJIAN_PEGAWAI_ID");
-            sb3.Append(" 			, CASE WHEN COALESCE(UPX.JUMLAH_DATA,0) > 0 THEN 1 ELSE 0 END JUMLAH_DATA");
-            sb3.Append(" FROM cat_rekrutmen.ujian_pegawai_daftar A");
-            sb3.Append(" INNER JOIN cat_rekrutmen.ujian_bank_soal B ON A.LOWONGAN_ID = B.LOWONGAN_ID AND A.UJIAN_ID = B.UJIAN_ID");
-            sb3.Append(" INNER JOIN cat_rekrutmen.bank_soal C ON B.BANK_SOAL_ID = C.BANK_SOAL_ID");
-            sb3.Append(" LEFT JOIN");
-            sb3.Append(" 		(");
-            sb3.Append(" SELECT");
-            sb3.Append(" 			UJIAN_ID, UJIAN_BANK_SOAL_ID, UJIAN_PEGAWAI_DAFTAR_ID, UJIAN_PEGAWAI_ID, URUT, BANK_SOAL_PILIHAN_ID, UJIAN_TAHAP_ID");
-            sb3.Append(" FROM cat_rekrutmen_pegawai.ujian_pegawai_" + ujian_id + " A");
-            sb3.Append(" WHERE 1=1 AND A.PEGAWAI_ID = " + pegawai_id + " AND A.UJIAN_ID = " + ujian_id + " AND A.UJIAN_TAHAP_ID = " + UjianTahapId);
-            sb3.Append(" 		) UP ON B.UJIAN_BANK_SOAL_ID = UP.UJIAN_BANK_SOAL_ID");
-            sb3.Append(" LEFT JOIN");
-            sb3.Append(" 		(");
-            sb3.Append(" SELECT COUNT(1) JUMLAH_DATA, PEGAWAI_ID, UJIAN_ID, UJIAN_BANK_SOAL_ID");
-            sb3.Append(" FROM cat_rekrutmen_pegawai.ujian_pegawai_" + ujian_id);
-            sb3.Append(" WHERE BANK_SOAL_PILIHAN_ID IS NOT NULL");
-            sb3.Append(" GROUP BY PEGAWAI_ID, UJIAN_ID, UJIAN_BANK_SOAL_ID");
-            sb3.Append(" 		) UPX ON UPX.PEGAWAI_ID = A.PEGAWAI_ID AND A.UJIAN_ID = UPX.UJIAN_ID AND UPX.UJIAN_BANK_SOAL_ID = B.UJIAN_BANK_SOAL_ID");
-            sb3.Append(" WHERE 1=1 AND A.PEGAWAI_ID = " + pegawai_id + " AND B.UJIAN_TAHAP_ID = " + UjianTahapId + " AND A.UJIAN_ID = " + ujian_id);
-            sb3.Append(" ORDER BY A.UJIAN_ID, B.BANK_SOAL_ID, UP.UJIAN_PEGAWAI_ID");
+            if (tipe_ujian_id == 7)
+            {
+
+            }
+            else if (tipe_ujian_id == 17)
+            {
+
+            }
+            else if (tipe_ujian_id == 41)
+            {
+
+            }
+            else if (tipe_ujian_id == 42)
+            {
+
+            }
+            else
+            {
+                sb3.Append(" SELECT");
+                sb3.Append(" A.UJIAN_ID, B.UJIAN_BANK_SOAL_ID, B.BANK_SOAL_ID, C.KEMAMPUAN, C.KATEGORI, C.PERTANYAAN");
+                sb3.Append(" , A.PEGAWAI_ID, A.STATUS_SETUJU, A.UJIAN_PEGAWAI_DAFTAR_ID");
+                sb3.Append(" , C.TIPE_SOAL, C.PATH_GAMBAR, C.PATH_SOAL");
+                sb3.Append(" , B.UJIAN_TAHAP_ID");
+                sb3.Append(" , URUT, UP.BANK_SOAL_PILIHAN_ID, UP.UJIAN_PEGAWAI_ID");
+                sb3.Append(" , CASE WHEN COALESCE(UPX.JUMLAH_DATA,0) > 0 THEN 1 ELSE 0 END JUMLAH_DATA");
+                sb3.Append(" FROM cat_rekrutmen.ujian_pegawai_daftar A");
+                sb3.Append(" INNER JOIN cat_rekrutmen.ujian_bank_soal B ON A.LOWONGAN_ID = B.LOWONGAN_ID AND A.UJIAN_ID = B.UJIAN_ID");
+                sb3.Append(" INNER JOIN cat_rekrutmen.bank_soal C ON B.BANK_SOAL_ID = C.BANK_SOAL_ID");
+                sb3.Append(" LEFT JOIN");
+                sb3.Append(" (");
+                sb3.Append(" SELECT");
+                sb3.Append(" UJIAN_ID, UJIAN_BANK_SOAL_ID, UJIAN_PEGAWAI_DAFTAR_ID, UJIAN_PEGAWAI_ID, URUT, BANK_SOAL_PILIHAN_ID, UJIAN_TAHAP_ID");
+                sb3.Append(" FROM cat_rekrutmen_pegawai.ujian_pegawai_" + ujian_id + " A");
+                sb3.Append(" WHERE 1=1 AND A.PEGAWAI_ID = " + pegawai_id + " AND A.UJIAN_ID = " + ujian_id + " AND A.UJIAN_TAHAP_ID = " + UjianTahapId);
+                sb3.Append(" ) UP ON B.UJIAN_BANK_SOAL_ID = UP.UJIAN_BANK_SOAL_ID");
+                sb3.Append(" LEFT JOIN");
+                sb3.Append(" (");
+                sb3.Append(" SELECT COUNT(1) JUMLAH_DATA, PEGAWAI_ID, UJIAN_ID, UJIAN_BANK_SOAL_ID");
+                sb3.Append(" FROM cat_rekrutmen_pegawai.ujian_pegawai_" + ujian_id);
+                sb3.Append(" WHERE BANK_SOAL_PILIHAN_ID IS NOT NULL");
+                sb3.Append(" GROUP BY PEGAWAI_ID, UJIAN_ID, UJIAN_BANK_SOAL_ID");
+                sb3.Append(" ) UPX ON UPX.PEGAWAI_ID = A.PEGAWAI_ID AND A.UJIAN_ID = UPX.UJIAN_ID AND UPX.UJIAN_BANK_SOAL_ID = B.UJIAN_BANK_SOAL_ID");
+                sb3.Append(" WHERE 1=1 AND A.PEGAWAI_ID = " + pegawai_id + " AND B.UJIAN_TAHAP_ID = " + UjianTahapId + " AND A.UJIAN_ID = " + ujian_id);
+
+                var orderBy = " ORDER BY URUT, RANDOM()";
+                if (length_parent == 2)
+                {
+                    orderBy = " ORDER BY A.UJIAN_ID, B.BANK_SOAL_ID, UP.UJIAN_PEGAWAI_ID";
+                }
+
+                sb3.Append(orderBy);
+            }
 
             var jawabans = new List<Jawaban>();
 
@@ -502,6 +616,7 @@ namespace Assessment.Areas.Assessments.Controllers
                     var pilihanSoal = new PilihanSoal
                     {
                         BankSoalPilihanId = Convert.ToInt32(dt.Rows[i]["bank_soal_pilihan_id"].ToString()),
+                        Jawaban = dt.Rows[i]["jawaban"].ToString(),
                         PathGambar = dt.Rows[i]["path_gambar"].ToString(),
                         PathJawaban = dt.Rows[i]["jawaban"].ToString()
                     };

@@ -1,0 +1,33 @@
+﻿@model InstructionViewModel
+
+<div class="area-instruksi">
+    <div class="judul">Tes Logika A Sub test 2</div>
+
+    <div class="keterangan">
+        <p>
+            Lihatlah gambar-gambar contoh pada baris pertama. Disitu ada 3 (tiga) kotak yang mempunyai bentuk gambar yang sama, tetapi 2 (dua) kotak lain yang mempunyai bentuk gambar yang berbeda.
+            Tugas Anda adalah mencari pada setiap baris soal, 2 kotak yang gambarnya berbeda dengan gambar 3 kotak lainnya. Apabila Anda telah menemukan 2 kotak yang berbeda tersebut, maka pilihlah 2 (dua) huruf jawaban yang mewakili kotak tersebut.
+        </p>
+        <p>Pada gambar di garis pertama, Anda melihat ada 3 (tiga) kotak yang gambarnya <i>segitiga</i> dan 2 (dua) kotak yang gambarnya <i>segiempat</i>. Jadi, 2 kotak yang gambarnya </p><ul>segiempat</ul> itulah jawabannya.<p></p>
+
+        <span><img src="/images/contoh/a_subtes2_contoh1.jpg"></span>
+
+        <p>Kedua gambar itu berada di kotak dengan huruf <b>"b"</b> dan <b>"d"</b>. Maka Anda harus memilih jawaban <b>"b"</b> dan <b>"d"</b>.</p>
+
+        <p>Sekarang lihatlah contoh pada baris kedua. Carilah 2 (dua) gambar yang berbeda dengan 3 (tiga) gambar lainnya.</p>
+
+        <span><img src="/images/contoh/a_subtes2_contoh2.jpg"></span>
+
+        <p>Jawabannnya adalah <b>"c"</b> dan <b>"e"</b>.</p>
+
+        <p>Sekali lagi, tugas Anda adalah memilih 2 kotak atau 2 gambar yang berbeda dengan gambar-gambar yang lainnya pada setiap baris soal. Jadi, Anda harus memilih 2 jawaban.</p>
+
+
+        <p><b>Waktu anda terbatas, bekerjalah dengan cepat, teliti dan tepat.</b></p>
+
+        @*<input type="button" value="OK" onclick="setBacaTipeUjian(9)" id="fvpp-close">*@
+        <a id="fvpp-close" asp-route="ExamMulti" asp-route-UjianTahapId="@Model.UjianTahapId" asp-route-Nomer="1">OK</a>
+
+    </div>
+
+</div>

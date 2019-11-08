@@ -1,0 +1,28 @@
+﻿@model InstructionViewModel
+
+<div class="area-instruksi">
+
+    <div class="judul">EPPS</div>
+
+    <div class="keterangan">
+        <p>Anda akan membaca sejumlah pernyataan mengenai berbagai hal yang mungkin menggambarkan diri anda</p>
+        <p>atau mungkin juga tidak menggambarkan diri anda, dan pernyataan-pernyataan tersebut selalu disajikan berpasangan</p>
+        <p style="text-align: center"><strong>Perhatikan contoh di bawah ini : </strong></p>
+
+        <ul style="list-style-type: upper-alpha">
+            <li>Saya suka berbicara tentang diri saya dengan orang lain</li>
+            <li>Saya suka bekerja untuk suatu tujuan yang telah saya tentukan bagi diri saya</li>
+        </ul>
+
+        <p>Manakah dari dua pernyataan tersebut, yang lebih menggambarkan diri anda ?</p>
+        <p>Bila anda lebih mirip <strong>suka berbicara tentang diri anda dengan orang lain </strong>, daripada</p>
+        <p><strong>suka bekerja untuk suatu tujuan yang telah anda tentukan bagi diri anda</strong>, maka </p>
+        <p>Anda hendaknya memilih <strong>A</strong></p>
+        <p>Tetapi bila anda lebih mirip <strong>suka bekerja untuk suatu tujuan yang telah anda tentukan bagi diri anda </strong>daripada</p>
+        <p><strong>suka berbicara dengan orang lain </strong>, maka hendaknya anda memilih <strong>B</strong></p>
+
+        <a id="fvpp-close" asp-route="Exam" asp-route-UjianTahapId="@Model.UjianTahapId" asp-route-Nomer="1">OK</a>
+
+    </div>
+
+</div>

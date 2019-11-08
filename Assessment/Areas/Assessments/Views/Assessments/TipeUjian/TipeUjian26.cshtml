@@ -1,0 +1,56 @@
+﻿@model InstructionViewModel
+
+<style>
+    .area-instruksi .keterangan img {
+        max-width: 100%;
+    }
+</style>
+
+<div class="area-instruksi">
+
+    <div class="judul" style="text-align:center">
+        <b>
+            <p>PETUNJUK DAN CONTOH UNTUK KELOMPOK SOAL 08</p>
+            <p>(Soal-soal No. 137-156)</p>
+        </b>
+    </div>
+    <br>
+    <div class="keterangan">
+        <p>
+            Ditentukan 5(lima) buah kubus a,b,c,d,e. Pada tiap-tiap kubus terdapat enam tanda yang berlainan pada setiap sisinya. Tiga dari tanda itu dapat dilihat.
+            <br> Kubus-kubus yang ditentukan itu (a, b, c, d, e) ialah kubus-kubus yang berbeda, artinya kubus-kubus itu dapat mempunyai tanda-tanda yang sama, akan tetapi susunannya berlainan. setiap soal memperlihatkan salah satu kubus yang ditentukan di dalam kedudukan yang berbeda.
+            <br> Carilah kubus yang dimaksudkan itu dan coretkanlah jawaban saudara <b>pada lembar jawaban</b> di belakang nomor soal yang sesuai.
+            <br> Kubus itu dapat diputar, dapat digulingkan atau dapat diputar dan digulingkan dalam pikiran saudara.
+            <br> Oleh karena itu mungkin akan terlihat suatu tanda yang baru.
+        </p>
+        <br>
+        <img src="/images/contoh/soal8.png">
+        <br>
+        <br>
+        <b>Contoh 08</b>
+        <br>
+        <br>
+        <p> Contoh ini memperlihatkan kubus a dengan kedudukan yang berbeda.</p>
+        <p> Mendapatkannya adalah dengan cara menggulingkan lebih dahulu kubus itu ke kiri satu kali dan kemudian diputar ke kiri satu kali, sehingga sisi kubus yang bertanda dua segi empat hitam terletak di depan, seperti kubus a.</p>
+        <p> Oleh karena itu, <b>pada lembar jawaban</b> di belakang contoh 08, huruf a harus dicoret</p>
+        <br>
+        <p style="text-align:center"> 08)&nbsp &nbsp <s> a </s> &nbsp &nbsp b &nbsp &nbsp  c  &nbsp &nbsp d  &nbsp &nbsp e</p>
+        <br>
+        <br>
+        <b>Contoh berikutnya :</b>
+        <br>
+        <br>
+        <p> Contoh kedua adalah kubus e</p>
+        <p> Cara mendapatkannya adalah dengan digulingkan ke kiri satu kali dan diputar ke kiri satu kali,</p>
+        <p> Sehingga sisi kubus yang bertanda garis silang terletak di depan, seperti kubus e.</p>
+        <br>
+        <p> Contoh ketiga adalah kubus b</p>
+        <p> Cara mendapatakannya adalah dengan menggulingkannya ke kiri satu kali, sehingga dasar kubus yang tadinya tidak terlihat memunculkan tanda baru (dalam hal ini adalah tanda dua segi empat hitam) dan tanda silang pada sisi atas kubus itu menjadi tidak terlihat lagi</p>
+        <br>
+        <p> Contoh keempat menjadi bentuk c.</p>
+        <br>
+        <p> Contoh kelima ialah bentuk d.</p>
+        <br>
+        <a id="fvpp-close" asp-route="Exam" asp-route-UjianTahapId="@Model.UjianTahapId" asp-route-Nomer="1">OK</a>
+    </div>
+</div>

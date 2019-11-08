@@ -15,7 +15,7 @@ namespace Assessment.Areas.Assessments.Models.AssessmentViewModels
         public string Pertanyaan { get; set; }
         public int PegawaiId { get; set; }
         public int UjianPegawaiDaftarId { get; set; }
-        public int TipeSoal { get; set; }
+        public int? TipeSoal { get; set; }
         public int UjianTahapId { get; set; }
         public int Urut { get; set; }
         public int? BankSoalPilihanId { get; set; }
@@ -25,6 +25,7 @@ namespace Assessment.Areas.Assessments.Models.AssessmentViewModels
     public class PilihanSoal
     {
         public int BankSoalPilihanId { get; set; }
+        public string Jawaban { get; set; }
         public string PathGambar { get; set; }
         public string PathJawaban { get; set; }
     }

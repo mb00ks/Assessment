@@ -1,0 +1,43 @@
+﻿@model InstructionViewModel
+
+<div class="area-instruksi">
+
+    <div class="judul">Papikostik</div>
+
+    <div class="keterangan">
+        <p>Pada halaman-halaman berikut, saudara akan membaca sejumlah pertanyaan dalam pasangan</p>
+        <p>tentang berbagai hal yang mungkin saudara suka atau tidak suka lakukan atau...</p>
+        <p>Perhatikan contoh di bawah ini : </p>
+        <ul>
+            <li>Saya Suka memberi petunjuk kepada orang bagaimana melakukan sesuatu</li>
+            <li>Saya ingin melakukan sesuatu sebaik mungkin</li>
+        </ul>
+        <p>Yang manakah dari dua pertanyaan lebih menggambarkan diri saudara ?</p>
+        <p>Bila saudara lebih <strong>suka memberi petunjuk kepada orang tentang bagaimana melakukan sesuatu</strong></p>
+        <p>dari pada ingin melakukan sesuatu sebaik mungkin, maka saudara hendaknya</p>
+        <p>memberikan tanda lingkaran (O) pada kotak atas di samping nomor soal  yang sesuai pada lembar jawaban</p>
+
+        <p>Contoh :</p>
+        <ul>
+            <li style="border: 1px solid #000; border-radius: 80px"> </li>
+            <li> </li>
+        </ul>
+        <p>
+            Tetapi bila saudara ingin <strong>
+                melakukan sesuatu sebaik mungkin dari pada memberi petunjuk pada orang lain
+                tentang bagaimana melakukan sesuatu
+            </strong>
+        </p>
+        <p>maka saudara hendaknya memberikan tanda lingkaran (O) pada kotak bawah di samping nomor soal yang sesuai pada lembar jawaban </p>
+
+        <p>Contoh : </p>
+        <ul>
+            <li> </li>
+            <li style="border: 1px solid #000; border-radius: 80px"> </li>
+        </ul>
+
+        <a id="fvpp-close" asp-route="Exam" asp-route-UjianTahapId="@Model.UjianTahapId" asp-route-Nomer="1">OK</a>
+
+    </div>
+
+</div>

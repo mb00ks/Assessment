@@ -1,0 +1,70 @@
+﻿@model InstructionViewModel
+
+<div class="area-instruksi">
+
+    <div class="judul">Tes Kraepelin</div>
+
+    <div class="keterangan">
+        <p>&emsp;Lihatlah gambar gerak di bawah ini pada contoh pada tes ini. Ujian Akana di batasi dengan waktu yang telah di tetapkan . Untuk Tiap tiap soal waktu berkisar 15 detik dan harus berlanjut tidak boleh berhenti dan di kerjakan sampek selesai tanpa ada waktu delay </p>
+        <br>
+        <table style="width: 100%;">
+            <tbody>
+                <tr style="/*! height: 300px; */">
+                    <td style="/*! width: 400px; */width: 40%;/*! max-width: 600px; */height: 600px;/*! width: 50%; *//*! background-color: powderblue; *//*! background: url; */background: url(/images/contoh/gambar.gif) no-repeat 0 0 transparent;background-size: cover;/*! border: none; */"></td>
+                    <td style="text-align: top;text-align: justify;vertical-align: text-top;" align="top">
+                        <p>1. tekan =&gt; <span><img src="/images/contoh/mulai.png" style="height: 40px;width: 100px;"></span> mulai untuk memulai test Ujian</p>
+                        <p>2. tekan =&gt; <span><img src="/images/contoh/enter.png" style="height: 30px;width: 100px;"></span> Untuk mengisi kolom di tab berikutnya </p>
+                        <p>&emsp; Mengerjakan tes kraepelin dilakukan dengan cara menjumlahkan dua bilangan angka. Kemudian jawaban ditulis di sela-sela dua bilangan yang dijumlahkan. Jika penjumlahan menghasilkan angka bilangan dua digit maka anda cukup menulis digit terakhir saja atau angka satuannya. Contoh lembar tes kraepelin dan jawabannya: </p>
+
+                        <br>
+                        <br>
+
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td style="background: url(/images/contoh/ex2.png) no-repeat 0 0 transparent;background-size: cover;height: 300px;width: 50%;"></td>
+                                    <td style="text-align: left;vertical-align: text-top;">
+                                        <p>
+                                            &emsp;Seperti penjelasan di atas, tes kraepelin dikerjakan dengan menjumlahkan angka dari bawah ke atas.<br> Seperti contoh di sebelah kiri <br><br>
+                                            (3 + 1 = 4) maka hasil ( 4 ) dtulis disela-sela angka.
+                                            <br><br>Selanjutnya pada (1 + 9 = 10) maka angka yang ditulis hanya 0 saja karena angka ( 10 ) termasuk dalam bilangan puluhan.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+
+
+        <br>
+
+
+        <p>
+            Dalam test ini untuk menilai
+            </br>
+            <strong>1. Kecepatan : </strong>Ini menunjukkan tempo kerja, seberapa aktif seseorang menjalankan sebuah kegiatan, apakah cepat, sedang, atau lambat
+            </br>
+            <strong> 2. Ketelitian : </strong>Ini menunjukkan konsentrasi kerja, seberapa besar seseorang bisa fokus terhadap pekerjaan yang dilakukan.
+
+            </br>
+            <strong> 3. Kestabilan / Keajegan :</strong> Ini menunjukkan kemampuan dalam menjaga dan mengola emosi pada saat bekerja.
+            </br>
+            <strong>4. Ketahanan : </strong>Ini menunjukkan daya tahan seseorang dalam menghadapi situasi tertekan.
+        </p>
+
+        <br>
+
+        <p> Apabila sudah paham dan mengerti akan penjelasan ini bisa langsun di lanjutakan dengan menekan tombol <strong> OK </strong> </p>
+
+        <a id="fvpp-close" asp-route="Exam" asp-route-UjianTahapId="@Model.UjianTahapId" asp-route-Nomer="1">OK</a>
+
+    </div>
+
+</div>

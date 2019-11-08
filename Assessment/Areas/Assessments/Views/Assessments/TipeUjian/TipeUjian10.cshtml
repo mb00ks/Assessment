@@ -1,0 +1,34 @@
+﻿@model InstructionViewModel
+
+<div class="area-instruksi">
+    <div class="judul">Tes Logika A Sub test 3</div>
+
+    <div class="keterangan">
+        <p>Perhatikan gambar-gambar contoh pada tes 3 ini. Di dalam kotak yang besar, ada 4 kotak yang kecil. Tiga dari kotak-kotak kecil itu bergambar, tetapi ada 1 kotak kecil yang hilang. Kotak yang hilang ini terletak di antara 6 kotak kecil yang berada di sebelah kanan. Pilihlah salah satu.</p>
+
+        <span><img src="/images/contoh/a_subtes3_contoh1.jpg"></span>
+
+        <p>Dapatkah Anda memilih 1 (satu) kotak selanjutnya diantara 6 (enam) kotak yang telah tersedia?</p>
+
+        <p>Perhatikan, kotak kedua lah yang tepat untuk mengisi kotak yang kosong itu. Kotak kedua ini terletak pada huruf <b>"b"</b>. Maka pilihlah jawaban <b>"b"</b>.</p>
+
+        <p>Sekarang lihatlah contoh kedua. Manakah jawaban yang benar?</p>
+
+        <span><img src="/images/contoh/a_subtes3_contoh2.jpg"></span>
+
+        <p>Kotak yang terletak pada huruf <b>"c"</b> yang tepat untuk mengisi kotak kecil yang hilang tersebut, karena yang hilang itu adalah gambar </p><ul>ayam berbintik</ul> yang menghadap ke kanan. Maka pilihlah jawaban sesuai dengan yang Anda anggap benar tersebut.<p></p>
+
+        <p>Sekarang perhatikan kotak ketiga. Ada berapakah lingkaran yang Anda lihat?</p>
+
+        <span><img src="/images/contoh/a_subtes3_contoh3.jpg"></span>
+
+        <p>Kotak dengan satu lingkaran putih adalah yang tepat untuk mengisinya. Kotak yang terletak pada  huruf <b>"f"</b> itulah jawabannya.</p>
+
+        <p><b>Waktu anda terbatas, bekerjalah dengan cepat, teliti dan tepat.</b></p>
+
+        @*<input type="button" value="OK" onclick="setBacaTipeUjian(10)" id="fvpp-close">*@
+        <a id="fvpp-close" asp-route="Exam" asp-route-UjianTahapId="@Model.UjianTahapId" asp-route-Nomer="1">OK</a>
+
+    </div>
+
+</div>
