@@ -63,8 +63,14 @@
 
         <p> Apabila sudah paham dan mengerti akan penjelasan ini bisa langsun di lanjutakan dengan menekan tombol <strong> OK </strong> </p>
 
-        <a id="fvpp-close" asp-route="ExamKraepelin" asp-route-UjianTahapId="@Model.UjianTahapId" asp-route-Nomer="1">OK</a>
-
+        @if (Model.HaveLatihan)
+        {
+            <a id="fvpp-close" asp-route="ExamKraepelinLatihan" asp-route-UjianTahapId="@Model.UjianTahapId" asp-route-Nomer="1">OK</a>
+        }
+        else
+        {
+            <a id="fvpp-close" asp-route="ExamKraepelin" asp-route-UjianTahapId="@Model.UjianTahapId" asp-route-Nomer="1">OK</a>
+        }
     </div>
 
 </div>

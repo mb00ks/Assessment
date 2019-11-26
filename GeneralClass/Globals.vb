@@ -596,7 +596,7 @@ Public Class POSTGREMYSQL
     'Public m_Server As String = "192.168.88.101" 'ReadConfigDecrypt("server_db_pg")
     Public m_Server As String = "127.0.0.1" 'ReadConfigDecrypt("server_db_pg")
     'Public m_Database As String = "db_cat_pelindo" 'ReadConfigDecrypt("db_pg")
-    Public m_Database As String = "db_cat_pelindo_2" 'ReadConfigDecrypt("db_pg")
+    Public m_Database As String = "db_cat_pelindo_3" 'ReadConfigDecrypt("db_pg")
     Public m_Username As String = "postgres" 'ReadConfigDecrypt("username_db_pg")
     Public m_Password As String = "root" 'ReadConfigDecrypt("password_db_pg")
     Private m_ConnectionString As String = "Server=" & m_Server & ";Port=5432;User Id=" & m_Username & ";Password=" & m_Password & ";Database=" & m_Database & ";"

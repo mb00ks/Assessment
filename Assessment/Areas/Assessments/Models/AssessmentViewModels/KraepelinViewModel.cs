@@ -7,6 +7,11 @@ namespace Assessment.Areas.Assessments.Models.AssessmentViewModels
 {
     public class KraepelinViewModel
     {
+        public int UjianTahapId { get; set; }
+        public int UjianPegawaiDaftarId { get; set; }
+        public int PegawaiId { get; set; }
+        public int UjianId { get; set; }
+        public int TipeUjianId { get; set; }
         public int PakaiKraepelinId { get; set; }
         public int Xdata { get; set; }
         public int Ydata { get; set; }
